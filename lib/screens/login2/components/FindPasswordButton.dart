@@ -7,7 +7,7 @@ class FindPasswordButton extends StatelessWidget {
     return TextButton(
       child: Text('패스워드 찾기'),
       style: TextButton.styleFrom(
-          textStyle: const TextStyle(color: GrayColor, fontSize: 20)),
+          textStyle: const TextStyle(color: kGrayColor, fontSize: 20)),
       onPressed: null,
     );
   }

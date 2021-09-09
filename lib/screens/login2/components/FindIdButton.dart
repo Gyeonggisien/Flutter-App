@@ -6,7 +6,7 @@ class FindIdButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        textStyle: const TextStyle(color: GrayColor, fontSize: 20),
+        textStyle: const TextStyle(color: kGrayColor, fontSize: 20),
       ),
       child: Text('아이디 찾기'),
       onPressed: null,

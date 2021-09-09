@@ -9,7 +9,7 @@ class EmailContainer extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: MainColor, width: 4.0)),
+            borderSide: const BorderSide(color: kMainColor, width: 4.0)),
         labelText: '이메일',
       ),
     );

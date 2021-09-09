@@ -1,4 +1,5 @@
 import 'package:antilla/screens/login/LoginScreen.dart';
+import 'package:antilla/screens/login2/LoginScreen2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
           headline3: TextStyle(fontSize: 18),
         ),
       ),
-      home: LoginScreen(),
+      home: LoginScreen2(),
     );
   }
 }

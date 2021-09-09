@@ -11,11 +11,10 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [kPrimaryColor.withOpacity(0.0), kPointColor],
+            colors: [kMainColor.withOpacity(0.0), kPointColor],
             stops: [0.2, 0.8],
           ),
         ),
