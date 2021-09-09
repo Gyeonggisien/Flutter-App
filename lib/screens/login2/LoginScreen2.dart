@@ -1,8 +1,10 @@
-import 'package:antilla/screens/login2/components/EmailContainer.dart';
-import 'package:antilla/screens/login2/components/FindIdButton.dart';
-import 'package:antilla/screens/login2/components/FindPasswordButton.dart';
-import 'package:antilla/screens/login2/components/PasswordContainer.dart';
+import 'package:antilla/screens/login2/components/EmailPasswordContainer.dart';
+import 'package:antilla/screens/login2/components/FindIdPasswordButton.dart';
+import 'package:antilla/screens/login2/components/PrevContainer.dart';
 import 'package:flutter/material.dart';
+
+import 'components/AntillaContainer.dart';
+import 'components/JoinStartButton.dart';
 
 class LoginScreen2 extends StatelessWidget {
   // This widget is the root of your application.
@@ -17,26 +19,24 @@ class LoginScreen2 extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: EmailContainer(),
+              child: PrevContainer(),
             ),
             Expanded(
-              child: PasswordContainer(),
+              child: AntillaContainer(),
             ),
-            Row(children: [
-              Expanded(
-                flex: 3,
-                child: FindIdButton(),
-              ),
-              Expanded(
-                child: Center(
-                  child: Text('|'),
+            Expanded(
+              child: EmailPasswordContainer(),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: FindIdPasswordButton(),
                 ),
-              ),
-              Expanded(
-                flex: 3,
-                child: FindPasswordButton(),
-              )
-            ]),
+              ],
+            ),
+            Expanded(
+              child: JoinStartButton(),
+            )
           ],
         ),
       ),
