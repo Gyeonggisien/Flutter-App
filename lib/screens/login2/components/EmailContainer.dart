@@ -1,3 +1,4 @@
+import 'package:antilla/constants.dart';
 import 'package:flutter/material.dart';
 
 class EmailContainer extends StatelessWidget {
@@ -7,8 +8,9 @@ class EmailContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Email',
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: MainColor, width: 4.0)),
+        labelText: '이메일',
       ),
     );
   }

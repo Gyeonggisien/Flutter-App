@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:antilla/constants.dart';
 
 class PasswordContainer extends StatelessWidget {
   PasswordContainer();
@@ -7,9 +8,9 @@ class PasswordContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Password',
-      ),
+          enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: MainColor, width: 4.0)),
+          labelText: '패스워드'),
     );
   }
 }
