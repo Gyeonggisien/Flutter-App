@@ -8,12 +8,11 @@ class JoinStartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          child: JoinButton(),
+        JoinButton(),
+        SizedBox(
+          height: 14,
         ),
-        Expanded(
-          child: StartButton(),
-        ),
+        StartButton(),
       ],
     );
   }
@@ -24,25 +23,29 @@ class JoinButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: Text(
-        '신규 가입하기',
-        style: TextStyle(
-          color: kSubColor,
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-        ),
-      ),
-      style: TextButton.styleFrom(
-        primary: kWhiteColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(
-            color: kMainColor,
+    return SizedBox(
+      height: 40,
+      width: 300,
+      child: TextButton(
+        child: Text(
+          '신규 가입하기',
+          style: TextStyle(
+            color: kSubColor,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
           ),
         ),
+        style: TextButton.styleFrom(
+          primary: kWhiteColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(
+              color: kMainColor,
+            ),
+          ),
+        ),
+        onPressed: null,
       ),
-      onPressed: null,
     );
   }
 }
@@ -52,26 +55,30 @@ class StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: Text(
-        '시작하기',
-        style: TextStyle(
-          color: kWhiteColor,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      style: TextButton.styleFrom(
-        backgroundColor: kMainColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(
-            color: kMainColor,
-            width: 2,
+    return SizedBox(
+      height: 40,
+      width: 300,
+      child: TextButton(
+        child: Text(
+          '시작하기',
+          style: TextStyle(
+            color: kWhiteColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        style: TextButton.styleFrom(
+          backgroundColor: kMainColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(
+              color: kMainColor,
+              width: 2,
+            ),
+          ),
+        ),
+        onPressed: null,
       ),
-      onPressed: null,
     );
   }
 }

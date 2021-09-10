@@ -7,26 +7,11 @@ class FindIdPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      Spacer(flex: 3),
-      Expanded(
-        flex: 5,
-        child: FindIdButton(),
+      FindIdButton(),
+      SizedBox(
+        child: Text('|'),
       ),
-      Expanded(
-        child: Center(
-          child: Text(
-            '|',
-            style: TextStyle(
-              color: kGrayColor,
-            ),
-          ),
-        ),
-      ),
-      Expanded(
-        flex: 5,
-        child: FindPasswordButton(),
-      ),
-      Spacer(flex: 3),
+      FindPasswordButton(),
     ]);
   }
 }
@@ -34,12 +19,14 @@ class FindIdPasswordButton extends StatelessWidget {
 class FindIdButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(color: kGrayColor, fontSize: 17),
+    return SizedBox(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(color: kGrayColor, fontSize: 15),
+        ),
+        child: Text('아이디 찾기', textAlign: TextAlign.right),
+        onPressed: null,
       ),
-      child: Text('아이디 찾기', textAlign: TextAlign.right),
-      onPressed: null,
     );
   }
 }
@@ -49,15 +36,17 @@ class FindPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(color: kGrayColor, fontSize: 17),
+    return SizedBox(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(color: kGrayColor, fontSize: 15),
+        ),
+        child: Text(
+          '패스워드 찾기',
+          textAlign: TextAlign.left,
+        ),
+        onPressed: null,
       ),
-      child: Text(
-        '패스워드 찾기',
-        textAlign: TextAlign.left,
-      ),
-      onPressed: null,
     );
   }
 }

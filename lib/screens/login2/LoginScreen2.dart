@@ -3,6 +3,7 @@ import 'package:antilla/screens/login2/components/FindIdPasswordButton.dart';
 import 'package:antilla/screens/login2/components/PrevContainer.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
 import 'components/AntillaContainer.dart';
 import 'components/JoinStartButton.dart';
 
@@ -16,28 +17,25 @@ class LoginScreen2 extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: PrevContainer(),
-            ),
-            Expanded(
-              child: AntillaContainer(),
-            ),
-            Expanded(
-              child: EmailPasswordContainer(),
-            ),
-            Row(
+        body: Container(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(
-                  child: FindIdPasswordButton(),
+                PrevContainer(),
+                AntillaContainer(),
+                EmailPasswordContainer(),
+                Row(
+                  children: [
+                    FindIdPasswordButton(),
+                  ],
                 ),
+                JoinStartButton()
               ],
             ),
-            Expanded(
-              child: JoinStartButton(),
-            )
-          ],
+          ),
         ),
       ),
     );

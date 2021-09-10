@@ -6,16 +6,19 @@ class PrevContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: Text(
-        '이전',
-        style: TextStyle(
-          color: kMainColor,
-          fontSize: 16,
+    return Container(
+      child: TextButton(
+        child: Text(
+          '이전',
+          style: TextStyle(
+            color: kMainColor,
+            fontSize: 16,
+          ),
+          textAlign: TextAlign.left,
         ),
-        textAlign: TextAlign.left,
+        onPressed: null,
       ),
-      onPressed: null,
+      alignment: Alignment(-1, -1),
     );
   }
 }
