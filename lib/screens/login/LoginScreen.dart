@@ -23,9 +23,14 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Spacer(flex: 2,),
-              Image.asset('images/logo.png', scale: 0.8,),
-              SizedBox(height: getProportionateScreenHeight(20.0),),
+              Spacer(
+                flex: 2,
+              ),
+              Image.asset('images/logo.png',
+                  height: getHeight(100.0)),
+              SizedBox(
+                height: getHeight(50.0),
+              ),
               Text.rich(
                 TextSpan(
                   text: '간편하게 로그인하고\n',
@@ -41,22 +46,44 @@ class LoginScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: getProportionateScreenHeight(80.0),),
-              LoginButton(text: '구글로 시작하기', icon: 'images/icons/google-icon.png'),
-              SizedBox(height: kDefaultPadding,),
-              LoginButton(text: '카카오톡로 시작하기', icon: 'images/icons/kakao-icon.png'),
-              SizedBox(height: kDefaultPadding,),
-              LoginButton(text: '네이버로 시작하기', icon: 'images/icons/naver-icon.png'),
-              SizedBox(height: getProportionateScreenHeight(50.0),),
+              SizedBox(
+                height: getHeight(80.0),
+              ),
+              LoginButton(
+                text: '구글 이메일로 시작하기',
+                icon: 'images/icons/google-icon.png',
+                backgroundColor: Colors.white,
+                fontColor: Colors.black,
+              ),
+              SizedBox(
+                height: kDefaultPadding,
+              ),
+              LoginButton(
+                text: '카카오톡으로 시작하기',
+                icon: 'images/icons/kakao-icon.png',
+                backgroundColor: kKakaoColor,
+                fontColor: Colors.black,
+              ),
+              SizedBox(
+                height: kDefaultPadding,
+              ),
+              LoginButton(
+                text: '네이버 아이디로 시작하기',
+                icon: 'images/icons/naver-icon.png',
+                backgroundColor: kNaverColor,
+                fontColor: Colors.white,
+              ),
+              SizedBox(
+                height: getHeight(50.0),
+              ),
               TextButton(
                 onPressed: () {},
                 child: Text(
                   '이메일로 로그인하기',
                   style: Theme.of(context).textTheme.headline3!.copyWith(
-                    color: Colors.white,
-                    decoration: TextDecoration.underline,
-                    decorationThickness: 3
-                  ),
+                      color: Colors.white,
+                      decoration: TextDecoration.underline,
+                      decorationThickness: 3),
                 ),
               ),
               Spacer(),
@@ -69,35 +96,35 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({required this.text, required this.icon});
+  const LoginButton(
+      {required this.text, required this.icon, required this.backgroundColor, required this.fontColor});
 
   final String text;
   final String icon;
+  final Color backgroundColor;
+  final Color fontColor;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {},
       style: OutlinedButton.styleFrom(
-        shadowColor: Colors.white,
+        backgroundColor: backgroundColor,
         padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 1.5),
-        side: BorderSide(color: Colors.white),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0),
+          borderRadius: BorderRadius.circular(5.0),
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(icon, width: 10.0,),
-          SizedBox(width: kDefaultPadding / 2,),
-          Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .headline2!
-                .copyWith(color: Colors.white),
+          SizedBox(width: getWidth(35.0)),
+          Image.asset(
+            icon,
+            width: getWidth(15.0),
           ),
+          SizedBox(width: getWidth(35.0)),
+          Text(text, style: Theme.of(context).textTheme.headline2!.copyWith(color: fontColor)),
         ],
       ),
     );
