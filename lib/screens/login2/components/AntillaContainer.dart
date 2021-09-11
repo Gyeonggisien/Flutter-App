@@ -6,10 +6,10 @@ class AntillaContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: getProportionateScreenHeight(80.0),
+    return Container(
       child: Image.asset(
         'images/logo.png',
+        scale: 0.8,
       ),
     );
   }

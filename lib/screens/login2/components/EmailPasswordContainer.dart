@@ -7,12 +7,11 @@ class EmailPasswordContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Expanded(
-        child: EmailContainer(),
+      EmailContainer(),
+      SizedBox(
+        height: 20,
       ),
-      Expanded(
-        child: PasswordContainer(),
-      ),
+      PasswordContainer(),
     ]);
   }
 }
@@ -22,13 +21,17 @@ class EmailContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kMainColor, width: 2.0)),
-        errorStyle: TextStyle(color: kMainColor, fontSize: 15),
-        labelStyle: TextStyle(color: kGray2Color, fontSize: 15),
-        labelText: '이메일',
+    return SizedBox(
+      height: 50,
+      child: TextField(
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: kMainColor, width: 1.0)),
+          errorStyle: TextStyle(color: kMainColor, fontSize: 15),
+          labelStyle: TextStyle(color: kGray2Color, fontSize: 15),
+          labelText: '이메일',
+        ),
       ),
     );
   }
@@ -52,31 +55,35 @@ class _PasswordContainerState extends State<PasswordContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kMainColor, width: 2.0)),
-        labelStyle: TextStyle(color: kGray2Color, fontSize: 15),
-        labelText: '패스워드',
-        suffixIcon: IconButton(
-          icon: toggle
-              ? ImageIcon(
-                  AssetImage('images/icons/eye-cross.png'),
-                  color: kGrayColor,
-                )
-              : ImageIcon(
-                  AssetImage('images/icons/eye.png'),
-                  color: kGrayColor,
-                ),
-          onPressed: () {
-            setState(() {
-              toggle = !toggle;
-            });
-          },
+    return SizedBox(
+      height: 50,
+      child: TextField(
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: kMainColor, width: 1.0)),
+          labelStyle: TextStyle(color: kGray2Color, fontSize: 15),
+          labelText: '패스워드',
+          suffixIcon: IconButton(
+            icon: toggle
+                ? ImageIcon(
+                    AssetImage('images/icons/eye-cross.png'),
+                    color: kGrayColor,
+                  )
+                : ImageIcon(
+                    AssetImage('images/icons/eye.png'),
+                    color: kGrayColor,
+                  ),
+            onPressed: () {
+              setState(() {
+                toggle = !toggle;
+              });
+            },
+          ),
         ),
+        obscureText: toggle,
+        showCursor: false,
       ),
-      obscureText: toggle,
-      showCursor: false,
     );
   }
 }

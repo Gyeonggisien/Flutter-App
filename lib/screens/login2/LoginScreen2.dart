@@ -24,14 +24,15 @@ class LoginScreen2 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                SizedBox(height: 25),
                 PrevContainer(),
+                SizedBox(height: 40),
                 AntillaContainer(),
+                SizedBox(height: 40),
                 EmailPasswordContainer(),
-                Row(
-                  children: [
-                    FindIdPasswordButton(),
-                  ],
-                ),
+                SizedBox(height: 20),
+                FindIdPasswordButton(),
+                SizedBox(height: 80),
                 JoinStartButton()
               ],
             ),

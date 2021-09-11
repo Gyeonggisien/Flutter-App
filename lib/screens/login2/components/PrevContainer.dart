@@ -7,7 +7,11 @@ class PrevContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.zero,
       child: TextButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+        ),
         child: Text(
           '이전',
           style: TextStyle(
@@ -18,7 +22,7 @@ class PrevContainer extends StatelessWidget {
         ),
         onPressed: null,
       ),
-      alignment: Alignment(-1, -1),
+      alignment: Alignment(-1.1, 0),
     );
   }
 }

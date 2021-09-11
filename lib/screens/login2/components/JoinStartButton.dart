@@ -10,7 +10,7 @@ class JoinStartButton extends StatelessWidget {
       children: [
         JoinButton(),
         SizedBox(
-          height: 14,
+          height: 20,
         ),
         StartButton(),
       ],
@@ -25,7 +25,7 @@ class JoinButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
-      width: 300,
+      width: 250,
       child: TextButton(
         child: Text(
           '신규 가입하기',
@@ -38,9 +38,10 @@ class JoinButton extends StatelessWidget {
         style: TextButton.styleFrom(
           primary: kWhiteColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             side: BorderSide(
               color: kMainColor,
+              width: 1,
             ),
           ),
         ),
@@ -57,7 +58,7 @@ class StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
-      width: 300,
+      width: 250,
       child: TextButton(
         child: Text(
           '시작하기',
@@ -70,10 +71,10 @@ class StartButton extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: kMainColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             side: BorderSide(
               color: kMainColor,
-              width: 2,
+              width: 1,
             ),
           ),
         ),

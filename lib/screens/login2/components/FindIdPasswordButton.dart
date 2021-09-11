@@ -6,13 +6,16 @@ class FindIdPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      FindIdButton(),
-      SizedBox(
-        child: Text('|'),
-      ),
-      FindPasswordButton(),
-    ]);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FindIdButton(),
+        SizedBox(
+          child: Text('|', textAlign: TextAlign.center),
+        ),
+        FindPasswordButton(),
+      ],
+    );
   }
 }
 
@@ -24,7 +27,7 @@ class FindIdButton extends StatelessWidget {
         style: TextButton.styleFrom(
           textStyle: const TextStyle(color: kGrayColor, fontSize: 15),
         ),
-        child: Text('아이디 찾기', textAlign: TextAlign.right),
+        child: Text('아이디 찾기', textAlign: TextAlign.center),
         onPressed: null,
       ),
     );
@@ -43,7 +46,7 @@ class FindPasswordButton extends StatelessWidget {
         ),
         child: Text(
           '패스워드 찾기',
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
         ),
         onPressed: null,
       ),
