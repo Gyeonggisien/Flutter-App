@@ -1,3 +1,4 @@
+import 'package:antilla/screens/Join6/Join6Screen.dart';
 import 'package:antilla/screens/join3/Join3Screen.dart';
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/BottomNavigation.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final mediaQueryData = MediaQuery.of(context);
         return MediaQuery(
-          data: mediaQueryData.copyWith(textScaleFactor: MediaQuery.of(context).size.width / 100.0 / 5.0),
+          data: mediaQueryData.copyWith(
+              textScaleFactor: MediaQuery.of(context).size.width / 100.0 / 5.0),
           child: child!,
         );
       },
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: SafeArea(child: BottomNavigation()),
+      home: Join6Screen(),
     );
   }
 }
