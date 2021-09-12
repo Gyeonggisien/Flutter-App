@@ -1,4 +1,3 @@
-/*
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/MyPageScreen/MyPageScreen.dart';
 import 'package:antilla/screens/home/HomeScreen.dart';
@@ -86,4 +85,3 @@ class BottomNavigation extends StatelessWidget {
     );
   }
 }
-*/

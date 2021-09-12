@@ -1,4 +1,3 @@
-/*
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent1.dart';
@@ -40,4 +39,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-*/

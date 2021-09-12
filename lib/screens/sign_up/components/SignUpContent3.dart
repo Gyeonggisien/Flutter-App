@@ -1,4 +1,3 @@
-/*
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
@@ -196,4 +195,3 @@ Widget buildBottomSheet(BuildContext context) {
     ),
   );
 }
-*/
