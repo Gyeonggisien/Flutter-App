@@ -1,16 +1,8 @@
-# antilla
+# Antilla
+『트렌드코리아 2021』 에서 발표한 10가지 트렌드 'COWBOY HERO' 중
+  1. Omni-layered Homes(레이어드 홈, O)
+  2. Heading to the Resell Market(N차 신상, H)
+를 아우를 수 있는 아이디어를 고안.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+→ 집에 있는 시간이 늘어나게 되었고, '집'이라는 공간에 대한 애착이 형성됨에 따라 자연스레 '가구'에 대한 의존도도 늘어남. 
+가구의 순환율이 증가하면서 가구를 사고 파는 인식보다, 구독서비스를 통한 가구의 순환을 기대하게 되었고, 인테리어 구독 서비스 아이디어를 채택함. 또한 가구를 다시 재사용하며 서로의 취향의 공유를 통한 'N차 신상'의 이미지를 기대함.
