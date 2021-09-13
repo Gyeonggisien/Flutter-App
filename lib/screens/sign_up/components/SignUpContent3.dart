@@ -89,8 +89,6 @@ class SignUpContent3 extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                     builder: buildBottomSheet,
-                    constraints: BoxConstraints(
-                        maxHeight: SizeConfig.screenHeight! * 0.5),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20.0),

@@ -32,7 +32,7 @@ class ProfileCardContent extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Icon(Icons.keyboard_arrow_right, size: getWidth(23.0),)
+            Icon(Icons.keyboard_arrow_right, size: getWidth(23.0), color: kGrayColor,)
           ],
         ),
         SizedBox(height: getHeight(15.0)),
@@ -48,7 +48,7 @@ class ProfileCardContent extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline4!
-                        .copyWith(color: kGrayColor),
+                        .copyWith(color: kGrayColor, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: getHeight(kDefaultPadding * 0.5),
@@ -78,8 +78,8 @@ class ProfileCardContent extends StatelessWidget {
                       '🏠 나의 취향 분석하러 가기',
                       style: Theme.of(context)
                           .textTheme
-                          .headline4!
-                          .copyWith(color: kMainColor),
+                          .headline3!
+                          .copyWith(color: kMainColor, fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

@@ -23,7 +23,7 @@ class RecommendItem extends StatelessWidget {
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(image), fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(10.0)),
+                borderRadius: BorderRadius.circular(6.0)),
           ),
           SizedBox(
             height: getHeight(5.0),
@@ -39,7 +39,7 @@ class RecommendItem extends StatelessWidget {
                 width: getWidth(5.0),
               ),
               Container(
-                height: getHeight(kDefaultPadding),
+                height: getHeight(kDefaultPadding * 0.7),
                 decoration: BoxDecoration(
                     border: Border.all(color: kGray2Color),
                     borderRadius: BorderRadius.circular(20.0)),
@@ -51,7 +51,8 @@ class RecommendItem extends StatelessWidget {
                     child: Text(
                       plan,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: kPointColor, fontWeight: FontWeight.bold),
+                          color: plan == 'BASIC' ? kPointColor : plan == 'STANDARD' ? kStandColor : kMainColor,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

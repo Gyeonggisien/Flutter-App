@@ -17,7 +17,7 @@ class SubscriptionTotal extends StatelessWidget {
       children: [
         Container(
           width: getWidth(60.0),
-          height: getHeight(30.0),
+          height: getHeight(24.0),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               border: Border.all(color: borderColor, width: 2.0)),
@@ -26,7 +26,7 @@ class SubscriptionTotal extends StatelessWidget {
               text,
               style: Theme.of(context)
                   .textTheme
-                  .headline4!
+                  .headline5!
                   .copyWith(color: kFontColor),
             ),
           ),
@@ -36,7 +36,9 @@ class SubscriptionTotal extends StatelessWidget {
         ),
         Text(
           'D - $day',
-          style: Theme.of(context).textTheme.headline3!.copyWith(),
+          style: Theme.of(context).textTheme.headline2!.copyWith(
+            fontWeight: FontWeight.bold
+          ),
         )
       ],
     );

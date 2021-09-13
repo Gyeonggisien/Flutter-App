@@ -1,6 +1,6 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/home/components/AntillaAppBar.dart';
-import 'package:antilla/screens/home/components/OnlyAntilla.dart';
+import 'package:antilla/screens/home/components/OnlyContainer.dart';
 import 'package:antilla/screens/home/components/ProfileCard.dart';
 import 'package:antilla/screens/home/components/Recommend.dart';
 import 'package:antilla/size_config.dart';
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             ProfileCard(),
             Recommend(),
-            OnlyAntilla(),
+            OnlyContainer(),
             Container(
               width: SizeConfig.screenWidth,
               padding: EdgeInsets.symmetric(horizontal: getWidth(kDefaultPadding), vertical: getHeight(kDefaultPadding)),
