@@ -10,8 +10,11 @@ class MobileCarrierDropdown extends StatefulWidget {
 }
 
 class _MobileCarrierDropdownState extends State<MobileCarrierDropdown> {
-  List<String> options = const <String>['통신사', 'SKT', 'KT', 'LG U+'];
   String dropdownValue = '통신사';
+  bool isSelected = false;
+  dynamic currentColor = kWhiteColor;
+  dynamic selectedColor = kGray2Color;
+  dynamic unselectedColor = kWhiteColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +33,20 @@ class _MobileCarrierDropdownState extends State<MobileCarrierDropdown> {
               ),
             ),
             value: dropdownValue,
-            icon: ImageIcon(
+            icon: const ImageIcon(
               AssetImage('images/icons/dropdown.png'),
               color: kFontColor,
             ),
-            onChanged: (newValue) {
+            onChanged: (String? newValue) {
               setState(() {
                 dropdownValue = newValue!;
+                if (dropdownValue == '통신사') {
+                  isSelected = false;
+                  currentColor = unselectedColor;
+                } else {
+                  isSelected = true;
+                  currentColor = selectedColor;
+                }
               });
             },
             style: TextStyle(
@@ -44,14 +54,15 @@ class _MobileCarrierDropdownState extends State<MobileCarrierDropdown> {
               color: kGrayColor,
             ),
             selectedItemBuilder: (BuildContext context) {
-              return options.map((String value) {
+              return <String>['통신사', 'SKT', 'KT', 'LG U+'].map((String value) {
                 return Text(
                   dropdownValue,
-                  style: TextStyle(color: kGray2Color),
+                  style: TextStyle(color: kGrayColor),
                 );
               }).toList();
             },
-            items: options.map<DropdownMenuItem<String>>((String value) {
+            items: <String>['통신사', 'SKT', 'KT', 'LG U+']
+                .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),

@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../size_config.dart';
+import 'components/PhoneNumberInput.dart';
+import 'components/ResendAuthCodeButton.dart';
 
 class Join6Screen extends StatelessWidget {
   // This widget is the root of your application.
@@ -44,6 +46,13 @@ class Join6Screen extends StatelessWidget {
                   SsnInput(),
                   SizedBox(height: 35),
                   MobileCarrierDropdown(),
+                  SizedBox(height: 35),
+                  Row(
+                    children: [
+                      PhoneNumberInput(),
+                      ResendAuthCodeButton(),
+                    ],
+                  ),
                 ],
               ),
             ),

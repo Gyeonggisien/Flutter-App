@@ -7,11 +7,14 @@ class CancelContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        '취소',
-        style: TextStyle(
-          fontSize: 16,
-          color: kMainColor,
+      child: TextButton(
+        onPressed: null,
+        child: Text(
+          '취소',
+          style: TextStyle(
+            fontSize: 16,
+            color: kMainColor,
+          ),
         ),
       ),
     );
