@@ -11,14 +11,16 @@ class ResendAuthCodeButton extends StatefulWidget {
 class _ResendAuthCodeState extends State<ResendAuthCodeButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //width: 120,
+    return SizedBox(
+      height: 50,
+      width: 130,
       child: TextButton(
         child: Text(
           '인증번호 재전송',
           style: TextStyle(fontSize: 15, color: kWhiteColor),
         ),
         style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(kMainColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

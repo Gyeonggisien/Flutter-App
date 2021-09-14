@@ -12,7 +12,8 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: 190,
+      height: 50,
       child: TextField(
         style: TextStyle(color: kFontColor, fontSize: 15),
         decoration: InputDecoration(

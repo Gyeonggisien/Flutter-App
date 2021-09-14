@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:antilla/screens/Join6/components/AuthCodeInput.dart';
+import 'package:antilla/screens/Join6/components/AuthCodeTimer.dart';
 import 'package:antilla/screens/Join6/components/MobileCarrierDropdown.dart';
+import 'package:antilla/screens/Join6/components/TimerWidget.dart';
 import 'package:antilla/screens/join3/components/CancelContainer.dart';
 import 'package:antilla/screens/join3/components/MainText.dart';
 import 'package:antilla/screens/join3/components/NameInput.dart';
@@ -29,6 +34,7 @@ class Join6Screen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 70),
                   Row(
@@ -50,9 +56,12 @@ class Join6Screen extends StatelessWidget {
                   Row(
                     children: [
                       PhoneNumberInput(),
+                      Spacer(),
                       ResendAuthCodeButton(),
                     ],
                   ),
+                  SizedBox(height: 35),
+                  AuthCodeTimer(),
                 ],
               ),
             ),

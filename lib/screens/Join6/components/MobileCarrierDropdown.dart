@@ -20,7 +20,7 @@ class _MobileCarrierDropdownState extends State<MobileCarrierDropdown> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Container(
-      color: kGray2Color,
+      color: kWhiteColor,
       child: SizedBox(
         height: 50,
         width: SizeConfig.screenWidth,
