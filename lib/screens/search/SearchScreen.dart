@@ -29,7 +29,7 @@ class SearchScreen extends StatelessWidget {
               color: Color(0xFFE0DDD8),
             ),
             HotThemeContainer(),
-            NewIssueContainer()
+            NewIssueContainer(),
           ],
         ),
       ),

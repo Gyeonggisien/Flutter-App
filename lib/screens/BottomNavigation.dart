@@ -3,6 +3,7 @@ import 'package:antilla/screens/MyPageScreen/MyPageScreen.dart';
 import 'package:antilla/screens/home/HomeScreen.dart';
 import 'package:antilla/screens/market/MarketScreen.dart';
 import 'package:antilla/screens/search/SearchScreen.dart';
+import 'package:antilla/screens/subscription/SubscriptionScreen.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class BottomNavigation extends StatelessWidget {
       PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
-    return [HomeScreen(), SearchScreen(), MarketScreen(), MyPageScreen()];
+    return [HomeScreen(), SubscriptionScreen(), MarketScreen(), MyPageScreen()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
