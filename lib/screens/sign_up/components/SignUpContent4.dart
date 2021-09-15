@@ -6,8 +6,6 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent4 extends StatelessWidget {
-  final double heightPadding = getHeight(30.0);
-  final double contentPadding = getWidth(5.0);
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +26,15 @@ class SignUpContent4 extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         MainClause(text: '전체 동의', icon: Icon(Icons.keyboard_arrow_down, size: getWidth(30.0),),),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         MainClause(text: '서비스 이용 동의(필수)', icon: Icon(Icons.keyboard_arrow_down, size: getWidth(30.0),),),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         MainClause(text: '서비스 이용 동의(선택)', icon: Icon(Icons.keyboard_arrow_down, size: getWidth(30.0),),),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         MainClause(text: '마케팅 정보 전송 동의(선택)', icon: Icon(Icons.keyboard_arrow_down, size: getWidth(30.0),),),
-        SizedBox(height: heightPadding * 1.5),
+        SizedBox(height: getHeight(30.0) * 1.5),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -1,16 +1,17 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/sign_up/components/SignUpContent4.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmButton extends StatelessWidget {
-  ConfirmButton({this.topPadding, this.bottomPadding});
-
-  final topPadding;
-  final bottomPadding;
+  ConfirmButton({required this.onPressed});
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        onPressed();
+      },
       child: Text(
         '확인',
         style: Theme.of(context)
@@ -21,12 +22,8 @@ class ConfirmButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: kMainColor,
         padding: EdgeInsets.only(
-          top: topPadding == null
-              ? kDefaultPadding * 1.3
-              : kDefaultPadding * topPadding,
-          bottom: bottomPadding == null
-              ? kDefaultPadding * 1.9
-              : kDefaultPadding * bottomPadding,
+          top: kDefaultPadding * 1.3,
+          bottom: kDefaultPadding * 1.9
         ),
       ),
     );

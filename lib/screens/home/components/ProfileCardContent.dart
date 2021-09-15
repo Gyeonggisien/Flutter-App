@@ -33,10 +33,10 @@ class ProfileCardContent extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Icon(Icons.keyboard_arrow_right, size: getWidth(23.0), color: kGrayColor,)
+            Icon(Icons.keyboard_arrow_right, size: getWidth(23.0), color: kGrayColor,),
           ],
         ),
-        SizedBox(height: getHeight(15.0)),
+        SizedBox(height: getHeight(kDefaultPadding * 0.75)),
         Row(
           children: [
             Expanded(

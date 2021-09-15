@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: Join6Screen(),
+      home: SafeArea(child: SignUpScreen()),
     );
   }
 }

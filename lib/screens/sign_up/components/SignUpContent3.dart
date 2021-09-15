@@ -1,4 +1,4 @@
-/*
+
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
@@ -7,8 +7,6 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent3 extends StatelessWidget {
-  final double heightPadding = getHeight(30.0);
-  final double contentPadding = getWidth(5.0);
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +27,19 @@ class SignUpContent3 extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         CustomTextField(
           hintText: '이름 (성 + 이름)',
           width: SizeConfig.screenWidth!,
         ),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         Row(
           children: [
             CustomTextField(
               hintText: '주민번호 앞자리',
               width: SizeConfig.screenWidth! * 0.35,
             ),
-            SizedBox(width: contentPadding),
+            SizedBox(width: getWidth(5.0)),
             Text(
               '-',
               style: Theme.of(context)
@@ -49,12 +47,12 @@ class SignUpContent3 extends StatelessWidget {
                   .headline3!
                   .copyWith(color: kMainColor),
             ),
-            SizedBox(width: contentPadding),
+            SizedBox(width: getWidth(5.0)),
             CustomTextField(
               hintText: '',
               width: getWidth(40.0),
             ),
-            SizedBox(width: contentPadding),
+            SizedBox(width: getWidth(5.0)),
             Text(
               '● ● ● ● ● ●',
               style: Theme.of(context)
@@ -64,11 +62,11 @@ class SignUpContent3 extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         CustomDropdownTextField(
           hintText: '통신사',
         ),
-        SizedBox(height: heightPadding),
+        SizedBox(height: getHeight(30.0)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -187,11 +185,12 @@ Widget buildBottomSheet(BuildContext context) {
                 ),
               ),
             ),
-            ConfirmButton()
+            ConfirmButton(
+              onPressed: () {},
+            )
           ],
         ),
       ],
     ),
   );
 }
-*/

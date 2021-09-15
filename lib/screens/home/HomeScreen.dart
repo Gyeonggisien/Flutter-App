@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               width: SizeConfig.screenWidth,
               padding: EdgeInsets.only(top: getHeight(kDefaultPadding)),
               child: Image.asset('images/money.png'),
-            )
+            ),
           ],
         ),
       ),

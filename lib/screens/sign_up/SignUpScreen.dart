@@ -1,4 +1,3 @@
-/*
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent1.dart';
@@ -9,8 +8,20 @@ import 'package:antilla/screens/sign_up/components/TopButton.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final List<Widget> screens = [
+    SignUpContent1(),
+    SignUpContent2(),
+    SignUpContent3(),
+    SignUpContent4(),
+  ];
+
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +40,22 @@ class SignUpScreen extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: kDefaultPadding * 2.0),
                   child: TopButton(),
                 ),
-                SignUpContent3(),
+                screens[currentIndex],
               ],
             ),
           ),
           Spacer(),
-          ConfirmButton(),
+          ConfirmButton(
+            onPressed: () {
+              setState(() {
+                if(currentIndex >= 0 && currentIndex < 3) {
+                  currentIndex++;
+                }
+              });
+            },
+          ),
         ],
       ),
     );
   }
 }
-*/
