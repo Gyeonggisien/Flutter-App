@@ -1,14 +1,20 @@
 import 'package:antilla/screens/login2/components/EmailPasswordContainer.dart';
 import 'package:antilla/screens/login2/components/FindIdPasswordButton.dart';
 import 'package:antilla/screens/login2/components/PrevContainer.dart';
+import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import 'components/AntillaContainer.dart';
-import 'components/JoinStartButton.dart';
+import 'components/JoinButton.dart';
+import 'components/StartButton.dart';
 
-class LoginScreen2 extends StatelessWidget {
-  // This widget is the root of your application.
+class LoginScreen2 extends StatefulWidget {
+  @override
+  _LoginScreen2State createState() => _LoginScreen2State();
+}
+
+class _LoginScreen2State extends State<LoginScreen2> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +39,29 @@ class LoginScreen2 extends StatelessWidget {
                 SizedBox(height: 20),
                 FindIdPasswordButton(),
                 SizedBox(height: 80),
-                JoinStartButton()
+                Column(
+                  children: [
+                    JoinButton(
+                      onPressed: () {
+                        setState(() {
+                          SignUpScreen.currentIndex = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpScreen(),
+                            ),
+                          );
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    StartButton(
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

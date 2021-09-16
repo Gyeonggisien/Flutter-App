@@ -1,10 +1,16 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/login2/LoginScreen2.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -26,8 +32,7 @@ class LoginScreen extends StatelessWidget {
               Spacer(
                 flex: 2,
               ),
-              Image.asset('images/logo.png',
-                  height: getHeight(100.0)),
+              Image.asset('images/logo.png', height: getHeight(100.0)),
               SizedBox(
                 height: getHeight(50.0),
               ),
@@ -77,7 +82,12 @@ class LoginScreen extends StatelessWidget {
                 height: getHeight(50.0),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen2()),
+                  );
+                },
                 child: Text(
                   '이메일로 로그인하기',
                   style: Theme.of(context).textTheme.headline3!.copyWith(
@@ -97,7 +107,10 @@ class LoginScreen extends StatelessWidget {
 
 class LoginButton extends StatelessWidget {
   const LoginButton(
-      {required this.text, required this.icon, required this.backgroundColor, required this.fontColor});
+      {required this.text,
+      required this.icon,
+      required this.backgroundColor,
+      required this.fontColor});
 
   final String text;
   final String icon;
@@ -124,7 +137,11 @@ class LoginButton extends StatelessWidget {
             width: getWidth(15.0),
           ),
           SizedBox(width: getWidth(35.0)),
-          Text(text, style: Theme.of(context).textTheme.headline2!.copyWith(color: fontColor)),
+          Text(text,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline2!
+                  .copyWith(color: fontColor)),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
@@ -7,7 +6,6 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent3 extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -23,7 +21,7 @@ class SignUpContent3 extends StatelessWidget {
             children: <TextSpan>[
               TextSpan(
                   text: '본인확인', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: '를 해주세요'),
+              TextSpan(text: '을 해주세요'),
             ],
           ),
         ),

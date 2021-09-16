@@ -1,5 +1,4 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent4.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmButton extends StatelessWidget {
@@ -22,9 +21,7 @@ class ConfirmButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: kMainColor,
         padding: EdgeInsets.only(
-          top: kDefaultPadding * 1.3,
-          bottom: kDefaultPadding * 1.9
-        ),
+            top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
       ),
     );
   }
