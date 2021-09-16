@@ -15,7 +15,7 @@ class _TimerState extends State<TimerWidget> {
   int _start = 10;
 
   void startTimer() {
-    const oneSec = const Duration(minutes: 3, seconds: 60);
+    const oneSec = const Duration(seconds: 10);
     _timer = new Timer.periodic(
       oneSec,
       (Timer timer) {
@@ -41,7 +41,7 @@ class _TimerState extends State<TimerWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ElevatedButton(
+        TextButton(
           child: Text(
             "$_start",
             style: TextStyle(color: kMainColor),

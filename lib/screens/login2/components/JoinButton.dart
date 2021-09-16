@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
+import '../../../size_config.dart';
 
 class JoinButton extends StatelessWidget {
   JoinButton({required this.onPressed});
@@ -7,9 +8,10 @@ class JoinButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return SizedBox(
-      height: 40,
-      width: 250,
+      height: SizeConfig.screenHeight! * 0.05,
+      width: SizeConfig.screenWidth! * 0.61,
       child: TextButton(
         child: Text(
           '신규 가입하기',

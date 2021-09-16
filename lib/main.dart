@@ -1,12 +1,8 @@
-import 'package:antilla/screens/Join6/Join6Screen.dart';
-import 'package:antilla/screens/join3/Join3Screen.dart';
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/BottomNavigation.dart';
+import 'package:antilla/screens/Join6/Join6Screen.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
 import 'package:antilla/screens/login2/LoginScreen2.dart';
-import 'package:antilla/screens/search/SearchScreen.dart';
 import 'package:antilla/screens/sign_up/SignUpScreen.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent3.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,7 +36,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: SafeArea(child: SignUpScreen()),
+      home: SafeArea(child: Join6Screen()),
     );
   }
 }

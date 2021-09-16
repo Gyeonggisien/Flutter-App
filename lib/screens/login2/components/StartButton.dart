@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
+import '../../../size_config.dart';
 
 class StartButton extends StatelessWidget {
   StartButton({required this.onPressed});
@@ -7,9 +8,10 @@ class StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return SizedBox(
-      height: 40,
-      width: 250,
+      height: SizeConfig.screenHeight! * 0.05,
+      width: SizeConfig.screenWidth! * 0.61,
       child: TextButton(
         child: Text(
           '시작하기',

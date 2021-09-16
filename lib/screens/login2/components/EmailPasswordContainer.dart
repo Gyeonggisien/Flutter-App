@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:antilla/constants.dart';
 
+import '../../../size_config.dart';
+
 class EmailPasswordContainer extends StatelessWidget {
   const EmailPasswordContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Column(children: [
       EmailContainer(),
       SizedBox(
-        height: 20,
+        height: SizeConfig.screenHeight! * 0.025,
       ),
       PasswordContainer(),
     ]);
@@ -21,8 +24,9 @@ class EmailContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return SizedBox(
-      height: 50,
+      height: SizeConfig.screenHeight! * 0.0625,
       child: TextField(
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
@@ -56,7 +60,7 @@ class _PasswordContainerState extends State<PasswordContainer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: SizeConfig.screenHeight! * 0.0625,
       child: TextField(
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(

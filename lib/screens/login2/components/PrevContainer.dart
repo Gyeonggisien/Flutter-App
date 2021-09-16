@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:antilla/constants.dart';
 
+import '../../../size_config.dart';
+
 class PrevContainer extends StatelessWidget {
-  const PrevContainer({Key? key}) : super(key: key);
+  PrevContainer({required this.onPressed});
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Container(
+      alignment: Alignment.topLeft,
+      width: SizeConfig.screenWidth! * 0.074,
+      //height: SizeConfig.screenHeight! * 0.0275,
       padding: EdgeInsets.zero,
       child: TextButton(
         style: ButtonStyle(
-          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          padding: MaterialStateProperty.all<EdgeInsets>(
+              EdgeInsets.symmetric(horizontal: 0)),
         ),
         child: Text(
           '이전',
@@ -20,9 +29,10 @@ class PrevContainer extends StatelessWidget {
           ),
           textAlign: TextAlign.left,
         ),
-        onPressed: null,
+        onPressed: () {
+          onPressed();
+        },
       ),
-      alignment: Alignment(-1.1, 0),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent1 extends StatelessWidget {
+  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +15,12 @@ class SignUpContent1 extends StatelessWidget {
         Text.rich(
           TextSpan(
             text: '가입을 위해\n',
-            style:
-            Theme.of(context).textTheme.headline1!.copyWith(
-              color: kFontColor,
-            ),
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                  color: kFontColor,
+                ),
             children: <TextSpan>[
               TextSpan(
-                  text: '이메일',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+                  text: '이메일', style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: '을 입력해주세요'),
             ],
           ),
@@ -29,7 +28,10 @@ class SignUpContent1 extends StatelessWidget {
         SizedBox(
           height: getHeight(32.0),
         ),
-        CustomTextField(hintText: '이메일', width: MediaQuery.of(context).size.width),
+        CustomTextField(
+          hintText: '이메일',
+          width: MediaQuery.of(context).size.width,
+        ),
       ],
     );
   }

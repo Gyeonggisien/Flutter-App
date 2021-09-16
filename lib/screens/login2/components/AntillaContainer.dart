@@ -9,7 +9,7 @@ class AntillaContainer extends StatelessWidget {
     return Container(
       child: Image.asset(
         'images/logo.png',
-        scale: 0.8,
+        //scale: 2,
       ),
     );
   }

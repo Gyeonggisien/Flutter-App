@@ -28,6 +28,7 @@ class Join6Screen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Padding(

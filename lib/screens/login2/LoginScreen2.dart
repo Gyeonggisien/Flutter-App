@@ -5,6 +5,7 @@ import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../size_config.dart';
 import 'components/AntillaContainer.dart';
 import 'components/JoinButton.dart';
 import 'components/StartButton.dart';
@@ -17,12 +18,14 @@ class LoginScreen2 extends StatefulWidget {
 class _LoginScreen2State extends State<LoginScreen2> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           child: Padding(
             padding:
@@ -30,15 +33,31 @@ class _LoginScreen2State extends State<LoginScreen2> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 25),
-                PrevContainer(),
-                SizedBox(height: 40),
+                SizedBox(
+                    height: SizeConfig.screenHeight! * 0.05), // 0.3125 * height
+                PrevContainer(
+                  onPressed: () {
+                    setState(() {
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+                SizedBox(height: SizeConfig.screenHeight! * 0.05),
                 AntillaContainer(),
-                SizedBox(height: 40),
+                SizedBox(height: SizeConfig.screenHeight! * 0.05),
                 EmailPasswordContainer(),
-                SizedBox(height: 20),
-                FindIdPasswordButton(),
-                SizedBox(height: 80),
+                SizedBox(height: SizeConfig.screenHeight! * 0.025),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FindIdButton(),
+                    SizedBox(
+                      child: Text('|', textAlign: TextAlign.center),
+                    ),
+                    FindPasswordButton(),
+                  ],
+                ),
+                SizedBox(height: SizeConfig.screenHeight! * 0.1),
                 Column(
                   children: [
                     JoinButton(
@@ -55,7 +74,7 @@ class _LoginScreen2State extends State<LoginScreen2> {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: SizeConfig.screenHeight! * 0.025,
                     ),
                     StartButton(
                       onPressed: () {},

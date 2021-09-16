@@ -2,7 +2,10 @@ import 'package:antilla/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({required this.hintText, required this.width});
+  CustomTextField({
+    required this.hintText,
+    required this.width,
+  });
 
   final String hintText;
   final double width;
@@ -119,7 +122,10 @@ class _CustomDropdownTextFieldState extends State<CustomDropdownTextField> {
           borderSide: BorderSide(color: kMainColor, width: 2.5),
         ),
         suffixIcon: IconButton(
-          icon: Icon(Icons.keyboard_arrow_down, color: kGrayColor,),
+          icon: Icon(
+            Icons.keyboard_arrow_down,
+            color: kGrayColor,
+          ),
           splashColor: Colors.white.withOpacity(0.0),
           onPressed: () {},
         ),
