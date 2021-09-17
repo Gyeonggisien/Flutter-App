@@ -5,7 +5,17 @@ import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SignUpContent3 extends StatelessWidget {
+import 'CustomAuthCodeTextField.dart';
+import 'TimerWidget.dart';
+
+class SignUpContent3 extends StatefulWidget {
+  static bool isAgree = false;
+
+  @override
+  _SignUpContent3State createState() => _SignUpContent3State();
+}
+
+class _SignUpContent3State extends State<SignUpContent3> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -82,16 +92,18 @@ class SignUpContent3 extends StatelessWidget {
               flex: 3,
               child: ElevatedButton(
                 onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: buildBottomSheet,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
+                  if (SignUpContent3.isAgree == false) {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: buildBottomSheet,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.0),
+                          topRight: Radius.circular(20.0),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: kMainColor,
@@ -111,84 +123,108 @@ class SignUpContent3 extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
+        SizedBox(height: getHeight(30.0)),
+        if (SignUpContent3.isAgree)
+          Container(
+            width: SizeConfig.screenWidth!,
+            padding: EdgeInsets.zero,
+            foregroundDecoration: ShapeDecoration(
+              shape: OutlineInputBorder(
+                borderSide: BorderSide(color: kMainColor, width: 2.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Row(
+              children: [
+                CustomAuthCodeTextField(
+                    hintText: '인증번호', width: SizeConfig.screenWidth! * 0.72),
+                TimerWidget(),
+              ],
+            ),
+          ),
       ],
     );
   }
-}
 
-Widget buildBottomSheet(BuildContext context) {
-  return Container(
-    child: Stack(
-      children: [
-        Positioned(
-          top: kDefaultPadding,
-          right: kDefaultPadding,
-          child: Icon(Icons.keyboard_arrow_down),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  right: kDefaultPadding,
-                  left: kDefaultPadding,
-                  top: kDefaultPadding),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '휴대폰 인증 동의',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+  Widget buildBottomSheet(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Positioned(
+            top: kDefaultPadding,
+            right: kDefaultPadding,
+            child: Icon(Icons.keyboard_arrow_down),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    right: kDefaultPadding,
+                    left: kDefaultPadding,
+                    top: kDefaultPadding),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: getHeight(10.0),
-                    ),
-                    MainClause(
-                      text: '본인 인증 이용 동의(필수)',
-                    ),
-                    SubClause(
-                      text: '휴대폰 본인확인 이용 약관',
-                    ),
-                    SubClause(
-                      text: '통신사 본인확인 이용약관',
-                    ),
-                    SubClause(
-                      text: '고유식별정보 처리동의',
-                    ),
-                    SubClause(
-                      text: '개인정보 수집/이용/취급위탁 동의',
-                    ),
-                    SubClause(
-                      text: '개인정보 제 3자 제공 동의',
-                    ),
-                    SizedBox(
-                      height: getHeight(10.0),
+                    Text(
+                      '휴대폰 인증 동의',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ),
-            ),
-            ConfirmButton(
-              onPressed: () {},
-            )
-          ],
-        ),
-      ],
-    ),
-  );
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(
+                        height: getHeight(10.0),
+                      ),
+                      MainClause(
+                        text: '본인 인증 이용 동의(필수)',
+                      ),
+                      SubClause(
+                        text: '휴대폰 본인확인 이용 약관',
+                      ),
+                      SubClause(
+                        text: '통신사 본인확인 이용약관',
+                      ),
+                      SubClause(
+                        text: '고유식별정보 처리동의',
+                      ),
+                      SubClause(
+                        text: '개인정보 수집/이용/취급위탁 동의',
+                      ),
+                      SubClause(
+                        text: '개인정보 제 3자 제공 동의',
+                      ),
+                      SizedBox(
+                        height: getHeight(10.0),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ConfirmButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  setState(() {
+                    SignUpContent3.isAgree = true;
+                  });
+                },
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }

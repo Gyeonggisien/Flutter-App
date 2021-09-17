@@ -26,16 +26,11 @@ class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Countdown(
-          animation: StepTween(
-            begin: levelClock,
-            end: 0,
-          ).animate(_controller!),
-        ),
-      ],
+    return Countdown(
+      animation: StepTween(
+        begin: levelClock,
+        end: 0,
+      ).animate(_controller!),
     );
   }
 }

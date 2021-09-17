@@ -2,6 +2,7 @@ import 'package:antilla/screens/Join6/components/TimerWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+import '../../../size_config.dart';
 
 class AuthCodeInput extends StatefulWidget {
   const AuthCodeInput({Key? key}) : super(key: key);
@@ -13,9 +14,10 @@ class AuthCodeInput extends StatefulWidget {
 class _AuthCodeInputState extends State<AuthCodeInput> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return SizedBox(
-      width: 200,
-      height: 50,
+      width: SizeConfig.screenWidth! * 0.45,
+      height: SizeConfig.screenHeight! * 0.0625,
       child: TextField(
         decoration: InputDecoration(
             errorStyle: TextStyle(color: kMainColor, fontSize: 15),

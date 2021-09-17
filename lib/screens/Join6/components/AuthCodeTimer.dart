@@ -2,6 +2,7 @@ import 'package:antilla/constants.dart';
 import 'package:antilla/screens/Join6/components/TimerWidget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../size_config.dart';
 import 'AuthCodeInput.dart';
 
 class AuthCodeTimer extends StatefulWidget {
@@ -14,6 +15,7 @@ class AuthCodeTimer extends StatefulWidget {
 class _AuthCodeTimerState extends State<AuthCodeTimer> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
