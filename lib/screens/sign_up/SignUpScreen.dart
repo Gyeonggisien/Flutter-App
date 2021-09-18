@@ -1,6 +1,5 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
-import 'package:antilla/screens/login2/LoginScreen2.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent1.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
@@ -22,11 +21,24 @@ class SignUpScreen extends StatefulWidget {
     SignUpContent3(),
     SignUpContent4(),
   ];
-
-  static int currentIndex = 0;
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  List<bool> isAble = [false, false, false, false];
+  List<Function> checkAble = [];
+  int currentIndex = 0;
+
+  dynamic able = ElevatedButton.styleFrom(
+    primary: kMainColor,
+    padding: EdgeInsets.only(
+        top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
+  );
+  dynamic disable = ElevatedButton.styleFrom(
+    primary: kSearchColor,
+    padding: EdgeInsets.only(
+        top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
+  );
+
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -46,9 +58,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       PrevButton(onPressed: () {
                         setState(() {
-                          print('PREV BUTTON IS PRESSED.');
-                          if (SignUpScreen.currentIndex > 0) {
-                            SignUpScreen.currentIndex--;
+                          if (currentIndex > 0) {
+                            currentIndex--;
                           } else {
                             Navigator.push(
                                 context,
@@ -60,7 +71,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Spacer(),
                       CancelButton(onPressed: () {
                         setState(() {
-                          print('CANCEL BUTTON IS PRESSED.');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -71,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                 ),
-                SignUpScreen.screens[SignUpScreen.currentIndex],
+                SignUpScreen.screens[currentIndex],
               ],
             ),
           ),
@@ -80,13 +90,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ConfirmButton(
             onPressed: () {
               setState(() {
-                if (SignUpScreen.currentIndex >= 0 &&
-                    SignUpScreen.currentIndex < 3) {
-                  SignUpScreen.currentIndex++;
-                  int currentIndex = SignUpScreen.currentIndex;
+                if (SignUpContent1.isButtonEnabled) {
+                  if (currentIndex >= 0 && currentIndex < 3) {
+                    currentIndex++;
+                  }
                 }
               });
             },
+            style: SignUpContent1.isButtonEnabled ? able : disable,
           ),
         ],
       ),

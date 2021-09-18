@@ -5,30 +5,48 @@ class CustomTextField extends StatelessWidget {
   CustomTextField({
     required this.hintText,
     required this.width,
+    this.validator,
+    this.isButtonEnabled,
   });
 
   final String hintText;
   final double width;
+  final String? Function(String?)? validator;
+  bool? isButtonEnabled;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      child: TextFormField(
-        style:
-            Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
-        decoration: InputDecoration(
-          hintText: hintText,
-          hoverColor: kMainColor,
-          contentPadding: EdgeInsets.symmetric(
-              horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.9),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: kMainColor, width: 2.5),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: kMainColor, width: 2.5),
+      child: Form(
+        autovalidateMode: AutovalidateMode.always,
+        child: TextFormField(
+          style: Theme.of(context)
+              .textTheme
+              .headline3!
+              .copyWith(color: kMainColor),
+          validator: this.validator,
+          decoration: InputDecoration(
+            errorStyle: Theme.of(context)
+                .textTheme
+                .headline4!
+                .copyWith(color: kMainColor),
+            hintText: hintText,
+            hoverColor: kMainColor,
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.9),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: kMainColor, width: 2.5),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: kMainColor, width: 2.5),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: kMainColor, width: 2.5),
+            ),
           ),
         ),
       ),

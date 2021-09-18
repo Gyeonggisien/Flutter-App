@@ -14,6 +14,7 @@ const kBasicColor = Color(0xFF39AB87);
 const kStandColor = Color(0xFF30A0E0);
 const kPremiumColor = Color(0xFF3F4F68);
 const kStarColor = Color(0xFFFFC973);
+const kSearchColor = Color(0xFFD1D8DE);
 
 const kNaverColor = Color(0xFF00BF18);
 const kKakaoColor = Color(0xFFFDE404);

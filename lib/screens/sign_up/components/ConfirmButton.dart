@@ -1,15 +1,23 @@
 import 'package:antilla/constants.dart';
 import 'package:flutter/material.dart';
 
-class ConfirmButton extends StatelessWidget {
-  ConfirmButton({required this.onPressed});
+class ConfirmButton extends StatefulWidget {
+  ConfirmButton({required this.onPressed, this.style});
   final Function onPressed;
+  dynamic style;
 
   @override
+  _ConfirmButtonState createState() => _ConfirmButtonState();
+}
+
+class _ConfirmButtonState extends State<ConfirmButton> {
+  @override
   Widget build(BuildContext context) {
+    bool isValid = false;
+
     return ElevatedButton(
       onPressed: () {
-        onPressed();
+        widget.onPressed();
       },
       child: Text(
         '확인',
@@ -18,11 +26,7 @@ class ConfirmButton extends StatelessWidget {
             .headline2!
             .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       ),
-      style: ElevatedButton.styleFrom(
-        primary: kMainColor,
-        padding: EdgeInsets.only(
-            top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
-      ),
+      style: widget.style,
     );
   }
 }
