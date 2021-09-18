@@ -81,11 +81,10 @@ class SubscriptionScreen extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [kWhiteColor.withOpacity(0.0), kWhiteColor],
-                          stops: [0.1, 0.85]
-                        ),
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [kWhiteColor.withOpacity(0.0), kWhiteColor],
+                            stops: [0.1, 0.85]),
                       ),
                     ),
                   ),
@@ -158,13 +157,156 @@ class SubscriptionScreen extends StatelessWidget {
               BestContainer(),
               Container(
                 width: SizeConfig.screenWidth,
-                padding: EdgeInsets.symmetric(horizontal: getWidth(kDefaultPadding), vertical: getHeight(kDefaultPadding)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: getWidth(kDefaultPadding),
+                    vertical: getHeight(kDefaultPadding)),
                 child: Image.asset('images/subscription-information.png'),
               ),
               Container(
                 width: SizeConfig.screenWidth,
                 height: 7.0,
                 color: Color(0xFFE0DDD8),
+              ),
+              Padding(
+                padding: EdgeInsets.all(getWidth(kDefaultPadding)),
+                child: Row(
+                  children: [
+                    Text(
+                      '전체',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: getWidth(5.0),
+                    ),
+                    Text(
+                      '2,379',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline4!
+                          .copyWith(color: kGrayColor),
+                    ),
+                    Spacer(),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFFECEEF0),
+                        padding: EdgeInsets.symmetric(horizontal: getWidth(kDefaultPadding * 0.5)),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            '인기순',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(color: kGrayColor, fontWeight: FontWeight.bold),
+                          ),
+                          Icon(Icons.keyboard_arrow_down_sharp, color: kGrayColor,)
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: getWidth(kDefaultPadding * 0.5),),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        primary: kMainColor,
+                        padding: EdgeInsets.symmetric(horizontal: getWidth(kDefaultPadding * 0.5)),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.filter_alt, color: kWhiteColor, size: getWidth(15.0),),
+                          Text(
+                            ' 필터',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(color: kWhiteColor, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: SizeConfig.screenWidth,
+                padding: EdgeInsets.only(
+                  left: getWidth(kDefaultPadding),
+                  right: getWidth(kDefaultPadding),
+                  bottom: getWidth(kDefaultPadding),
+                ),
+                child: GridView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: 8,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: getWidth(0.74),
+                    crossAxisCount: 2,
+                    crossAxisSpacing: getWidth(kDefaultPadding),
+                    mainAxisSpacing: getWidth(kDefaultPadding),
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: EdgeInsets.only(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: kGray2Color,
+                                  borderRadius: BorderRadius.circular(10.0)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: getWidth(3.0),
+                          ),
+                          Text(
+                            '블루 미드센츄리 패키지',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: getWidth(3.0),
+                          ),
+                          Text(
+                            '인센스 홀더 / 오브제 / 패브릭 / 선반',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          SizedBox(
+                            height: getWidth(3.0),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: getWidth(15.0),
+                                child: Image.asset('images/icons/star.png'),
+                              ),
+                              Text(
+                                '4.9',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: getWidth(kDefaultPadding * 0.4),
+                              ),
+                              Text('구독 1,380',
+                                  style: Theme.of(context).textTheme.headline4),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
