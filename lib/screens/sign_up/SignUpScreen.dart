@@ -24,8 +24,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  List<bool> isAble = [false, false, false, false];
-  List<Function> checkAble = [];
   int currentIndex = 0;
 
   dynamic able = ElevatedButton.styleFrom(
