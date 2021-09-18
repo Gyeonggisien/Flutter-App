@@ -17,6 +17,7 @@ dependencies:
   persistent_bottom_nav_bar: ^4.0.2
   auto_size_text: ^2.1.0
   tab_indicator_styler: ^2.0.0
+  bordered_text: ^2.0.0
 
 dev_dependencies:
   flutter_test:

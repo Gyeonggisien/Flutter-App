@@ -19,28 +19,23 @@ class AntillaAppBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: getWidth(100.0),
-            height: getHeight(100.0),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/logo.png'),
-              ),
-            ),
+            width: getWidth(70.0),
+            child: Image.asset('images/logo.png'),
           ),
         ],
       ),
       actions: [
         Container(
-          width: getWidth(35.0),
+          width: getWidth(27.0),
           decoration: BoxDecoration(
               image:
-              DecorationImage(image: AssetImage('images/icons/bell.png'))),
+              DecorationImage(image: AssetImage('images/icons/notification.png'))),
         ),
         SizedBox(
           width: getWidth(10.0),
         ),
         Container(
-          width: getWidth(35.0),
+          width: getWidth(27.0),
           decoration: BoxDecoration(
               image:
               DecorationImage(image: AssetImage('images/icons/cart.png'))),

@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/subscription/SubscriptionScreen.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -40,12 +41,8 @@ class SubscriptionAppBar extends StatelessWidget {
           width: getWidth(10.0),
         ),
         Container(
-          width: getWidth(35.0),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/icons/cart.png'),
-            ),
-          ),
+          width: getWidth(27.0),
+          child: Image.asset('images/icons/cart.png'),
         ),
         SizedBox(
           width: getWidth(kDefaultPadding),

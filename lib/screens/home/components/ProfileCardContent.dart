@@ -56,14 +56,14 @@ class ProfileCardContent extends StatelessWidget {
                   ),
                   SubscriptionTotal(
                       text: 'B X 1',
-                      borderColor: kPointColor,
+                      color: kBasicColor,
                       day: '14'),
                   SizedBox(
                     height: getHeight(kDefaultPadding * 0.5),
                   ),
                   SubscriptionTotal(
                       text: 'S X 1',
-                      borderColor: kStandColor,
+                      color: kStandColor,
                       day: '34'),
                   SizedBox(
                     height: getHeight(kDefaultPadding * 0.5),

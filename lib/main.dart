@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/BottomNavigation.dart';
 import 'package:antilla/screens/Join6/Join6Screen.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
 import 'package:antilla/screens/login2/LoginScreen2.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'NotoSans',
         scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 35, color: kFontColor),
+          headline1: TextStyle(fontSize: 40, color: kFontColor),
           headline2: TextStyle(fontSize: 24, color: kFontColor),
           headline3: TextStyle(fontSize: 20, color: kFontColor),
           headline4: TextStyle(fontSize: 17, color: kFontColor),
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: SafeArea(child: SignUpScreen()),
+      home: SafeArea(child: BottomNavigation()),
     );
   }
 }

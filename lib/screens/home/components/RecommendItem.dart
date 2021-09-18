@@ -51,7 +51,7 @@ class RecommendItem extends StatelessWidget {
                     child: Text(
                       plan,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: plan == 'BASIC' ? kPointColor : plan == 'STANDARD' ? kStandColor : kMainColor,
+                          color: plan == 'BASIC' ? kBasicColor : plan == 'STANDARD' ? kStandColor : kPremiumColor,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
