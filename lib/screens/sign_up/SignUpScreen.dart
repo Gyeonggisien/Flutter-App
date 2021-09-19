@@ -108,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onPressed: () {
               setState(() {
                 print(
-                    '******************isButtonEnabled = ${SignUpScreen.isEnabled(currentIndex)} ******************');
+                    'cond1 : ${SignUpContent2.cond1} , cond2 : ${SignUpContent2.cond2}');
                 if (SignUpScreen.isEnabled(currentIndex)) {
                   if (currentIndex >= 0 && currentIndex < 3) {
                     currentIndex++;

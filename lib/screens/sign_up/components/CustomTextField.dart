@@ -57,47 +57,43 @@ class CustomTextField extends StatelessWidget {
 }
 
 class CustomPasswordTextField extends StatefulWidget {
-  CustomPasswordTextField({required this.hintText});
+  CustomPasswordTextField({
+    required this.hintText,
+  });
 
   final String hintText;
 
   @override
-  State<CustomPasswordTextField> createState() =>
+  _CustomPasswordTextFieldState createState() =>
       _CustomPasswordTextFieldState();
 }
 
 class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   bool visibleState = false;
-  final myController = TextEditingController();
-
-  @override
-  void dispose() {
-    myController.dispose();
-    super.dispose();
-  }
+  String? enableState;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: myController,
+      onTap: () {
+        changeState();
+      },
+      autovalidateMode: AutovalidateMode.always,
       validator: (String? value) {
-        RegExp regex1 = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+        RegExp regex = RegExp('[a-zA-Z0-9]');
+        bool cond1 = regex.hasMatch(value!);
         bool cond2 = value!.trim().length >= 8;
-        if (regex1.hasMatch(value!) && cond2) {
-          SignUpContent2.cond1 = true;
-          SignUpContent2.cond2 = true;
+        if (cond1 == true && cond2 == true) {
+          enableState = 'TT';
           return null;
-        } else if (regex1.hasMatch(value!) && !cond2) {
-          SignUpContent2.cond1 = true;
-          SignUpContent2.cond2 = false;
+        } else if (cond1 == true && cond2 == false) {
+          enableState = 'TF';
           return null;
-        } else if (!regex1.hasMatch(value!) && cond2) {
-          SignUpContent2.cond1 = false;
-          SignUpContent2.cond2 = true;
+        } else if (cond1 == false && cond2 == true) {
+          enableState = 'FT';
           return null;
         } else {
-          SignUpContent2.cond1 = false;
-          SignUpContent2.cond2 = false;
+          enableState = 'FF';
           return null;
         }
       },
@@ -105,7 +101,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
       obscureText: visibleState,
       decoration: InputDecoration(
-        hintText: widget.hintText,
+        hintText: this.widget.hintText,
         hoverColor: kMainColor,
         contentPadding: EdgeInsets.symmetric(
             horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.9),
@@ -138,26 +134,31 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
     );
   }
 
-  static String? Function(String?)? passwordValidation(String? value) {
-    RegExp regex1 = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
-    bool cond2 = value!.trim().length >= 8;
-    if (regex1.hasMatch(value!) && cond2) {
-      SignUpContent2.cond1 = true;
-      SignUpContent2.cond2 = true;
-      return null;
-    } else if (regex1.hasMatch(value!) && !cond2) {
-      SignUpContent2.cond1 = true;
-      SignUpContent2.cond2 = false;
-      return null;
-    } else if (!regex1.hasMatch(value!) && cond2) {
-      SignUpContent2.cond1 = false;
-      SignUpContent2.cond2 = true;
-      return null;
-    } else {
-      SignUpContent2.cond1 = false;
-      SignUpContent2.cond2 = false;
-      return null;
-    }
+  void changeState() {
+    setState(() {
+      switch (enableState) {
+        case 'TT':
+          SignUpContent2.cond1 = true;
+          SignUpContent2.cond2 = true;
+          SignUpContent2.isButtonEnabled = true;
+          break;
+        case 'TF':
+          SignUpContent2.cond1 = true;
+          SignUpContent2.cond2 = false;
+          SignUpContent2.isButtonEnabled = false;
+          break;
+        case 'FT':
+          SignUpContent2.cond1 = false;
+          SignUpContent2.cond2 = true;
+          SignUpContent2.isButtonEnabled = false;
+          break;
+        case 'FF':
+          SignUpContent2.cond1 = false;
+          SignUpContent2.cond2 = false;
+          SignUpContent2.isButtonEnabled = false;
+          break;
+      }
+    });
   }
 }
 
