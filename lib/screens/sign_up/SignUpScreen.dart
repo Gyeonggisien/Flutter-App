@@ -88,6 +88,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ConfirmButton(
             onPressed: () {
               setState(() {
+                print(
+                    '******************isButtonEnabled = ${SignUpContent1.isButtonEnabled}******************');
                 if (SignUpContent1.isButtonEnabled) {
                   if (currentIndex >= 0 && currentIndex < 3) {
                     currentIndex++;

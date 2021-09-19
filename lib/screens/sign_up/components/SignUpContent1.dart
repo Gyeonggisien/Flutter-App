@@ -34,6 +34,7 @@ class _SignUpContent1State extends State<SignUpContent1> {
           height: getHeight(32.0),
         ),
         CustomTextField(
+            autofocus: true,
             hintText: '이메일',
             width: MediaQuery.of(context).size.width,
             validator: (String? value) {

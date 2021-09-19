@@ -13,8 +13,6 @@ class ConfirmButton extends StatefulWidget {
 class _ConfirmButtonState extends State<ConfirmButton> {
   @override
   Widget build(BuildContext context) {
-    bool isValid = false;
-
     return ElevatedButton(
       onPressed: () {
         widget.onPressed();
@@ -24,7 +22,7 @@ class _ConfirmButtonState extends State<ConfirmButton> {
         style: Theme.of(context)
             .textTheme
             .headline2!
-            .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            .copyWith(color: kWhiteColor, fontWeight: FontWeight.bold),
       ),
       style: widget.style,
     );

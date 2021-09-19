@@ -26,32 +26,46 @@ class SignUpContent2 extends StatelessWidget {
           height: getHeight(32.0),
         ),
         CustomPasswordTextField(hintText: '패스워드'),
-        SizedBox(height: getHeight(10.0),),
+        SizedBox(
+          height: getHeight(10.0),
+        ),
         ValidationWidget(text: '영문, 숫자 조합'),
-        SizedBox(height: getHeight(10.0),),
+        SizedBox(
+          height: getHeight(10.0),
+        ),
         ValidationWidget(text: '8자리 이상'),
       ],
     );
   }
 }
 
-class ValidationWidget extends StatelessWidget {
-  ValidationWidget({required this.text});
+class ValidationWidget extends StatefulWidget {
+  ValidationWidget({required this.text, this.style});
   final String text;
+  dynamic style;
 
+  @override
+  _ValidationWidgetState createState() => _ValidationWidgetState();
+}
+
+class _ValidationWidgetState extends State<ValidationWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width: getWidth(6.0),),
+        SizedBox(
+          width: getWidth(6.0),
+        ),
         Icon(
           Icons.check_circle_outline,
           size: getWidth(18.0),
           color: kGrayColor,
         ),
-        SizedBox(width: getWidth(5.0),),
+        SizedBox(
+          width: getWidth(5.0),
+        ),
         Text(
-          text,
+          widget.text,
           style: Theme.of(context)
               .textTheme
               .headline3!

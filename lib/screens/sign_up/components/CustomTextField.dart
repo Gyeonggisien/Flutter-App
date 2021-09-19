@@ -6,13 +6,13 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.width,
     this.validator,
-    this.isButtonEnabled,
+    this.autofocus,
   });
 
   final String hintText;
   final double width;
   final String? Function(String?)? validator;
-  bool? isButtonEnabled;
+  final bool? autofocus;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
       child: Form(
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
+          autofocus: this.autofocus!,
           style: Theme.of(context)
               .textTheme
               .headline3!
