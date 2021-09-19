@@ -2,59 +2,32 @@ import 'package:antilla/constants.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent1.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent3.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent4.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'components/CancelButton.dart';
 import 'components/PrevButton.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen4 extends StatefulWidget {
+  static bool isButtonEnabled = false;
+
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _SignUpScreenState4 createState() => _SignUpScreenState4();
+}
 
-  static final List<Widget> screens = [
-    SignUpContent1(),
-    SignUpContent2(),
-    SignUpContent3(),
-    SignUpContent4(),
-  ];
+class _SignUpScreenState4 extends State<SignUpScreen4> {
+  bool isButtonEnabled = false;
 
-  static final dynamic able = ElevatedButton.styleFrom(
+  dynamic able = ElevatedButton.styleFrom(
     primary: kMainColor,
     padding: EdgeInsets.only(
         top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
   );
-  static final dynamic disable = ElevatedButton.styleFrom(
+  dynamic disable = ElevatedButton.styleFrom(
     primary: kSearchColor,
     padding: EdgeInsets.only(
         top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
   );
-
-  static bool isEnabled(int currentIndex) {
-    switch (currentIndex) {
-      case 0:
-        return SignUpContent1.isButtonEnabled;
-        break;
-      case 1:
-        return SignUpContent2.isButtonEnabled;
-        break;
-      case 2:
-        return SignUpContent3.isButtonEnabled;
-        break;
-      case 3:
-        return SignUpContent4.isButtonEnabled;
-        break;
-      default:
-        return false;
-    }
-  }
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +48,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       PrevButton(onPressed: () {
                         setState(() {
-                          if (currentIndex > 0) {
-                            currentIndex--;
-                          } else {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
-                          }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
                         });
                       }),
                       Spacer(),
@@ -98,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                 ),
-                SignUpScreen.screens[currentIndex],
+                SignUpContent1(),
               ],
             ),
           ),
@@ -108,17 +77,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onPressed: () {
               setState(() {
                 print(
-                    '******************isButtonEnabled = ${SignUpScreen.isEnabled(currentIndex)} ******************');
-                if (SignUpScreen.isEnabled(currentIndex)) {
-                  if (currentIndex >= 0 && currentIndex < 3) {
-                    currentIndex++;
-                  }
-                }
+                    '******************isButtonEnabled = $isButtonEnabled ******************');
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen4()));
               });
             },
-            style: SignUpScreen.isEnabled(currentIndex)
-                ? SignUpScreen.able
-                : SignUpScreen.disable,
+            style: isButtonEnabled ? able : disable,
           ),
         ],
       ),

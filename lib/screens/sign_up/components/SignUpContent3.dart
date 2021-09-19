@@ -10,6 +10,7 @@ import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
   static bool isAgree = false;
+  static bool isButtonEnabled = true;
 
   @override
   _SignUpContent3State createState() => _SignUpContent3State();

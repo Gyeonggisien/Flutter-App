@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -71,6 +72,16 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (String? value) {
+        RegExp regex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+        if (regex.hasMatch(value!)) {
+          SignUpContent2.isButtonEnabled = true;
+          return "";
+        } else {
+          SignUpContent2.isButtonEnabled = false;
+          return null;
+        }
+      },
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
       obscureText: visibleState,
       decoration: InputDecoration(
