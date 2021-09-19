@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/subscription/SubscriptionScreen.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -12,14 +13,30 @@ class ThemeButton extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: Container(
-                child: Image.asset('images/icons/antilla-theme.png'),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                  );
+                },
+                child: Container(
+                  child: Image.asset('images/icons/antilla-theme.png'),
+                ),
               ),
             ),
             SizedBox(width: getWidth(kDefaultPadding * 0.25),),
             Expanded(
-              child: Container(
-                child: Image.asset('images/icons/basic-theme.png'),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                  );
+                },
+                child: Container(
+                  child: Image.asset('images/icons/basic-theme.png'),
+                ),
               ),
             )
           ],
@@ -28,14 +45,30 @@ class ThemeButton extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: Container(
-                child: Image.asset('images/icons/standard-theme.png'),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                  );
+                },
+                child: Container(
+                  child: Image.asset('images/icons/standard-theme.png'),
+                ),
               ),
             ),
             SizedBox(width: getWidth(kDefaultPadding * 0.25),),
             Expanded(
-              child: Container(
-                child: Image.asset('images/icons/premium-theme.png'),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                  );
+                },
+                child: Container(
+                  child: Image.asset('images/icons/premium-theme.png'),
+                ),
               ),
             )
           ],

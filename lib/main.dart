@@ -1,9 +1,5 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/BottomNavigation.dart';
-import 'package:antilla/screens/Join6/Join6Screen.dart';
-import 'package:antilla/screens/login/LoginScreen.dart';
-import 'package:antilla/screens/login2/LoginScreen2.dart';
-import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,10 +25,10 @@ class MyApp extends StatelessWidget {
         fontFamily: 'NotoSans',
         scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 40, color: kFontColor),
+          headline1: TextStyle(fontSize: 37, color: kFontColor),
           headline2: TextStyle(fontSize: 24, color: kFontColor),
-          headline3: TextStyle(fontSize: 20, color: kFontColor),
-          headline4: TextStyle(fontSize: 17, color: kFontColor),
+          headline3: TextStyle(fontSize: 18, color: kFontColor),
+          headline4: TextStyle(fontSize: 15, color: kFontColor),
           headline5: TextStyle(fontSize: 14, color: kFontColor),
           headline6: TextStyle(fontSize: 11, color: kFontColor),
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),

@@ -10,6 +10,7 @@ const kFontColor = Color(0xFF313131);
 const kWhiteColor = Color(0xFFFFFFFF);
 const kGrayColor = Color(0xFF727272);
 const kGray2Color = Color(0xFFC3C9CF);
+const kGray3Color = Color(0xFFEAEAEB);
 const kBasicColor = Color(0xFF39AB87);
 const kStandColor = Color(0xFF30A0E0);
 const kPremiumColor = Color(0xFF3F4F68);

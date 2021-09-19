@@ -1,6 +1,7 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/subscription/components/BestContainer.dart';
 import 'package:antilla/screens/subscription/components/SubscriptionAppBar.dart';
+import 'package:antilla/screens/subscription/components/ThemeItem.dart';
 import 'package:antilla/size_config.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
@@ -244,67 +245,13 @@ class SubscriptionScreen extends StatelessWidget {
                   itemCount: 8,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: getWidth(0.74),
+                    childAspectRatio: getWidth(0.7),
                     crossAxisCount: 2,
-                    crossAxisSpacing: getWidth(kDefaultPadding),
-                    mainAxisSpacing: getWidth(kDefaultPadding),
+                    crossAxisSpacing: getWidth(kDefaultPadding * 0.5),
+                    mainAxisSpacing: getWidth(kDefaultPadding * 0.5),
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.only(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: kGray2Color,
-                                  borderRadius: BorderRadius.circular(10.0)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: getWidth(3.0),
-                          ),
-                          Text(
-                            '블루 미드센츄리 패키지',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: getWidth(3.0),
-                          ),
-                          Text(
-                            '인센스 홀더 / 오브제 / 패브릭 / 선반',
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          SizedBox(
-                            height: getWidth(3.0),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                width: getWidth(15.0),
-                                child: Image.asset('images/icons/star.png'),
-                              ),
-                              Text(
-                                '4.9',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: getWidth(kDefaultPadding * 0.4),
-                              ),
-                              Text('구독 1,380',
-                                  style: Theme.of(context).textTheme.headline4),
-                            ],
-                          )
-                        ],
-                      ),
-                    );
+                    return ThemeItem();
                   },
                 ),
               ),

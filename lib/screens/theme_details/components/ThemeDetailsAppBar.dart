@@ -3,8 +3,8 @@ import 'package:antilla/screens/subscription/SubscriptionScreen.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SubscriptionAppBar extends StatelessWidget {
-  const SubscriptionAppBar({
+class ThemeDetailsAppBar extends StatelessWidget {
+  const ThemeDetailsAppBar({
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +21,7 @@ class SubscriptionAppBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '테마 구독',
+            '상품 상세',
             style: Theme.of(context)
                 .textTheme
                 .headline3!
@@ -30,17 +30,6 @@ class SubscriptionAppBar extends StatelessWidget {
         ],
       ),
       actions: [
-        Container(
-          width: getWidth(23.0),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/icons/search.png'),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: getWidth(10.0),
-        ),
         Container(
           width: getWidth(27.0),
           child: Image.asset('images/icons/cart.png'),
