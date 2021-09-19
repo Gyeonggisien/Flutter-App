@@ -72,16 +72,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (String? value) {
-        RegExp regex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
-        if (regex.hasMatch(value!)) {
-          SignUpContent2.isButtonEnabled = true;
-          return "";
-        } else {
-          SignUpContent2.isButtonEnabled = false;
-          return null;
-        }
-      },
+      validator: passwordValidation(String? value),
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
       obscureText: visibleState,
       decoration: InputDecoration(
@@ -117,6 +108,29 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
       ),
     );
   }
+
+  static String? Function(String?)? passwordValidation (String? value){
+    RegExp regex1 = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    RegExp regex2 = RegExp(r'^8,$');
+    if (regex1.hasMatch(value!) && regex2.hasMatch(value!)) {
+      SignUpContent2.cond1 = true;
+      SignUpContent2.cond2 = true;
+      return null;
+    } else if(regex1.hasMatch(value!) && !(regex2.hasMatch(value!))) {
+      SignUpContent2.cond1 = true;
+      SignUpContent2.cond2 = false;
+      return null;
+    } else if(!regex1.hasMatch(value!) && (regex2.hasMatch(value!))) {
+      SignUpContent2.cond1 = false;
+      SignUpContent2.cond2 = true;
+      return null;
+    } else {
+      SignUpContent2.cond1 = false;
+      SignUpContent2.cond2 = false;
+      return null;
+    }
+  }
+
 }
 
 class CustomDropdownTextField extends StatefulWidget {

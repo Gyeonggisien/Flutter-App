@@ -40,12 +40,15 @@ class SignUpContent2 extends StatelessWidget {
         ),
         ValidationWidget(
           text: '영문, 숫자 조합',
-          color: SignUpContent2.cond2 ? kMain : kGray,
+          color: SignUpContent2.cond1 ? kMain : kGray,
         ),
         SizedBox(
           height: getHeight(10.0),
         ),
-        ValidationWidget(text: '8자리 이상'),
+        ValidationWidget(
+          text: '8자리 이상',
+          color: SignUpContent2.cond2 ? kMain : kGray,
+        ),
       ],
     );
   }
