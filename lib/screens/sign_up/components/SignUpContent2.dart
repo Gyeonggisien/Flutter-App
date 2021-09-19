@@ -3,8 +3,6 @@ import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
-import '../SignUpScreen.dart';
-
 class SignUpContent2 extends StatelessWidget {
   static bool isButtonEnabled = (cond1 && cond2);
   static bool cond1 = false;

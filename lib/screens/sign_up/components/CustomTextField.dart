@@ -68,11 +68,40 @@ class CustomPasswordTextField extends StatefulWidget {
 
 class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   bool visibleState = false;
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: passwordValidation(String? value),
+      controller: myController,
+      validator: (String? value) {
+        RegExp regex1 = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+        bool cond2 = value!.trim().length >= 8;
+        if (regex1.hasMatch(value!) && cond2) {
+          SignUpContent2.cond1 = true;
+          SignUpContent2.cond2 = true;
+          return null;
+        } else if (regex1.hasMatch(value!) && !cond2) {
+          SignUpContent2.cond1 = true;
+          SignUpContent2.cond2 = false;
+          return null;
+        } else if (!regex1.hasMatch(value!) && cond2) {
+          SignUpContent2.cond1 = false;
+          SignUpContent2.cond2 = true;
+          return null;
+        } else {
+          SignUpContent2.cond1 = false;
+          SignUpContent2.cond2 = false;
+          return null;
+        }
+      },
+      //validator: passwordValidation(myController.text),
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
       obscureText: visibleState,
       decoration: InputDecoration(
@@ -109,18 +138,18 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
     );
   }
 
-  static String? Function(String?)? passwordValidation (String? value){
+  static String? Function(String?)? passwordValidation(String? value) {
     RegExp regex1 = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
-    RegExp regex2 = RegExp(r'^8,$');
-    if (regex1.hasMatch(value!) && regex2.hasMatch(value!)) {
+    bool cond2 = value!.trim().length >= 8;
+    if (regex1.hasMatch(value!) && cond2) {
       SignUpContent2.cond1 = true;
       SignUpContent2.cond2 = true;
       return null;
-    } else if(regex1.hasMatch(value!) && !(regex2.hasMatch(value!))) {
+    } else if (regex1.hasMatch(value!) && !cond2) {
       SignUpContent2.cond1 = true;
       SignUpContent2.cond2 = false;
       return null;
-    } else if(!regex1.hasMatch(value!) && (regex2.hasMatch(value!))) {
+    } else if (!regex1.hasMatch(value!) && cond2) {
       SignUpContent2.cond1 = false;
       SignUpContent2.cond2 = true;
       return null;
@@ -130,7 +159,6 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
       return null;
     }
   }
-
 }
 
 class CustomDropdownTextField extends StatefulWidget {
