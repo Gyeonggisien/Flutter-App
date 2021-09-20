@@ -9,10 +9,10 @@ class SignUpContent2 extends StatefulWidget {
   static bool cond2 = false;
 
   @override
-  SignUpContent2State createState() => SignUpContent2State();
+  _SignUpContent2State createState() => _SignUpContent2State();
 }
 
-class SignUpContent2State extends State<SignUpContent2> {
+class _SignUpContent2State extends State<SignUpContent2> {
   @override
   Widget build(BuildContext context) {
     return Column(

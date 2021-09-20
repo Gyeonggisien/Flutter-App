@@ -1,6 +1,7 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:flutter/material.dart';
+
+import 'SignUpContent2.dart';
 
 class CustomTextField extends StatelessWidget {
   CustomTextField({
@@ -76,10 +77,10 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       onTap: () {
-        changeState();
+        //changeState();
       },
       autovalidateMode: AutovalidateMode.always,
-      validator: (String? value) {
+      validator: (value) {
         RegExp regex = RegExp('[a-zA-Z0-9]');
         bool cond1 = regex.hasMatch(value!);
         bool cond2 = value!.trim().length >= 8;
