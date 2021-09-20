@@ -6,6 +6,7 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomAuthCodeTextField.dart';
+import 'TimerClass.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
@@ -19,6 +20,7 @@ class SignUpContent3 extends StatefulWidget {
 class _SignUpContent3State extends State<SignUpContent3> {
   final double heightPadding = getHeight(30.0);
   final double contentPadding = getWidth(5.0);
+  TimerWidget timer = TimerWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
             ),
             SizedBox(width: contentPadding),
             CustomTextField(
-              hintText: '',
+              hintText: ' ',
               width: getWidth(40.0),
             ),
             SizedBox(width: contentPadding),
@@ -118,7 +120,9 @@ class _SignUpContent3State extends State<SignUpContent3> {
                   ),
                 ),
                 child: Text(
-                  '인증번호 받기',
+                  (timer.isRetried == true && SignUpContent3.isAgree)
+                      ? '인증번호 재전송'
+                      : '인증번호 받기',
                   style: Theme.of(context)
                       .textTheme
                       .headline3!
@@ -143,7 +147,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
               children: [
                 CustomAuthCodeTextField(
                     hintText: '인증번호', width: SizeConfig.screenWidth! * 0.72),
-                TimerWidget(),
+                timer,
               ],
             ),
           )
