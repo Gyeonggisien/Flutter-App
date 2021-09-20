@@ -1,5 +1,6 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
+import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: SafeArea(child: LoginScreen()),
+      home: SafeArea(child: SignUpScreen()),
     );
   }
 }

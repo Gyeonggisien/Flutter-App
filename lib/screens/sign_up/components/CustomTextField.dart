@@ -10,10 +10,12 @@ class CustomTextField extends StatelessWidget {
     required this.width,
     this.validator,
     this.autofocus,
+    this.height,
   });
 
   final String hintText;
   final double width;
+  final double? height;
   final String? Function(String?)? validator;
   final bool? autofocus;
 
@@ -22,10 +24,13 @@ class CustomTextField extends StatelessWidget {
     SizeConfig.init(context);
     return Container(
       width: width,
+      height: height,
       child: Form(
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
-          autofocus: this.autofocus!,
+          autofocus: ((this.autofocus == null) || (this.autofocus == false))
+              ? false
+              : true,
           style: Theme.of(context)
               .textTheme
               .headline3!
@@ -147,13 +152,60 @@ class CustomDropdownTextField extends StatefulWidget {
 
 class _CustomDropdownTextFieldState extends State<CustomDropdownTextField> {
   String value = '';
-  List<String> _currencies = ['SKT', 'KT', 'LG'];
+  List<String> _currencies = ['통신사', 'SKT', 'KT', 'LG'];
 
   @override
   Widget build(BuildContext context) {
+    return DropdownButtonFormField<String>(
+      isDense: true,
+      value: _currencies[0],
+      onChanged: (String? newValue) {
+        value = newValue!;
+      },
+      icon: IconButton(
+        splashColor: Colors.white.withOpacity(0.0),
+        icon: Icon(
+          Icons.keyboard_arrow_down,
+          color: kGrayColor,
+        ),
+        onPressed: () {},
+      ),
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        hoverColor: kMainColor,
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.9),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: kMainColor, width: 2.5),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: kMainColor, width: 2.5),
+        ),
+      ),
+      items: _currencies.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+      selectedItemBuilder: (BuildContext context) {
+        return _currencies.map((String value) {
+          return Text(
+            value,
+            style: TextStyle(color: kGrayColor),
+          );
+        }).toList();
+      },
+    );
+
+    // original code
+    /*
     return TextFormField(
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
       readOnly: true,
+      onChanged: (String value) {},
       decoration: InputDecoration(
         hintText: widget.hintText,
         hoverColor: kMainColor,
@@ -177,5 +229,6 @@ class _CustomDropdownTextFieldState extends State<CustomDropdownTextField> {
         ),
       ),
     );
+    */
   }
 }

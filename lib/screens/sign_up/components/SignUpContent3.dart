@@ -5,14 +5,19 @@ import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
+import 'CustomAuthCodeTextField.dart';
+import 'TimerWidget.dart';
+
 class SignUpContent3 extends StatefulWidget {
+  static bool isAgree = false;
+  static bool isButtonEnabled = true;
+
   @override
   _SignUpContent3State createState() => _SignUpContent3State();
 }
 
 class _SignUpContent3State extends State<SignUpContent3> {
   final double heightPadding = getHeight(30.0);
-
   final double contentPadding = getWidth(5.0);
 
   @override
@@ -30,7 +35,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
             children: <TextSpan>[
               TextSpan(
                   text: '본인확인', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: '를 해주세요'),
+              TextSpan(text: '을 해주세요'),
             ],
           ),
         ),
@@ -91,18 +96,18 @@ class _SignUpContent3State extends State<SignUpContent3> {
               flex: 3,
               child: ElevatedButton(
                 onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: buildBottomSheet,
-                    constraints: BoxConstraints(
-                        maxHeight: SizeConfig.screenHeight! * 0.5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
+                  if (SignUpContent3.isAgree == false) {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: buildBottomSheet,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.0),
+                          topRight: Radius.circular(20.0),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: kMainColor,
@@ -122,7 +127,26 @@ class _SignUpContent3State extends State<SignUpContent3> {
               ),
             ),
           ],
-        )
+        ),
+        SizedBox(height: getHeight(30.0)),
+        if (SignUpContent3.isAgree)
+          Container(
+            width: SizeConfig.screenWidth!,
+            padding: EdgeInsets.zero,
+            foregroundDecoration: ShapeDecoration(
+              shape: OutlineInputBorder(
+                borderSide: BorderSide(color: kMainColor, width: 2.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Row(
+              children: [
+                CustomAuthCodeTextField(
+                    hintText: '인증번호', width: SizeConfig.screenWidth! * 0.72),
+                TimerWidget(),
+              ],
+            ),
+          )
       ],
     );
   }
@@ -197,9 +221,7 @@ Widget buildBottomSheet(BuildContext context) {
             ConfirmButton(
               onPressed: () {
                 Navigator.pop(context);
-                setState(() {
-                  SignUpContent3.isAgree = true;
-                });
+                SignUpContent3.isAgree = true;
               },
             )
           ],
