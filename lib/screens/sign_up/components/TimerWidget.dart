@@ -1,3 +1,4 @@
+import 'package:antilla/screens/Join6/components/TimerWidget.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
@@ -8,9 +9,6 @@ class TimerWidget extends StatefulWidget {
   bool? hasBeenOver = false;
   int trial = 0;
   AnimationController? controller;
-  String time = Countdown(
-    animation: null,
-  );
 
   @override
   _TimerState createState() => _TimerState();

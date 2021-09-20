@@ -6,12 +6,11 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomAuthCodeTextField.dart';
-import 'TimerClass.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
-  static bool isAgree = false;
-  static bool isButtonEnabled = true;
+  bool isAgree = false;
+  bool isButtonEnabled = true;
 
   @override
   _SignUpContent3State createState() => _SignUpContent3State();
@@ -21,6 +20,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
   final double heightPadding = getHeight(30.0);
   final double contentPadding = getWidth(5.0);
   TimerWidget timer = TimerWidget();
+  bool nameValid = false;
+  bool ssnValid = false;
+  bool currencyValid = false;
+  bool phoneNumValid = false;
+  bool authCodeValid = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +102,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
               flex: 3,
               child: ElevatedButton(
                 onPressed: () {
-                  if (SignUpContent3.isAgree == false) {
+                  if (widget.isAgree == false) {
                     showModalBottomSheet(
                       context: context,
                       builder: buildBottomSheet,
@@ -120,7 +124,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
                   ),
                 ),
                 child: Text(
-                  (timer.isRetried == true && SignUpContent3.isAgree)
+                  (timer.isRetried == true && widget.isAgree)
                       ? '인증번호 재전송'
                       : '인증번호 받기',
                   style: Theme.of(context)
@@ -133,7 +137,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
           ],
         ),
         SizedBox(height: getHeight(30.0)),
-        if (SignUpContent3.isAgree)
+        if (widget.isAgree)
           Container(
             width: SizeConfig.screenWidth!,
             padding: EdgeInsets.zero,
@@ -157,6 +161,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
 }
 
 Widget buildBottomSheet(BuildContext context) {
+  SignUpContent3 content3 = SignUpContent3();
   return Container(
     child: Stack(
       children: [
@@ -225,7 +230,7 @@ Widget buildBottomSheet(BuildContext context) {
             ConfirmButton(
               onPressed: () {
                 Navigator.pop(context);
-                SignUpContent3.isAgree = true;
+                content3.isAgree = true;
               },
             )
           ],

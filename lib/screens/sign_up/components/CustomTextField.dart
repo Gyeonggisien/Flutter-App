@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final double? height;
   final String? Function(String?)? validator;
   final bool? autofocus;
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class CustomTextField extends StatelessWidget {
       child: Form(
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
+          controller: this.controller,
           autofocus: ((this.autofocus == null) || (this.autofocus == false))
               ? false
               : true,
@@ -70,6 +72,7 @@ class CustomPasswordTextField extends StatefulWidget {
   });
 
   final String? hintText;
+  SignUpContent2 content2 = SignUpContent2();
 
   @override
   _CustomPasswordTextFieldState createState() =>
@@ -88,16 +91,16 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         bool cond1 = regex.hasMatch(text);
         bool cond2 = text.trim().length >= 8;
         if (cond1 == true && cond2 == true) {
-          SignUpContent2.changeState(true, true);
+          widget.content2.changeState(true, true);
           return null;
         } else if (cond1 == true && cond2 == false) {
-          SignUpContent2.changeState(true, false);
+          widget.content2.changeState(true, false);
           return null;
         } else if (cond1 == false && cond2 == true) {
-          SignUpContent2.changeState(false, true);
+          widget.content2.changeState(false, true);
           return null;
         } else {
-          SignUpContent2.changeState(false, false);
+          widget.content2.changeState(false, false);
           return null;
         }
       },
