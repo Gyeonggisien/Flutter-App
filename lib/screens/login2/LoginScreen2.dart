@@ -2,7 +2,6 @@ import 'package:antilla/screens/login2/components/EmailPasswordContainer.dart';
 import 'package:antilla/screens/login2/components/FindIdPasswordButton.dart';
 import 'package:antilla/screens/login2/components/PrevContainer.dart';
 import 'package:antilla/screens/sign_up/SignUpScreen.dart';
-import 'package:antilla/screens/sign_up/SignUpScreen1.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent1.dart';
 import 'package:flutter/material.dart';
 

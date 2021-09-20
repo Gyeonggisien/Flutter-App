@@ -1,7 +1,8 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/BottomNavigation.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
+import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());

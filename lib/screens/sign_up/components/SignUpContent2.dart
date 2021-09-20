@@ -4,15 +4,44 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent2 extends StatefulWidget {
-  static bool isButtonEnabled = (cond1 && cond2);
-  static bool cond1 = false;
-  static bool cond2 = false;
+  static bool? isButtonEnabled;
+  static bool? cond1;
+  static bool? cond2;
+
+  static changeState1(bool changed1) {
+    SignUpContent2.cond1 = changed1;
+  }
+
+  static changeState2(bool changed2) {
+    SignUpContent2.cond2 = changed2;
+  }
+
+  static changeState(bool changed1, bool changed2) {
+    SignUpContent2.cond1 = changed1;
+    SignUpContent2.cond2 = changed2;
+  }
+
+  static bool returnState1() {
+    return ((SignUpContent2.cond1 == null) || (SignUpContent2.cond1 == false))
+        ? false
+        : true;
+  }
+
+  static bool returnState2() {
+    return ((SignUpContent2.cond2 == null) || (SignUpContent2.cond2 == false))
+        ? false
+        : true;
+  }
 
   @override
   _SignUpContent2State createState() => _SignUpContent2State();
 }
 
 class _SignUpContent2State extends State<SignUpContent2> {
+  bool? isButtonEnabled = SignUpContent2.isButtonEnabled;
+  bool? cond1 = SignUpContent2.cond1;
+  bool? cond2 = SignUpContent2.cond2;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,14 +70,16 @@ class _SignUpContent2State extends State<SignUpContent2> {
           height: getHeight(10.0),
         ),
         ValidationWidget(
-            text: '영문, 숫자 조합',
-            onPressed: () {
-              setState(() {});
-            }),
+          text: '영문, 숫자 조합',
+          color: (SignUpContent2.returnState1()) ? kMainColor : kGrayColor,
+        ),
         SizedBox(
           height: getHeight(10.0),
         ),
-        ValidationWidget(text: '8자리 이상', onPressed: () {}),
+        ValidationWidget(
+          text: '8자리 이상',
+          color: (SignUpContent2.returnState2()) ? kMainColor : kGrayColor,
+        ),
       ],
     );
   }
@@ -57,10 +88,10 @@ class _SignUpContent2State extends State<SignUpContent2> {
 class ValidationWidget extends StatefulWidget {
   ValidationWidget({
     required this.text,
-    required this.onPressed,
+    required this.color,
   });
   final String text;
-  final Function()? onPressed;
+  dynamic color;
 
   @override
   _ValidationWidgetState createState() => _ValidationWidgetState();
@@ -74,17 +105,18 @@ class _ValidationWidgetState extends State<ValidationWidget> {
         SizedBox(
           width: getWidth(6.0),
         ),
-        Icon(Icons.check_circle_outline,
-            size: getWidth(18.0),
-            color: SignUpContent2.cond1 ? kMainColor : kGrayColor),
+        Icon(
+          Icons.check_circle_outline,
+          size: getWidth(18.0),
+          color: widget.color,
+        ),
         SizedBox(
           width: getWidth(5.0),
         ),
         Text(
           widget.text,
           style: Theme.of(context).textTheme.headline3!.copyWith(
-                color:
-                    SignUpContent2.isButtonEnabled ? kMainColor : kGray2Color,
+                color: widget.color,
               ),
         ),
       ],

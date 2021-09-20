@@ -39,7 +39,7 @@ class SignUpScreen extends StatefulWidget {
         return SignUpContent1.isButtonEnabled;
         break;
       case 1:
-        return SignUpContent2.isButtonEnabled;
+        return (SignUpContent2.returnState1() && SignUpContent2.returnState2());
         break;
       case 2:
         return SignUpContent3.isButtonEnabled;
@@ -55,6 +55,8 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   int currentIndex = 0;
+
+  void createValue() {}
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +109,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ConfirmButton(
             onPressed: () {
               setState(() {
-                print(
-                    'cond1 : ${SignUpContent2.cond1} , cond2 : ${SignUpContent2.cond2}');
                 if (SignUpScreen.isEnabled(currentIndex)) {
                   if (currentIndex >= 0 && currentIndex < 3) {
                     currentIndex++;

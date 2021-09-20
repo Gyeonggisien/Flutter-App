@@ -1,6 +1,7 @@
 import 'package:antilla/constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../../size_config.dart';
 import 'SignUpContent2.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Container(
       width: width,
       child: Form(
@@ -59,10 +61,10 @@ class CustomTextField extends StatelessWidget {
 
 class CustomPasswordTextField extends StatefulWidget {
   CustomPasswordTextField({
-    required this.hintText,
+    this.hintText,
   });
 
-  final String hintText;
+  final String? hintText;
 
   @override
   _CustomPasswordTextFieldState createState() =>
@@ -76,28 +78,25 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onTap: () {
-        //changeState();
-      },
-      autovalidateMode: AutovalidateMode.always,
-      validator: (value) {
+      onChanged: (text) {
         RegExp regex = RegExp('[a-zA-Z0-9]');
-        bool cond1 = regex.hasMatch(value!);
-        bool cond2 = value!.trim().length >= 8;
+        bool cond1 = regex.hasMatch(text);
+        bool cond2 = text.trim().length >= 8;
         if (cond1 == true && cond2 == true) {
-          enableState = 'TT';
+          SignUpContent2.changeState(true, true);
           return null;
         } else if (cond1 == true && cond2 == false) {
-          enableState = 'TF';
+          SignUpContent2.changeState(true, false);
           return null;
         } else if (cond1 == false && cond2 == true) {
-          enableState = 'FT';
+          SignUpContent2.changeState(false, true);
           return null;
         } else {
-          enableState = 'FF';
+          SignUpContent2.changeState(false, false);
           return null;
         }
       },
+      autovalidateMode: AutovalidateMode.always,
       //validator: passwordValidation(myController.text),
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
       obscureText: visibleState,
@@ -133,33 +132,6 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         ),
       ),
     );
-  }
-
-  void changeState() {
-    setState(() {
-      switch (enableState) {
-        case 'TT':
-          SignUpContent2.cond1 = true;
-          SignUpContent2.cond2 = true;
-          SignUpContent2.isButtonEnabled = true;
-          break;
-        case 'TF':
-          SignUpContent2.cond1 = true;
-          SignUpContent2.cond2 = false;
-          SignUpContent2.isButtonEnabled = false;
-          break;
-        case 'FT':
-          SignUpContent2.cond1 = false;
-          SignUpContent2.cond2 = true;
-          SignUpContent2.isButtonEnabled = false;
-          break;
-        case 'FF':
-          SignUpContent2.cond1 = false;
-          SignUpContent2.cond2 = false;
-          SignUpContent2.isButtonEnabled = false;
-          break;
-      }
-    });
   }
 }
 
