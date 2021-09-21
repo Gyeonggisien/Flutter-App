@@ -1,7 +1,7 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/MyPageScreen/MyPageScreen.dart';
 import 'package:antilla/screens/home/HomeScreen.dart';
 import 'package:antilla/screens/market/MarketScreen.dart';
+import 'package:antilla/screens/my_page/MyPageScreen.dart';
 import 'package:antilla/screens/search/SearchScreen.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/cupertino.dart';

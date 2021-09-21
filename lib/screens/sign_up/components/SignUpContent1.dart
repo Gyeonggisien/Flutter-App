@@ -53,6 +53,7 @@ class _SignUpContent1State extends State<SignUpContent1> {
                 return null;
               }
             }),
+
       ],
     );
   }
