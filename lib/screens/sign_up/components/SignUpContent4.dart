@@ -4,7 +4,7 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent4 extends StatelessWidget {
-  bool isButtonEnabled = true;
+  static bool isButtonEnabled = true;
 
   @override
   Widget build(BuildContext context) {

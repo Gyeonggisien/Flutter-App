@@ -4,28 +4,28 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent2 extends StatefulWidget {
-  bool? isButtonEnabled;
-  bool? cond1;
-  bool? cond2;
+  static bool? isButtonEnabled;
+  static bool? cond1;
+  static bool? cond2;
 
-  changeState1(bool changed1) {
+  static changeState1(bool changed1) {
     cond1 = changed1;
   }
 
-  changeState2(bool changed2) {
+  static changeState2(bool changed2) {
     cond2 = changed2;
   }
 
-  changeState(bool changed1, bool changed2) {
+  static changeState(bool changed1, bool changed2) {
     cond1 = changed1;
     cond2 = changed2;
   }
 
-  bool returnState1() {
+  static bool returnState1() {
     return ((cond1 == null) || (cond1 == false)) ? false : true;
   }
 
-  bool returnState2() {
+  static bool returnState2() {
     return ((cond2 == null) || (cond2 == false)) ? false : true;
   }
 
@@ -63,14 +63,14 @@ class _SignUpContent2State extends State<SignUpContent2> {
         ),
         ValidationWidget(
           text: '영문, 숫자 조합',
-          color: (widget.returnState1()) ? kMainColor : kGrayColor,
+          color: (SignUpContent2.returnState1()) ? kMainColor : kGrayColor,
         ),
         SizedBox(
           height: getHeight(10.0),
         ),
         ValidationWidget(
           text: '8자리 이상',
-          color: (widget.returnState2()) ? kMainColor : kGrayColor,
+          color: (SignUpContent2.returnState2()) ? kMainColor : kGrayColor,
         ),
       ],
     );

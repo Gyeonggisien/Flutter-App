@@ -5,10 +5,12 @@ class CustomAuthCodeTextField extends StatelessWidget {
   CustomAuthCodeTextField({
     required this.hintText,
     required this.width,
+    this.onChanged,
   });
 
   final String hintText;
   final double width;
+  final String? Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class CustomAuthCodeTextField extends StatelessWidget {
       child: TextFormField(
         style:
             Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
+        onChanged: this.onChanged,
         decoration: InputDecoration(
           border: InputBorder.none,
           focusedBorder: InputBorder.none,

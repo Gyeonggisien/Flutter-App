@@ -5,7 +5,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent1 extends StatefulWidget {
-  bool isButtonEnabled = true;
+  static bool isButtonEnabled = false;
 
   @override
   _SignUpContent1State createState() => _SignUpContent1State();
@@ -39,10 +39,10 @@ class _SignUpContent1State extends State<SignUpContent1> {
             width: MediaQuery.of(context).size.width,
             validator: (String? value) {
               if (EmailValidator.validate(value!) == true) {
-                widget.isButtonEnabled = true;
+                SignUpContent1.isButtonEnabled = true;
                 return "사용할 수 있는 이메일입니다.";
               } else {
-                widget.isButtonEnabled = false;
+                SignUpContent1.isButtonEnabled = false;
                 return null;
               }
             }),

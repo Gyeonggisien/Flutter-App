@@ -33,7 +33,6 @@ class SignUpScreen extends StatefulWidget {
         top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
   );
 
-  /*
   static bool isEnabled(int currentIndex) {
     switch (currentIndex) {
       case 0:
@@ -52,34 +51,10 @@ class SignUpScreen extends StatefulWidget {
         return false;
     }
   }
-  */
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
   int currentIndex = 0;
-  SignUpContent1 content1 = SignUpContent1();
-  SignUpContent2 content2 = SignUpContent2();
-  SignUpContent3 content3 = SignUpContent3();
-  SignUpContent4 content4 = SignUpContent4();
-
-  bool isEnabled(int currentIndex) {
-    switch (currentIndex) {
-      case 0:
-        return content1.isButtonEnabled;
-        break;
-      case 1:
-        return (content2.returnState1() && content2.returnState2());
-        break;
-      case 2:
-        return content3.isButtonEnabled;
-        break;
-      case 3:
-        return content4.isButtonEnabled;
-        break;
-      default:
-        return false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,14 +107,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ConfirmButton(
             onPressed: () {
               setState(() {
-                if (isEnabled(currentIndex)) {
+                if (SignUpScreen.isEnabled(currentIndex)) {
                   if (currentIndex >= 0 && currentIndex < 3) {
                     currentIndex++;
                   }
                 }
               });
             },
-            style: isEnabled(currentIndex)
+            style: SignUpScreen.isEnabled(currentIndex)
                 ? SignUpScreen.able
                 : SignUpScreen.disable,
           ),

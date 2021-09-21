@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/sign_up/components/SignUpContent3.dart';
 import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
@@ -11,6 +12,7 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.autofocus,
     this.height,
+    this.onChanged,
   });
 
   final String hintText;
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool? autofocus;
   final TextEditingController controller = TextEditingController();
+  String? Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,7 @@ class CustomTextField extends StatelessWidget {
       child: Form(
         autovalidateMode: AutovalidateMode.always,
         child: TextFormField(
+          onChanged: this.onChanged,
           controller: this.controller,
           autofocus: ((this.autofocus == null) || (this.autofocus == false))
               ? false
@@ -91,16 +95,16 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         bool cond1 = regex.hasMatch(text);
         bool cond2 = text.trim().length >= 8;
         if (cond1 == true && cond2 == true) {
-          widget.content2.changeState(true, true);
+          SignUpContent2.changeState(true, true);
           return null;
         } else if (cond1 == true && cond2 == false) {
-          widget.content2.changeState(true, false);
+          SignUpContent2.changeState(true, false);
           return null;
         } else if (cond1 == false && cond2 == true) {
-          widget.content2.changeState(false, true);
+          SignUpContent2.changeState(false, true);
           return null;
         } else {
-          widget.content2.changeState(false, false);
+          SignUpContent2.changeState(false, false);
           return null;
         }
       },
@@ -164,6 +168,17 @@ class _CustomDropdownTextFieldState extends State<CustomDropdownTextField> {
       value: _currencies[0],
       onChanged: (String? newValue) {
         value = newValue!;
+        if (value == '통신사') {
+          setState(() {
+            SignUpContent3.currencyValid = true;
+            SignUpContent3.changeState();
+          });
+        } else {
+          setState(() {
+            SignUpContent3.currencyValid = false;
+            SignUpContent3.changeState();
+          });
+        }
       },
       icon: IconButton(
         splashColor: Colors.white.withOpacity(0.0),

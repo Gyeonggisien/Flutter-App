@@ -9,8 +9,21 @@ import 'CustomAuthCodeTextField.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
-  bool isAgree = false;
-  bool isButtonEnabled = true;
+  static bool isAgree = false;
+  static bool isButtonEnabled = false;
+  static bool nameValid = false;
+  static bool ssnValid = false;
+  static bool currencyValid = false;
+  static bool phoneNumValid = false;
+  static bool authCodeValid = false;
+
+  static void changeState() {
+    SignUpContent3.isButtonEnabled = (SignUpContent3.nameValid &&
+        SignUpContent3.ssnValid &&
+        SignUpContent3.currencyValid &&
+        SignUpContent3.phoneNumValid &&
+        SignUpContent3.authCodeValid);
+  }
 
   @override
   _SignUpContent3State createState() => _SignUpContent3State();
@@ -20,11 +33,6 @@ class _SignUpContent3State extends State<SignUpContent3> {
   final double heightPadding = getHeight(30.0);
   final double contentPadding = getWidth(5.0);
   TimerWidget timer = TimerWidget();
-  bool nameValid = false;
-  bool ssnValid = false;
-  bool currencyValid = false;
-  bool phoneNumValid = false;
-  bool authCodeValid = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +57,39 @@ class _SignUpContent3State extends State<SignUpContent3> {
         CustomTextField(
           hintText: '이름 (성 + 이름)',
           width: SizeConfig.screenWidth!,
+          onChanged: (String? value) {
+            if (value!.trim().length > 0) {
+              setState(() {
+                SignUpContent3.nameValid = true;
+                SignUpContent3.changeState();
+              });
+            } else {
+              setState(() {
+                SignUpContent3.nameValid = false;
+                SignUpContent3.changeState();
+              });
+            }
+          },
         ),
         SizedBox(height: heightPadding),
         Row(
           children: [
             CustomTextField(
+              onChanged: (String? value) {
+                RegExp regex = RegExp('[0-9]');
+                bool cond1 = value!.trim().length == 6;
+                if (regex.hasMatch(value) && cond1) {
+                  setState(() {
+                    SignUpContent3.ssnValid = true;
+                    SignUpContent3.changeState();
+                  });
+                } else {
+                  setState(() {
+                    SignUpContent3.ssnValid = false;
+                    SignUpContent3.changeState();
+                  });
+                }
+              },
               hintText: '주민번호 앞자리',
               width: SizeConfig.screenWidth! * 0.35,
             ),
@@ -67,6 +103,22 @@ class _SignUpContent3State extends State<SignUpContent3> {
             ),
             SizedBox(width: contentPadding),
             CustomTextField(
+              onChanged: (String? value) {
+                if (value == '1' ||
+                    value == '2' ||
+                    value == '3' ||
+                    value == '4') {
+                  setState(() {
+                    SignUpContent3.ssnValid = true;
+                    SignUpContent3.changeState();
+                  });
+                } else {
+                  setState(() {
+                    SignUpContent3.ssnValid = false;
+                    SignUpContent3.changeState();
+                  });
+                }
+              },
               hintText: ' ',
               width: getWidth(40.0),
             ),
@@ -92,6 +144,20 @@ class _SignUpContent3State extends State<SignUpContent3> {
               flex: 6,
               child: CustomTextField(
                 hintText: '010-',
+                onChanged: (String? value) {
+                  RegExp regex = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$');
+                  if (regex.hasMatch(value!)) {
+                    setState(() {
+                      SignUpContent3.phoneNumValid = true;
+                      SignUpContent3.changeState();
+                    });
+                  } else {
+                    setState(() {
+                      SignUpContent3.phoneNumValid = false;
+                      SignUpContent3.changeState();
+                    });
+                  }
+                },
                 width: SizeConfig.screenWidth!,
               ),
             ),
@@ -102,7 +168,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
               flex: 3,
               child: ElevatedButton(
                 onPressed: () {
-                  if (widget.isAgree == false) {
+                  if (SignUpContent3.isAgree == false) {
                     showModalBottomSheet(
                       context: context,
                       builder: buildBottomSheet,
@@ -124,7 +190,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
                   ),
                 ),
                 child: Text(
-                  (timer.isRetried == true && widget.isAgree)
+                  (timer.isRetried == true && SignUpContent3.isAgree)
                       ? '인증번호 재전송'
                       : '인증번호 받기',
                   style: Theme.of(context)
@@ -137,7 +203,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
           ],
         ),
         SizedBox(height: getHeight(30.0)),
-        if (widget.isAgree)
+        if (SignUpContent3.isAgree)
           Container(
             width: SizeConfig.screenWidth!,
             padding: EdgeInsets.zero,
@@ -150,7 +216,22 @@ class _SignUpContent3State extends State<SignUpContent3> {
             child: Row(
               children: [
                 CustomAuthCodeTextField(
-                    hintText: '인증번호', width: SizeConfig.screenWidth! * 0.72),
+                  hintText: '인증번호',
+                  width: SizeConfig.screenWidth! * 0.72,
+                  onChanged: (String? value) {
+                    if (value!.trim().length > 0) {
+                      setState(() {
+                        SignUpContent3.authCodeValid = true;
+                        SignUpContent3.changeState();
+                      });
+                    } else {
+                      setState(() {
+                        SignUpContent3.authCodeValid = false;
+                        SignUpContent3.changeState();
+                      });
+                    }
+                  },
+                ),
                 timer,
               ],
             ),
@@ -230,7 +311,7 @@ Widget buildBottomSheet(BuildContext context) {
             ConfirmButton(
               onPressed: () {
                 Navigator.pop(context);
-                content3.isAgree = true;
+                SignUpContent3.isAgree = true;
               },
             )
           ],
