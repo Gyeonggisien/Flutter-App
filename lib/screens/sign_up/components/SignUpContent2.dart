@@ -4,9 +4,9 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent2 extends StatefulWidget {
-  static bool? isButtonEnabled;
-  static bool? cond1;
-  static bool? cond2;
+  static bool isButtonEnabled = false;
+  static bool cond1 = false;
+  static bool cond2 = false;
 
   static changeState1(bool changed1) {
     cond1 = changed1;
