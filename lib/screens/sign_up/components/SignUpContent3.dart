@@ -23,6 +23,8 @@ class SignUpContent3 extends StatefulWidget {
         SignUpContent3.currencyValid &&
         SignUpContent3.phoneNumValid &&
         SignUpContent3.authCodeValid);
+    print('**********${SignUpContent3.isButtonEnabled}\n'
+        '**********${SignUpContent3.nameValid} ${SignUpContent3.ssnValid} ${SignUpContent3.currencyValid} ${SignUpContent3.phoneNumValid} ${SignUpContent3.authCodeValid}**********');
   }
 
   @override
@@ -58,16 +60,13 @@ class _SignUpContent3State extends State<SignUpContent3> {
           hintText: '이름 (성 + 이름)',
           width: SizeConfig.screenWidth!,
           onChanged: (String? value) {
+            print('===============VALUE: $value===============');
             if (value!.trim().length > 0) {
-              setState(() {
-                SignUpContent3.nameValid = true;
-                SignUpContent3.changeState();
-              });
+              SignUpContent3.nameValid = true;
+              SignUpContent3.changeState();
             } else {
-              setState(() {
-                SignUpContent3.nameValid = false;
-                SignUpContent3.changeState();
-              });
+              SignUpContent3.nameValid = false;
+              SignUpContent3.changeState();
             }
           },
         ),
@@ -75,23 +74,19 @@ class _SignUpContent3State extends State<SignUpContent3> {
         Row(
           children: [
             CustomTextField(
+              hintText: '주민번호 앞자리',
+              width: SizeConfig.screenWidth! * 0.35,
               onChanged: (String? value) {
                 RegExp regex = RegExp('[0-9]');
                 bool cond1 = value!.trim().length == 6;
                 if (regex.hasMatch(value) && cond1) {
-                  setState(() {
-                    SignUpContent3.ssnValid = true;
-                    SignUpContent3.changeState();
-                  });
+                  SignUpContent3.ssnValid = true;
+                  SignUpContent3.changeState();
                 } else {
-                  setState(() {
-                    SignUpContent3.ssnValid = false;
-                    SignUpContent3.changeState();
-                  });
+                  SignUpContent3.ssnValid = false;
+                  SignUpContent3.changeState();
                 }
               },
-              hintText: '주민번호 앞자리',
-              width: SizeConfig.screenWidth! * 0.35,
             ),
             SizedBox(width: contentPadding),
             Text(
@@ -103,24 +98,20 @@ class _SignUpContent3State extends State<SignUpContent3> {
             ),
             SizedBox(width: contentPadding),
             CustomTextField(
+              hintText: ' ',
+              width: getWidth(40.0),
               onChanged: (String? value) {
                 if (value == '1' ||
                     value == '2' ||
                     value == '3' ||
                     value == '4') {
-                  setState(() {
-                    SignUpContent3.ssnValid = true;
-                    SignUpContent3.changeState();
-                  });
+                  SignUpContent3.ssnValid = true;
+                  SignUpContent3.changeState();
                 } else {
-                  setState(() {
-                    SignUpContent3.ssnValid = false;
-                    SignUpContent3.changeState();
-                  });
+                  SignUpContent3.ssnValid = false;
+                  SignUpContent3.changeState();
                 }
               },
-              hintText: ' ',
-              width: getWidth(40.0),
             ),
             SizedBox(width: contentPadding),
             Text(
@@ -145,17 +136,15 @@ class _SignUpContent3State extends State<SignUpContent3> {
               child: CustomTextField(
                 hintText: '010-',
                 onChanged: (String? value) {
-                  RegExp regex = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$');
-                  if (regex.hasMatch(value!)) {
-                    setState(() {
-                      SignUpContent3.phoneNumValid = true;
-                      SignUpContent3.changeState();
-                    });
+                  RegExp regex = RegExp('[0-9]');
+                  bool cond1 =
+                      (value!.trim().length > 9) && (value!.trim().length < 12);
+                  if (regex.hasMatch(value!) && cond1) {
+                    SignUpContent3.phoneNumValid = true;
+                    SignUpContent3.changeState();
                   } else {
-                    setState(() {
-                      SignUpContent3.phoneNumValid = false;
-                      SignUpContent3.changeState();
-                    });
+                    SignUpContent3.phoneNumValid = false;
+                    SignUpContent3.changeState();
                   }
                 },
                 width: SizeConfig.screenWidth!,
@@ -220,15 +209,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
                   width: SizeConfig.screenWidth! * 0.72,
                   onChanged: (String? value) {
                     if (value!.trim().length > 0) {
-                      setState(() {
-                        SignUpContent3.authCodeValid = true;
-                        SignUpContent3.changeState();
-                      });
+                      SignUpContent3.authCodeValid = true;
+                      SignUpContent3.changeState();
                     } else {
-                      setState(() {
-                        SignUpContent3.authCodeValid = false;
-                        SignUpContent3.changeState();
-                      });
+                      SignUpContent3.authCodeValid = false;
+                      SignUpContent3.changeState();
                     }
                   },
                 ),

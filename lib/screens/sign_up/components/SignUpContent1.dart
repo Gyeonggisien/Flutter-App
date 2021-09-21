@@ -5,7 +5,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class SignUpContent1 extends StatefulWidget {
-  static bool isButtonEnabled = false;
+  static bool isButtonEnabled = true;
 
   @override
   _SignUpContent1State createState() => _SignUpContent1State();

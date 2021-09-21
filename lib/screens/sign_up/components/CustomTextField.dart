@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../size_config.dart';
 import 'SignUpContent2.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   CustomTextField({
     required this.hintText,
     required this.width,
@@ -20,49 +20,52 @@ class CustomTextField extends StatelessWidget {
   final double? height;
   final String? Function(String?)? validator;
   final bool? autofocus;
+  final void Function(String?)? onChanged;
+
+  @override
+  _CustomTextFieldState createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
   final TextEditingController controller = TextEditingController();
-  String? Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Container(
-      width: width,
-      height: height,
-      child: Form(
+      width: widget.width,
+      height: widget.height,
+      child: TextFormField(
         autovalidateMode: AutovalidateMode.always,
-        child: TextFormField(
-          onChanged: this.onChanged,
-          controller: this.controller,
-          autofocus: ((this.autofocus == null) || (this.autofocus == false))
-              ? false
-              : true,
-          style: Theme.of(context)
+        onChanged: widget.onChanged,
+        controller: this.controller,
+        autofocus: ((this.widget.autofocus == null) ||
+                (this.widget.autofocus == false))
+            ? false
+            : true,
+        style:
+            Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),
+        validator: this.widget.validator,
+        decoration: InputDecoration(
+          errorStyle: Theme.of(context)
               .textTheme
-              .headline3!
+              .headline4!
               .copyWith(color: kMainColor),
-          validator: this.validator,
-          decoration: InputDecoration(
-            errorStyle: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(color: kMainColor),
-            hintText: hintText,
-            hoverColor: kMainColor,
-            contentPadding: EdgeInsets.symmetric(
-                horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.9),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(color: kMainColor, width: 2.5),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(color: kMainColor, width: 2.5),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(color: kMainColor, width: 2.5),
-            ),
+          hintText: widget.hintText,
+          hoverColor: kMainColor,
+          contentPadding: EdgeInsets.symmetric(
+              horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.9),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(color: kMainColor, width: 2.5),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(color: kMainColor, width: 2.5),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(color: kMainColor, width: 2.5),
           ),
         ),
       ),
@@ -76,7 +79,6 @@ class CustomPasswordTextField extends StatefulWidget {
   });
 
   final String? hintText;
-  SignUpContent2 content2 = SignUpContent2();
 
   @override
   _CustomPasswordTextFieldState createState() =>
@@ -168,14 +170,15 @@ class _CustomDropdownTextFieldState extends State<CustomDropdownTextField> {
       value: _currencies[0],
       onChanged: (String? newValue) {
         value = newValue!;
+        print('===========DROPDOWNVALUE : ${value}===========');
         if (value == '통신사') {
           setState(() {
-            SignUpContent3.currencyValid = true;
+            SignUpContent3.currencyValid = false;
             SignUpContent3.changeState();
           });
         } else {
           setState(() {
-            SignUpContent3.currencyValid = false;
+            SignUpContent3.currencyValid = true;
             SignUpContent3.changeState();
           });
         }
