@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
@@ -23,8 +24,6 @@ class SignUpContent3 extends StatefulWidget {
         SignUpContent3.currencyValid &&
         SignUpContent3.phoneNumValid &&
         SignUpContent3.authCodeValid);
-    print('**********${SignUpContent3.isButtonEnabled}\n'
-        '**********${SignUpContent3.nameValid} ${SignUpContent3.ssnValid} ${SignUpContent3.currencyValid} ${SignUpContent3.phoneNumValid} ${SignUpContent3.authCodeValid}**********');
   }
 
   @override
@@ -226,8 +225,48 @@ class _SignUpContent3State extends State<SignUpContent3> {
   }
 }
 
+class ModalSheet {
+  static MainClause mainClause = MainClause(
+    text: '본인 인증 이용 동의(필수)',
+    option: 3,
+  );
+
+  static List<SubClause> subclauses = [
+    SubClause(
+      text: '휴대폰 본인확인 이용 약관',
+      extraFunction: () {},
+    ),
+    SubClause(
+      text: '통신사 본인확인 이용약관',
+    ),
+    SubClause(
+      text: '고유식별정보 처리동의',
+    ),
+    SubClause(
+      text: '개인정보 수집/이용/취급위탁 동의',
+    ),
+    SubClause(
+      text: '개인정보 제 3자 제공 동의',
+    ),
+  ];
+
+  static bool isAllAgree() {
+    if ((ModalSheet.subclauses[0].getActivated() &&
+            ModalSheet.subclauses[1].getActivated() &&
+            ModalSheet.subclauses[2].getActivated() &&
+            ModalSheet.subclauses[3].getActivated() &&
+            ModalSheet.subclauses[4].getActivated()) ||
+        ModalSheet.mainClause.getActivated()) {
+      print('ALL AGREED');
+      ModalSheet.mainClause.setActivated(true);
+      return true;
+    }
+    print('NOT ALL AGREED');
+    return false;
+  }
+}
+
 Widget buildBottomSheet(BuildContext context) {
-  SignUpContent3 content3 = SignUpContent3();
   return Container(
     child: Stack(
       children: [
@@ -268,24 +307,12 @@ Widget buildBottomSheet(BuildContext context) {
                     SizedBox(
                       height: getHeight(10.0),
                     ),
-                    MainClause(
-                      text: '본인 인증 이용 동의(필수)',
-                    ),
-                    SubClause(
-                      text: '휴대폰 본인확인 이용 약관',
-                    ),
-                    SubClause(
-                      text: '통신사 본인확인 이용약관',
-                    ),
-                    SubClause(
-                      text: '고유식별정보 처리동의',
-                    ),
-                    SubClause(
-                      text: '개인정보 수집/이용/취급위탁 동의',
-                    ),
-                    SubClause(
-                      text: '개인정보 제 3자 제공 동의',
-                    ),
+                    ModalSheet.mainClause,
+                    ModalSheet.subclauses[0],
+                    ModalSheet.subclauses[1],
+                    ModalSheet.subclauses[2],
+                    ModalSheet.subclauses[3],
+                    ModalSheet.subclauses[4],
                     SizedBox(
                       height: getHeight(10.0),
                     ),
@@ -295,10 +322,15 @@ Widget buildBottomSheet(BuildContext context) {
             ),
             ConfirmButton(
               onPressed: () {
-                Navigator.pop(context);
-                SignUpContent3.isAgree = true;
+                if (ModalSheet.isAllAgree()) {
+                  Navigator.pop(context);
+                  SignUpContent3.isAgree = true;
+                }
               },
-            )
+              style: ModalSheet.isAllAgree()
+                  ? SignUpScreen.able
+                  : SignUpScreen.disable,
+            ),
           ],
         ),
       ],

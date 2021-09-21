@@ -37,6 +37,13 @@ class _SignUpContent1State extends State<SignUpContent1> {
             autofocus: true,
             hintText: '이메일',
             width: MediaQuery.of(context).size.width,
+            onChanged: (String? value) {
+              if (EmailValidator.validate(value!) == true) {
+                SignUpContent1.isButtonEnabled = true;
+              } else {
+                SignUpContent1.isButtonEnabled = false;
+              }
+            },
             validator: (String? value) {
               if (EmailValidator.validate(value!) == true) {
                 SignUpContent1.isButtonEnabled = true;

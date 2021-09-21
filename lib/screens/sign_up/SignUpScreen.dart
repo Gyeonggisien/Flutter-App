@@ -22,6 +22,22 @@ class SignUpScreen extends StatefulWidget {
     SignUpContent4(),
   ];
 
+  // when sign-up screen is first initialized, all static validation variables must set to be false.
+  static void reset() {
+    SignUpContent1.isButtonEnabled = false;
+    SignUpContent2.cond1 = false;
+    SignUpContent2.cond2 = false;
+    SignUpContent2.isButtonEnabled = false;
+    SignUpContent3.isAgree = false;
+    SignUpContent3.nameValid = false;
+    SignUpContent3.ssnValid = false;
+    SignUpContent3.currencyValid = false;
+    SignUpContent3.phoneNumValid = false;
+    SignUpContent3.authCodeValid = false;
+    SignUpContent3.isButtonEnabled = false;
+    SignUpContent4.isButtonEnabled = false;
+  }
+
   static final dynamic able = ElevatedButton.styleFrom(
     primary: kMainColor,
     padding: EdgeInsets.only(
@@ -75,6 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       PrevButton(onPressed: () {
                         setState(() {
+                          SignUpScreen.reset();
                           if (currentIndex > 0) {
                             currentIndex--;
                           } else {

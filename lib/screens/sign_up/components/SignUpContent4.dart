@@ -3,9 +3,23 @@ import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SignUpContent4 extends StatelessWidget {
+class SignUpContent4 extends StatefulWidget {
   static bool isButtonEnabled = true;
+  static bool agreeEssential = true;
+  static bool agreeOptional1 = true;
+  static bool agreeOptional2 = true;
 
+  static void changeState() {
+    if (agreeEssential == true) {
+      isButtonEnabled = true;
+    }
+  }
+
+  @override
+  _SignUpContent4State createState() => _SignUpContent4State();
+}
+
+class _SignUpContent4State extends State<SignUpContent4> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -28,30 +42,43 @@ class SignUpContent4 extends StatelessWidget {
         ),
         SizedBox(height: getHeight(30.0)),
         MainClause(
+          option: 4,
           text: '전체 동의',
           icon: Icon(
             Icons.keyboard_arrow_down,
             size: getWidth(30.0),
           ),
+          extraFunction: () {
+            SignUpContent4.isButtonEnabled = true;
+          },
         ),
         SizedBox(height: getHeight(30.0)),
         MainClause(
+          option: 4,
           text: '서비스 이용 동의(필수)',
           icon: Icon(
             Icons.keyboard_arrow_down,
             size: getWidth(30.0),
           ),
+          extraFunction: () {
+            SignUpContent4.agreeEssential = true;
+          },
         ),
         SizedBox(height: getHeight(30.0)),
         MainClause(
+          option: 4,
           text: '서비스 이용 동의(선택)',
           icon: Icon(
             Icons.keyboard_arrow_down,
             size: getWidth(30.0),
           ),
+          extraFunction: () {
+            SignUpContent4.agreeOptional1 = true;
+          },
         ),
         SizedBox(height: getHeight(30.0)),
         MainClause(
+          option: 4,
           text: '마케팅 정보 전송 동의(선택)',
           icon: Icon(
             Icons.keyboard_arrow_down,

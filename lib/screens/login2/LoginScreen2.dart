@@ -64,6 +64,7 @@ class _LoginScreen2State extends State<LoginScreen2> {
                     JoinButton(
                       onPressed: () {
                         setState(() {
+                          SignUpScreen.reset();
                           Navigator.push(
                             context,
                             MaterialPageRoute(
