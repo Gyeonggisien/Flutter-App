@@ -2,6 +2,7 @@ import 'package:antilla/LocalAndWebObjectsWidget.dart';
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/BottomNavigation.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
+import 'package:antilla/screens/my_page/MyPageScreen.dart';
 import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'NotoSans',
         scaffoldBackgroundColor: Colors.white,
-        textTheme: const TextTheme(
+        textTheme: TextTheme(
           headline1: TextStyle(fontSize: 37, color: kFontColor),
           headline2: TextStyle(fontSize: 24, color: kFontColor),
           headline3: TextStyle(fontSize: 18, color: kFontColor),

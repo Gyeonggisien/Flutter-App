@@ -34,6 +34,13 @@ class SignUpContent2 extends StatefulWidget {
 }
 
 class _SignUpContent2State extends State<SignUpContent2> {
+
+  void callback() {
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,6 +64,7 @@ class _SignUpContent2State extends State<SignUpContent2> {
         ),
         CustomPasswordTextField(
           hintText: '패스워드',
+          callback: callback,
         ),
         SizedBox(
           height: getHeight(10.0),

@@ -76,9 +76,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
 class CustomPasswordTextField extends StatefulWidget {
   CustomPasswordTextField({
     this.hintText,
+    required this.callback,
   });
 
   final String? hintText;
+  final Function callback;
 
   @override
   _CustomPasswordTextFieldState createState() =>
@@ -98,17 +100,14 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         bool cond2 = text.trim().length >= 8;
         if (cond1 == true && cond2 == true) {
           SignUpContent2.changeState(true, true);
-          return null;
         } else if (cond1 == true && cond2 == false) {
           SignUpContent2.changeState(true, false);
-          return null;
         } else if (cond1 == false && cond2 == true) {
           SignUpContent2.changeState(false, true);
-          return null;
         } else {
           SignUpContent2.changeState(false, false);
-          return null;
         }
+        widget.callback();
       },
       autovalidateMode: AutovalidateMode.always,
       //validator: passwordValidation(myController.text),

@@ -77,13 +77,15 @@ class Countdown extends AnimatedWidget {
       : super(key: key, listenable: animation);
   Animation<int> animation;
   String? currentTime;
+  bool? state = false;
 
-  @override
-  Widget build(BuildContext context) {
+  Widget customTimer() {
     Duration clockTimer = Duration(seconds: animation.value);
     String timerText =
-        '${clockTimer.inMinutes.remainder(60).toString()}:${clockTimer.inSeconds.remainder(60).toString().padLeft(2, '0')}';
-
+        '${clockTimer.inMinutes.remainder(1).toString()}:${clockTimer.inSeconds.remainder(50).toString().padLeft(2, '0')}';
+    if(timerText == '0:00') {
+      state = true;
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 0.4),
       child: Text(
@@ -94,5 +96,17 @@ class Countdown extends AnimatedWidget {
         ),
       ),
     );
+  }
+
+  Widget endTimer() {
+    return GestureDetector(
+      onTap: () {},
+      child: Text('재전송'),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return state! ? endTimer() : customTimer();
   }
 }
