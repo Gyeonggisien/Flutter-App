@@ -137,8 +137,8 @@ class _SignUpContent3State extends State<SignUpContent3> {
                 onChanged: (String? value) {
                   RegExp regex = RegExp('[0-9]');
                   bool cond1 =
-                      (value!.trim().length > 9) && (value!.trim().length < 12);
-                  if (regex.hasMatch(value!) && cond1) {
+                      (value!.trim().length > 9) && (value.trim().length < 12);
+                  if (regex.hasMatch(value) && cond1) {
                     SignUpContent3.phoneNumValid = true;
                     SignUpContent3.changeState();
                   } else {

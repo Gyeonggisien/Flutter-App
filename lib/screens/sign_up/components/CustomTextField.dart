@@ -9,6 +9,7 @@ class CustomTextField extends StatefulWidget {
   CustomTextField({
     required this.hintText,
     required this.width,
+    required this.callback,
     this.validator,
     this.autofocus,
     this.height,
@@ -21,6 +22,7 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool? autofocus;
   final void Function(String?)? onChanged;
+  final Function(String?)? callback;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -37,7 +39,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       height: widget.height,
       child: TextFormField(
         autovalidateMode: AutovalidateMode.always,
-        onChanged: widget.onChanged,
+        onChanged: widget.callback,
         controller: this.controller,
         autofocus: ((this.widget.autofocus == null) ||
                 (this.widget.autofocus == false))
