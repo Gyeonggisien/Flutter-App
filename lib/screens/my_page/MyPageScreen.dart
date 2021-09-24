@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/my_page/SubscriptionStateScreen.dart';
 import 'package:antilla/screens/my_page/components/MyPageAppBar.dart';
 import 'package:antilla/screens/my_page/components/SubscriptionTotal.dart';
 import 'package:antilla/size_config.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 
 class MyPageScreen extends StatelessWidget {
   final List<String> title = ['내 정보', '구독 내역', '내가 저장한 테마'];
+  final List<Widget> screens = [SubscriptionStateScreen(), SubscriptionStateScreen(), SubscriptionStateScreen()];
   final List<String> title2 = ['인증 및 보안', '알림', '결제'];
   final List<String> title3 = ['공지사항', '문의하기 및 Q&A'];
 
@@ -73,18 +75,24 @@ class MyPageScreen extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              padding: EdgeInsets.all(8),
+              itemExtent: getWidth(45.0),
+              physics: NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(
-                    title[index],
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2!
-                        .copyWith(fontWeight: FontWeight.bold),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => screens[index]));
+                  },
+                  child: ListTile(
+                    title: Text(
+                      title[index],
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline3!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(Icons.keyboard_arrow_right_sharp),
                   ),
-                  trailing: Icon(Icons.keyboard_arrow_right_sharp),
                 );
               },
             ),
@@ -104,7 +112,8 @@ class MyPageScreen extends StatelessWidget {
             )),
             ListView.builder(
               shrinkWrap: true,
-              padding: EdgeInsets.all(8),
+              itemExtent: getWidth(45.0),
+              physics: NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
@@ -112,7 +121,7 @@ class MyPageScreen extends StatelessWidget {
                     title2[index],
                     style: Theme.of(context)
                         .textTheme
-                        .headline2!
+                        .headline3!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right_sharp),
@@ -135,7 +144,8 @@ class MyPageScreen extends StatelessWidget {
             )),
             ListView.builder(
               shrinkWrap: true,
-              padding: EdgeInsets.all(8),
+              itemExtent: getWidth(45.0),
+              physics: NeverScrollableScrollPhysics(),
               itemCount: 2,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
@@ -143,7 +153,7 @@ class MyPageScreen extends StatelessWidget {
                     title3[index],
                     style: Theme.of(context)
                         .textTheme
-                        .headline2!
+                        .headline3!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right_sharp),

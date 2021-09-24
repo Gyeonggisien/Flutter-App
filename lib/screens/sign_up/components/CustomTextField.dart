@@ -9,7 +9,7 @@ class CustomTextField extends StatefulWidget {
   CustomTextField({
     required this.hintText,
     required this.width,
-    required this.callback,
+    this.callback,
     this.validator,
     this.autofocus,
     this.height,
@@ -76,7 +76,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 class CustomPasswordTextField extends StatefulWidget {
   CustomPasswordTextField({
     this.hintText,
-    required this.callback,
+    this.callback,
   });
 
   final String? hintText;
