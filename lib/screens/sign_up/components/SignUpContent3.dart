@@ -58,16 +58,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
         CustomTextField(
           hintText: '이름 (성 + 이름)',
           width: SizeConfig.screenWidth!,
-          onChanged: (String? value) {
-            print('===============VALUE: $value===============');
-            if (value!.trim().length > 0) {
-              SignUpContent3.nameValid = true;
-              SignUpContent3.changeState();
-            } else {
-              SignUpContent3.nameValid = false;
-              SignUpContent3.changeState();
-            }
-          },
+          callback: (text) => callbackName(text),
         ),
         SizedBox(height: heightPadding),
         Row(
@@ -75,17 +66,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
             CustomTextField(
               hintText: '주민번호 앞자리',
               width: SizeConfig.screenWidth! * 0.35,
-              onChanged: (String? value) {
-                RegExp regex = RegExp('[0-9]');
-                bool cond1 = value!.trim().length == 6;
-                if (regex.hasMatch(value) && cond1) {
-                  SignUpContent3.ssnValid = true;
-                  SignUpContent3.changeState();
-                } else {
-                  SignUpContent3.ssnValid = false;
-                  SignUpContent3.changeState();
-                }
-              },
+              callback: (text) => callbackPassword(text),
             ),
             SizedBox(width: contentPadding),
             Text(
@@ -99,18 +80,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
             CustomTextField(
               hintText: ' ',
               width: getWidth(40.0),
-              onChanged: (String? value) {
-                if (value == '1' ||
-                    value == '2' ||
-                    value == '3' ||
-                    value == '4') {
-                  SignUpContent3.ssnValid = true;
-                  SignUpContent3.changeState();
-                } else {
-                  SignUpContent3.ssnValid = false;
-                  SignUpContent3.changeState();
-                }
-              },
+              callback: (text) => callbackSsnBack(text),
             ),
             SizedBox(width: contentPadding),
             Text(
@@ -134,18 +104,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
               flex: 6,
               child: CustomTextField(
                 hintText: '010-',
-                onChanged: (String? value) {
-                  RegExp regex = RegExp('[0-9]');
-                  bool cond1 =
-                      (value!.trim().length > 9) && (value.trim().length < 12);
-                  if (regex.hasMatch(value) && cond1) {
-                    SignUpContent3.phoneNumValid = true;
-                    SignUpContent3.changeState();
-                  } else {
-                    SignUpContent3.phoneNumValid = false;
-                    SignUpContent3.changeState();
-                  }
-                },
+                callback: (text) => callbackPhoneNum(text),
                 width: SizeConfig.screenWidth!,
               ),
             ),
@@ -222,6 +181,58 @@ class _SignUpContent3State extends State<SignUpContent3> {
           )
       ],
     );
+  }
+
+  void callbackName(String? text) {
+    setState(() {
+      if (text!.trim().length > 0) {
+        SignUpContent3.nameValid = true;
+        SignUpContent3.changeState();
+      } else {
+        SignUpContent3.nameValid = false;
+        SignUpContent3.changeState();
+      }
+    });
+  }
+
+  void callbackPassword(String? text) {
+    RegExp regex = RegExp('[0-9]');
+    bool cond1 = text!.trim().length == 6;
+    setState(() {
+      if (regex.hasMatch(text) && cond1) {
+        SignUpContent3.ssnValid = true;
+        SignUpContent3.changeState();
+      } else {
+        SignUpContent3.ssnValid = false;
+        SignUpContent3.changeState();
+      }
+    });
+  }
+
+  void callbackSsnBack(String? text) {
+    setState(() {
+      if (text == '1' || text == '2' || text == '3' || text == '4') {
+        SignUpContent3.ssnValid = true;
+        SignUpContent3.changeState();
+      } else {
+        SignUpContent3.ssnValid = false;
+        SignUpContent3.changeState();
+      }
+    });
+  }
+
+  void callbackPhoneNum(String? text) {
+    RegExp regex = RegExp('[0-9]');
+    bool cond1 = (text!.trim().length > 9) && (text.trim().length < 12);
+    setState(() {
+      if (regex.hasMatch(text) && cond1) {
+        SignUpContent3.phoneNumValid = true;
+        SignUpContent3.changeState();
+      } else {
+        SignUpContent3.phoneNumValid = false;
+        SignUpContent3.changeState();
+      }
+    });
   }
 }
 

@@ -34,10 +34,24 @@ class SignUpContent2 extends StatefulWidget {
 }
 
 class _SignUpContent2State extends State<SignUpContent2> {
-
-  void callback() {
+  void callback(String? text) {
+    RegExp regex = RegExp('[a-zA-Z0-9]');
+    bool cond1 = regex.hasMatch(text!);
+    bool cond2 = text.trim().length >= 8;
     setState(() {
-
+      if (cond1 && cond2) {
+        SignUpContent2.cond1 = true;
+        SignUpContent2.cond2 = true;
+      } else if (cond1 && !cond2) {
+        SignUpContent2.cond1 = true;
+        SignUpContent2.cond2 = false;
+      } else if (!cond1 && cond2) {
+        SignUpContent2.cond1 = false;
+        SignUpContent2.cond2 = true;
+      } else {
+        SignUpContent2.cond1 = false;
+        SignUpContent2.cond2 = false;
+      }
     });
   }
 
@@ -71,14 +85,14 @@ class _SignUpContent2State extends State<SignUpContent2> {
         ),
         ValidationWidget(
           text: '영문, 숫자 조합',
-          color: (SignUpContent2.returnState1()) ? kMainColor : kGrayColor,
+          color: (SignUpContent2.cond1) ? kMainColor : kGrayColor,
         ),
         SizedBox(
           height: getHeight(10.0),
         ),
         ValidationWidget(
           text: '8자리 이상',
-          color: (SignUpContent2.returnState2()) ? kMainColor : kGrayColor,
+          color: (SignUpContent2.cond2) ? kMainColor : kGrayColor,
         ),
       ],
     );

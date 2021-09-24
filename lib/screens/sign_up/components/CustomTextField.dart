@@ -13,7 +13,6 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.autofocus,
     this.height,
-    this.onChanged,
   });
 
   final String hintText;
@@ -21,8 +20,7 @@ class CustomTextField extends StatefulWidget {
   final double? height;
   final String? Function(String?)? validator;
   final bool? autofocus;
-  final void Function(String?)? onChanged;
-  final Function(String?)? callback;
+  final void Function(String?)? callback;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -82,7 +80,7 @@ class CustomPasswordTextField extends StatefulWidget {
   });
 
   final String? hintText;
-  final Function callback;
+  final Function(String?)? callback;
 
   @override
   _CustomPasswordTextFieldState createState() =>
@@ -91,26 +89,11 @@ class CustomPasswordTextField extends StatefulWidget {
 
 class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   bool visibleState = false;
-  String? enableState;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged: (text) {
-        RegExp regex = RegExp('[a-zA-Z0-9]');
-        bool cond1 = regex.hasMatch(text);
-        bool cond2 = text.trim().length >= 8;
-        if (cond1 == true && cond2 == true) {
-          SignUpContent2.changeState(true, true);
-        } else if (cond1 == true && cond2 == false) {
-          SignUpContent2.changeState(true, false);
-        } else if (cond1 == false && cond2 == true) {
-          SignUpContent2.changeState(false, true);
-        } else {
-          SignUpContent2.changeState(false, false);
-        }
-        widget.callback();
-      },
+      onChanged: (text) => widget.callback!(text),
       autovalidateMode: AutovalidateMode.always,
       //validator: passwordValidation(myController.text),
       style: Theme.of(context).textTheme.headline3!.copyWith(color: kMainColor),

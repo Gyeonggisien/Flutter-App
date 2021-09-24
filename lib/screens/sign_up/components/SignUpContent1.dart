@@ -12,6 +12,16 @@ class SignUpContent1 extends StatefulWidget {
 }
 
 class _SignUpContent1State extends State<SignUpContent1> {
+  void callback(String value) {
+    setState(() {
+      if (EmailValidator.validate(value) == true) {
+        SignUpContent1.isButtonEnabled = true;
+      } else {
+        SignUpContent1.isButtonEnabled = false;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,13 +47,7 @@ class _SignUpContent1State extends State<SignUpContent1> {
             autofocus: true,
             hintText: '이메일',
             width: MediaQuery.of(context).size.width,
-            onChanged: (String? value) {
-              if (EmailValidator.validate(value!) == true) {
-                SignUpContent1.isButtonEnabled = true;
-              } else {
-                SignUpContent1.isButtonEnabled = false;
-              }
-            },
+            callback: (String? value) => callback(value!),
             validator: (String? value) {
               if (EmailValidator.validate(value!) == true) {
                 SignUpContent1.isButtonEnabled = true;
@@ -53,7 +57,6 @@ class _SignUpContent1State extends State<SignUpContent1> {
                 return null;
               }
             }),
-
       ],
     );
   }
