@@ -51,28 +51,6 @@ class SignUpScreen extends StatefulWidget {
     padding: EdgeInsets.only(
         top: kDefaultPadding * 1.3, bottom: kDefaultPadding * 1.9),
   );
-
-  static bool isEnabled(int currentIndex) {
-    switch (currentIndex) {
-      case 0:
-        return SignUpContent1.isButtonEnabled;
-        break;
-      case 1:
-        return (SignUpContent2.returnState1() && SignUpContent2.returnState2());
-        break;
-      case 2:
-        return SignUpContent3.isButtonEnabled;
-        break;
-      case 3:
-        return SignUpContent4.isButtonEnabled;
-        break;
-      case 4:
-        return SignUpContent5.isButtonEnabled;
-        break;
-      default:
-        return false;
-    }
-  }
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
@@ -149,19 +127,52 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ConfirmButton(
             onPressed: () {
               setState(() {
-                if (SignUpScreen.isEnabled(currentIndex)) {
+                if (isEnabled(currentIndex)) {
                   if (currentIndex >= 0 && currentIndex < 4) {
                     currentIndex++;
                   }
                 }
               });
             },
-            style: SignUpScreen.isEnabled(currentIndex)
+            style: isEnabled(currentIndex)
                 ? SignUpScreen.able
                 : SignUpScreen.disable,
           ),
         ],
       ),
     );
+  }
+
+  bool isEnabled(int currentIndex) {
+    switch (currentIndex) {
+      case 0:
+        return SignUpContent1.isButtonEnabled;
+        break;
+      case 1:
+        return (SignUpContent2.cond1 && SignUpContent2.cond2);
+        break;
+      case 2:
+        return SignUpContent3.isButtonEnabled;
+        break;
+      case 3:
+        confirm4();
+        return SignUpContent4.isButtonEnabled;
+        break;
+      case 4:
+        return SignUpContent5.isButtonEnabled;
+        break;
+      default:
+        return false;
+    }
+  }
+
+  void confirm4() {
+    setState(() {
+      if (SignUpContent4.agreeEssential) {
+        SignUpContent4.isButtonEnabled = true;
+      } else {
+        SignUpContent4.isButtonEnabled = false;
+      }
+    });
   }
 }

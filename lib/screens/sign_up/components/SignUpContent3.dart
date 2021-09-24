@@ -3,6 +3,7 @@ import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
+import 'package:antilla/screens/sign_up/components/SignUpContent4.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -117,15 +118,16 @@ class _SignUpContent3State extends State<SignUpContent3> {
                 onPressed: () {
                   if (SignUpContent3.isAgree == false) {
                     showModalBottomSheet(
-                      context: context,
-                      builder: buildBottomSheet,
+                        context: context,
+                        builder: (BuildContext context) => BottomSheet());
+                    /*
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20.0),
                           topRight: Radius.circular(20.0),
                         ),
                       ),
-                    );
+                      */
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -236,115 +238,187 @@ class _SignUpContent3State extends State<SignUpContent3> {
   }
 }
 
-class ModalSheet {
-  static MainClause mainClause = MainClause(
-    text: '본인 인증 이용 동의(필수)',
-    option: 3,
-  );
+class BottomSheet extends StatefulWidget {
+  const BottomSheet({Key? key}) : super(key: key);
 
-  static List<SubClause> subclauses = [
-    SubClause(
-      text: '휴대폰 본인확인 이용 약관',
-      extraFunction: () {},
-    ),
-    SubClause(
-      text: '통신사 본인확인 이용약관',
-    ),
-    SubClause(
-      text: '고유식별정보 처리동의',
-    ),
-    SubClause(
-      text: '개인정보 수집/이용/취급위탁 동의',
-    ),
-    SubClause(
-      text: '개인정보 제 3자 제공 동의',
-    ),
-  ];
+  static bool agreeAll = false;
+  static bool agreeEssential = false;
+  static List<bool> agreeOptional = [false, false, false, false, false];
 
-  static bool isAllAgree() {
-    if ((ModalSheet.subclauses[0].getActivated() &&
-            ModalSheet.subclauses[1].getActivated() &&
-            ModalSheet.subclauses[2].getActivated() &&
-            ModalSheet.subclauses[3].getActivated() &&
-            ModalSheet.subclauses[4].getActivated()) ||
-        ModalSheet.mainClause.getActivated()) {
-      print('ALL AGREED');
-      ModalSheet.mainClause.setActivated(true);
-      return true;
-    }
-    print('NOT ALL AGREED');
-    return false;
-  }
+  @override
+  _BottomSheetState createState() => _BottomSheetState();
 }
 
-Widget buildBottomSheet(BuildContext context) {
-  return Container(
-    child: Stack(
-      children: [
-        Positioned(
-          top: kDefaultPadding,
-          right: kDefaultPadding,
-          child: Icon(Icons.keyboard_arrow_down),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  right: kDefaultPadding,
-                  left: kDefaultPadding,
-                  top: kDefaultPadding),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '휴대폰 인증 동의',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+class _BottomSheetState extends State<BottomSheet> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Positioned(
+            top: kDefaultPadding,
+            right: kDefaultPadding,
+            child: Icon(Icons.keyboard_arrow_down),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    right: kDefaultPadding,
+                    left: kDefaultPadding,
+                    top: kDefaultPadding),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: getHeight(10.0),
-                    ),
-                    ModalSheet.mainClause,
-                    ModalSheet.subclauses[0],
-                    ModalSheet.subclauses[1],
-                    ModalSheet.subclauses[2],
-                    ModalSheet.subclauses[3],
-                    ModalSheet.subclauses[4],
-                    SizedBox(
-                      height: getHeight(10.0),
+                    Text(
+                      '휴대폰 인증 동의',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ),
-            ),
-            ConfirmButton(
-              onPressed: () {
-                if (ModalSheet.isAllAgree()) {
-                  Navigator.pop(context);
-                  SignUpContent3.isAgree = true;
-                }
-              },
-              style: ModalSheet.isAllAgree()
-                  ? SignUpScreen.able
-                  : SignUpScreen.disable,
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(
+                        height: getHeight(10.0),
+                      ),
+                      MainClause(
+                        color: BottomSheet.agreeEssential
+                            ? kMainColor
+                            : kGray2Color,
+                        callback: callbackEssential,
+                        text: '본인 인증 이용 동의(필수)',
+                      ),
+                      SubClause(
+                        text: '휴대폰 본인확인 이용 약관',
+                        color: BottomSheet.agreeOptional[0]
+                            ? kMainColor
+                            : kGray2Color,
+                        callback: callbackOptional1,
+                      ),
+                      SubClause(
+                        text: '통신사 본인확인 이용약관',
+                        color: BottomSheet.agreeOptional[1]
+                            ? kMainColor
+                            : kGray2Color,
+                        callback: callbackOptional2,
+                      ),
+                      SubClause(
+                        text: '고유식별정보 처리동의',
+                        color: BottomSheet.agreeOptional[2]
+                            ? kMainColor
+                            : kGray2Color,
+                        callback: callbackOptional3,
+                      ),
+                      SubClause(
+                        text: '개인정보 수집/이용/취급위탁 동의',
+                        color: BottomSheet.agreeOptional[3]
+                            ? kMainColor
+                            : kGray2Color,
+                        callback: callbackOptional4,
+                      ),
+                      SubClause(
+                        text: '개인정보 제 3자 제공 동의',
+                        color: BottomSheet.agreeOptional[4]
+                            ? kMainColor
+                            : kGray2Color,
+                        callback: callbackOptional5,
+                      ),
+                      SizedBox(
+                        height: getHeight(10.0),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ConfirmButton(
+                onPressed: () {
+                  if (BottomSheet.agreeAll) {
+                    Navigator.pop(context);
+                    SignUpContent3.isAgree = true;
+                  }
+                },
+                style: BottomSheet.agreeAll
+                    ? SignUpScreen.able
+                    : SignUpScreen.disable,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // functions for BottomSheet
+  void callbackEssential() {
+    setState(() {
+      BottomSheet.agreeEssential = !BottomSheet.agreeEssential;
+      if (BottomSheet.agreeEssential) {
+        BottomSheet.agreeAll = true;
+        for (int i = 0; i < BottomSheet.agreeOptional.length; i++) {
+          BottomSheet.agreeOptional[i] = true;
+        }
+      } else if (!BottomSheet.agreeEssential) {
+        BottomSheet.agreeAll = false;
+        for (int i = 0; i < BottomSheet.agreeOptional.length; i++) {
+          BottomSheet.agreeOptional[i] = false;
+        }
+      }
+    });
+  }
+
+  void callbackOptional1() {
+    setState(() {
+      BottomSheet.agreeOptional[0] = !BottomSheet.agreeOptional[0];
+      callbackRepetitious();
+    });
+  }
+
+  void callbackOptional2() {
+    setState(() {
+      BottomSheet.agreeOptional[1] = !BottomSheet.agreeOptional[1];
+      callbackRepetitious();
+    });
+  }
+
+  void callbackOptional3() {
+    setState(() {
+      BottomSheet.agreeOptional[2] = !BottomSheet.agreeOptional[2];
+      callbackRepetitious();
+    });
+  }
+
+  void callbackOptional4() {
+    setState(() {
+      BottomSheet.agreeOptional[3] = !BottomSheet.agreeOptional[3];
+      callbackRepetitious();
+    });
+  }
+
+  void callbackOptional5() {
+    setState(() {
+      BottomSheet.agreeOptional[4] = !BottomSheet.agreeOptional[4];
+      callbackRepetitious();
+    });
+  }
+
+  void callbackRepetitious() {
+    if (BottomSheet.agreeOptional.every((element) => element == true)) {
+      BottomSheet.agreeEssential = true;
+      BottomSheet.agreeAll = true;
+    } else if (BottomSheet.agreeOptional.every((element) => element == false)) {
+      BottomSheet.agreeEssential = false;
+      BottomSheet.agreeAll = false;
+    }
+  }
 }
