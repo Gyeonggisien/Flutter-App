@@ -23,54 +23,90 @@ class MyPageScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              width: SizeConfig.screenWidth,
-              height: getWidth(180.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      child: Image.asset('images/profile.png'),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100.0)
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            text: '프로힙합러',
-                            style: Theme.of(context).textTheme.headline2!.copyWith(color: kMainColor, fontWeight: FontWeight.bold),
-                            children: [
-                              TextSpan(text: ' 안틸라님', style: TextStyle(color: kFontColor))
-                            ]
-                          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: getWidth(kDefaultPadding)),
+              child: SizedBox(
+                width: SizeConfig.screenWidth,
+                height: getWidth(180.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: CircleAvatar(
+                        radius: getWidth(55.0),
+                        backgroundColor: kGray2Color,
+                        child: CircleAvatar(
+                          radius: getWidth(54.0),
+                          backgroundImage: AssetImage('images/profile.png'),
+                          backgroundColor: kWhiteColor,
                         ),
-                        Row(
-                          children: [
-                            SubscriptionTotal(
-                              color: kBasicColor,
-                              text: 'B X 1',
-                            ),
-                            SizedBox(width: getWidth(5.0),),
-                            SubscriptionTotal(
-                              color: kStandColor,
-                              text: 'S X 1',
-                            ),
-                            SizedBox(width: getWidth(5.0),),
-                            SubscriptionTotal(
-                              color: kButtonColor,
-                              text: 'P X 1',
-                            ),
-                          ],
-                        )
-                      ],
+                      )
                     ),
-                  )
-                ],
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                                text: '프로힙합러',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2!
+                                    .copyWith(
+                                        color: kMainColor,
+                                        fontWeight: FontWeight.bold),
+                                children: [
+                                  TextSpan(
+                                      text: ' 안틸라님',
+                                      style: TextStyle(color: kFontColor))
+                                ]),
+                          ),
+                          SizedBox(height: getWidth(kDefaultPadding * 0.7),),
+                          Row(
+                            children: [
+                              SubscriptionTotal(
+                                color: kBasicColor,
+                                text: 'B X 1',
+                              ),
+                              SizedBox(
+                                width: getWidth(5.0),
+                              ),
+                              SubscriptionTotal(
+                                color: kStandColor,
+                                text: 'S X 1',
+                              ),
+                              SizedBox(
+                                width: getWidth(5.0),
+                              ),
+                              SubscriptionTotal(
+                                color: kButtonColor,
+                                text: 'P X 1',
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: getWidth(kDefaultPadding * 0.7),),
+                          OutlinedButton(
+                            onPressed: () {},
+                            style: OutlinedButton.styleFrom(
+                                side: BorderSide(color: kMainColor, width: 2.0),
+                            ),
+                            child: Text(
+                              '테스트 다시하기',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(
+                                      color: kMainColor,
+                                      fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             ListView.builder(
@@ -160,10 +196,10 @@ class MyPageScreen extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(height: getWidth(kDefaultPadding),),
           ],
         ),
       ),
     );
   }
 }
-

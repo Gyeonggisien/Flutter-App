@@ -19,7 +19,7 @@ class RecommendItem extends StatelessWidget {
         children: [
           Container(
             width: getWidth(168.0),
-            height: getHeight(100.0),
+            height: getWidth(100.0),
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(image), fit: BoxFit.cover),

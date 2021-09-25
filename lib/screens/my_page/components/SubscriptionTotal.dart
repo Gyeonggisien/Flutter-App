@@ -12,10 +12,10 @@ class SubscriptionTotal extends StatelessWidget {
     SizeConfig.init(context);
     return Container(
       width: getWidth(50.0),
-      height: getHeight(24.0),
+      height: getWidth(20.0),
       decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.circular(5.0),
           border: Border.all(color: color, width: 2.0)),
       child: Center(
         child: Text(

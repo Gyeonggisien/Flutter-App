@@ -16,7 +16,7 @@ class NewIssue extends StatelessWidget {
       children: [
         Container(
           width: SizeConfig.screenWidth,
-          height: getHeight(100.0),
+          height: getWidth(90.0),
           padding: EdgeInsets.symmetric(
               vertical: getHeight(kDefaultPadding * 0.4),
               horizontal: getWidth(kDefaultPadding * 0.7)),

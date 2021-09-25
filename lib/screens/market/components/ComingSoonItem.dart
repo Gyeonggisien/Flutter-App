@@ -14,7 +14,7 @@ class ComingSoonItem extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          height: getWidth(260.0),
+          height: getWidth(270.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
