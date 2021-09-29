@@ -5,9 +5,7 @@ import '../../../constants.dart';
 class TimerWidget extends StatefulWidget {
   TimerWidget({Key? key}) : super(key: key);
 
-  bool? isRetried = false;
-  bool? hasBeenOver = false;
-  int trial = 0;
+  bool isRetried = false;
   AnimationController? controller;
 
   @override
@@ -20,7 +18,6 @@ class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
   @override
   void initState() {
     setState(() {
-      widget.trial = 1;
       super.initState();
 
       widget.controller = AnimationController(
@@ -29,16 +26,12 @@ class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
       );
 
       widget.controller!.forward();
-      if (widget.hasBeenOver == true) {
-        widget.isRetried = true;
-      }
     });
   }
 
   void restart() {
     setState(() {
-      if (widget.trial >= 1) widget.hasBeenOver = true;
-      widget.trial++;
+      widget.isRetried = true;
 
       widget.controller = AnimationController(
         vsync: this,
@@ -46,9 +39,6 @@ class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
       );
 
       widget.controller!.forward();
-      if (widget.hasBeenOver == true) {
-        widget.isRetried = true;
-      }
     });
   }
 
@@ -67,7 +57,7 @@ class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
   void dispose() {
     setState(() {
       super.dispose();
-      widget.hasBeenOver = true;
+      widget.isRetried = true;
     });
   }
 }
@@ -76,15 +66,14 @@ class Countdown extends AnimatedWidget {
   Countdown({Key? key, required this.animation})
       : super(key: key, listenable: animation);
   Animation<int> animation;
-  String? currentTime;
-  bool? state = false;
+  static bool isOver = false;
 
   Widget customTimer() {
     Duration clockTimer = Duration(seconds: animation.value);
     String timerText =
-        '${clockTimer.inMinutes.remainder(1).toString()}:${clockTimer.inSeconds.remainder(50).toString().padLeft(2, '0')}';
-    if(timerText == '0:00') {
-      state = true;
+        '${clockTimer.inMinutes.remainder(60).toString()}:${clockTimer.inSeconds.remainder(60).toString().padLeft(2, '0')}';
+    if (timerText == '0:00') {
+      isOver = true;
     }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 0.4),
@@ -101,12 +90,15 @@ class Countdown extends AnimatedWidget {
   Widget endTimer() {
     return GestureDetector(
       onTap: () {},
-      child: Text('재전송'),
+      child: Text(
+        '0:00',
+        style: TextStyle(color: kMainColor),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return state! ? endTimer() : customTimer();
+    return (isOver) ? endTimer() : customTimer();
   }
 }

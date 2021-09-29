@@ -3,7 +3,6 @@ import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
-import 'package:antilla/screens/sign_up/components/SignUpContent4.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -116,7 +115,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
               flex: 3,
               child: ElevatedButton(
                 onPressed: () {
-                  if (SignUpContent3.isAgree == false) {
+                  if (!SignUpContent3.isAgree) {
                     showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) => BottomSheet());
@@ -128,10 +127,12 @@ class _SignUpContent3State extends State<SignUpContent3> {
                         ),
                       ),
                       */
+                  } else if (SignUpContent3.isAgree && Countdown.isOver) {
+                    timerChange();
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: kMainColor,
+                  primary: Countdown.isOver ? kMainColor : kGray2Color,
                   padding:
                       EdgeInsets.symmetric(vertical: kDefaultPadding * 0.9),
                   shape: RoundedRectangleBorder(
@@ -139,7 +140,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
                   ),
                 ),
                 child: Text(
-                  (timer.isRetried == true && SignUpContent3.isAgree)
+                  (timer.isRetried && SignUpContent3.isAgree)
                       ? '인증번호 재전송'
                       : '인증번호 받기',
                   style: Theme.of(context)
@@ -183,6 +184,12 @@ class _SignUpContent3State extends State<SignUpContent3> {
           )
       ],
     );
+  }
+
+  void timerChange() {
+    setState(() {
+      Countdown.isOver = false;
+    });
   }
 
   void callbackName(String? text) {
