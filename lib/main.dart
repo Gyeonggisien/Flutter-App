@@ -1,4 +1,3 @@
-import 'package:antilla/LocalAndWebObjectsWidget.dart';
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/BottomNavigation.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';

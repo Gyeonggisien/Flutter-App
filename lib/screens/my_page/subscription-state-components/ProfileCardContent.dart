@@ -12,19 +12,14 @@ class ProfileCardContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text.rich(
-              TextSpan(
-                  text: '프로힙합러',
-                  style: Theme.of(context).textTheme.headline2!.copyWith(color: kMainColor, fontWeight: FontWeight.bold),
-                  children: [
-                    TextSpan(text: ' 안틸라님', style: TextStyle(color: kFontColor))
-                  ]
-              ),
-            ),
-            Icon(Icons.keyboard_arrow_right, size: getWidth(23.0), color: kGrayColor,),
-          ],
+        Text.rich(
+          TextSpan(
+              text: '프로힙합러',
+              style: Theme.of(context).textTheme.headline2!.copyWith(color: kMainColor, fontWeight: FontWeight.bold),
+              children: [
+                TextSpan(text: ' 안틸라님', style: TextStyle(color: kFontColor))
+              ]
+          ),
         ),
         SizedBox(height: getHeight(kDefaultPadding * 0.75)),
         Row(
