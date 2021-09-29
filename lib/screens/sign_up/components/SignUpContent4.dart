@@ -102,7 +102,8 @@ class _SignUpContent4State extends State<SignUpContent4> {
     );
   }
 
-  void changeState(bool b3, bool b4, bool b5) {
+  void changeState(bool b1, bool b3, bool b4, bool b5) {
+    SignUpContent4.isButtonEnabled = b1;
     SignUpContent4.agreeEssential = b3;
     SignUpContent4.agreeOptional1 = b4;
     SignUpContent4.agreeOptional2 = b5;
@@ -124,10 +125,10 @@ class _SignUpContent4State extends State<SignUpContent4> {
     setState(() {
       SignUpContent4.agreeAll = !SignUpContent4.agreeAll;
       if (SignUpContent4.agreeAll) {
-        changeState(true, true, true);
+        changeState(true, true, true, true);
         checkState();
       } else if (!SignUpContent4.agreeAll) {
-        changeState(false, false, false);
+        changeState(false, false, false, false);
         checkState();
       }
     });

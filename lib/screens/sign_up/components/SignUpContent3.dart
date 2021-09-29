@@ -7,6 +7,7 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomAuthCodeTextField.dart';
+import 'TimerClass.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
@@ -34,6 +35,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
   final double heightPadding = getHeight(30.0);
   final double contentPadding = getWidth(5.0);
   TimerWidget timer = TimerWidget();
+  //TimerClass timer = TimerClass();
 
   @override
   Widget build(BuildContext context) {

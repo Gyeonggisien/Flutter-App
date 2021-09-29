@@ -59,88 +59,116 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(kDefaultPadding * 1.5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: (currentIndex != 4)
-                  ? [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: kDefaultPadding * 2.0),
-                        child: Row(
-                          children: [
-                            PrevButton(onPressed: () {
-                              setState(() {
-                                SignUpScreen.reset();
-                                if (currentIndex > 0) {
-                                  currentIndex--;
-                                } else {
+    return (currentIndex != 4)
+        ? Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: kDefaultPadding * 2.0),
+                          child: Row(
+                            children: [
+                              PrevButton(onPressed: () {
+                                setState(() {
+                                  SignUpScreen.reset();
+                                  if (currentIndex > 0) {
+                                    currentIndex--;
+                                  } else {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LoginScreen()));
+                                  }
+                                });
+                              }),
+                              Spacer(),
+                              CancelButton(onPressed: () {
+                                setState(() {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()));
-                                }
-                              });
-                            }),
-                            Spacer(),
-                            CancelButton(onPressed: () {
-                              setState(() {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginScreen()),
-                                );
-                              });
-                            }),
-                          ],
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()),
+                                  );
+                                });
+                              }),
+                            ],
+                          ),
                         ),
-                      ),
-                      SignUpScreen.screens[currentIndex],
-                    ]
-                  : [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: kDefaultPadding * 2.0),
-                        child: Row(
-                          children: [
-                            Spacer(),
-                            SkipButton(onPressed: () {
-                              setState(() {
-                                if (currentIndex > 0) {
-                                  currentIndex--;
-                                }
-                              });
-                            }),
-                          ],
-                        ),
-                      ),
-                      SignUpScreen.screens[currentIndex],
-                    ],
+                        SignUpScreen.screens[currentIndex],
+                      ]),
+                ),
+                Spacer(),
+                // original code
+                ConfirmButton(
+                  onPressed: () {
+                    setState(() {
+                      if (isEnabled(currentIndex)) {
+                        if (currentIndex >= 0 && currentIndex < 4) {
+                          currentIndex++;
+                        }
+                      }
+                    });
+                  },
+                  style: isEnabled(currentIndex)
+                      ? SignUpScreen.able
+                      : SignUpScreen.disable,
+                ),
+              ],
             ),
-          ),
-          Spacer(),
-          // original code
-          ConfirmButton(
-            onPressed: () {
-              setState(() {
-                if (isEnabled(currentIndex)) {
-                  if (currentIndex >= 0 && currentIndex < 4) {
-                    currentIndex++;
-                  }
-                }
-              });
-            },
-            style: isEnabled(currentIndex)
-                ? SignUpScreen.able
-                : SignUpScreen.disable,
-          ),
-        ],
-      ),
-    );
+          )
+        : Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: kDefaultPadding * 2.0),
+                          child: Row(
+                            children: [
+                              Spacer(),
+                              SkipButton(onPressed: () {
+                                setState(() {
+                                  if (currentIndex > 0) {
+                                    currentIndex--;
+                                  }
+                                });
+                              }),
+                            ],
+                          ),
+                        ),
+                        SignUpScreen.screens[currentIndex],
+                        //Spacer(),
+                        ConfirmButton(onPressed: () {
+                          setState(() {
+                            if (isEnabled(currentIndex)) {
+                              if (currentIndex >= 0 && currentIndex < 4) {
+                                currentIndex++;
+                              }
+                            }
+                          });
+                        })
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
   }
 
   bool isEnabled(int currentIndex) {
@@ -168,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void confirm4() {
     setState(() {
-      if (SignUpContent4.agreeEssential) {
+      if (SignUpContent4.agreeEssential || SignUpContent4.agreeAll) {
         SignUpContent4.isButtonEnabled = true;
       } else {
         SignUpContent4.isButtonEnabled = false;
