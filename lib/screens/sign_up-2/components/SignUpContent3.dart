@@ -7,24 +7,23 @@ import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomAuthCodeTextField.dart';
-import 'TimerClass.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
   static bool isAgree = false;
-  static bool isButtonEnabled = false;
-  static bool nameValid = false;
-  static bool ssnValid = false;
-  static bool currencyValid = false;
-  static bool phoneNumValid = false;
-  static bool authCodeValid = false;
+  bool isButtonEnabled = false;
+  bool nameValid = false;
+  bool ssnValid = false;
+  bool currencyValid = false;
+  bool phoneNumValid = false;
+  bool authCodeValid = false;
 
-  static void changeState() {
-    SignUpContent3.isButtonEnabled = (SignUpContent3.nameValid &&
-        SignUpContent3.ssnValid &&
-        SignUpContent3.currencyValid &&
-        SignUpContent3.phoneNumValid &&
-        SignUpContent3.authCodeValid);
+  void changeState() {
+    isButtonEnabled = (nameValid &&
+        ssnValid &&
+        currencyValid &&
+        phoneNumValid &&
+        authCodeValid);
   }
 
   @override
@@ -164,11 +163,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
                   width: SizeConfig.screenWidth! * 0.72,
                   onChanged: (String? value) {
                     if (value!.trim().length > 0) {
-                      SignUpContent3.authCodeValid = true;
-                      SignUpContent3.changeState();
+                      widget.authCodeValid = true;
+                      widget.changeState();
                     } else {
-                      SignUpContent3.authCodeValid = false;
-                      SignUpContent3.changeState();
+                      widget.authCodeValid = false;
+                      widget.changeState();
                     }
                   },
                 ),
@@ -189,11 +188,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
   void callbackName(String? text) {
     setState(() {
       if (text!.trim().length > 0) {
-        SignUpContent3.nameValid = true;
-        SignUpContent3.changeState();
+        widget.nameValid = true;
+        widget.changeState();
       } else {
-        SignUpContent3.nameValid = false;
-        SignUpContent3.changeState();
+        widget.nameValid = false;
+        widget.changeState();
       }
     });
   }
@@ -203,11 +202,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
     bool cond1 = text!.trim().length == 6;
     setState(() {
       if (regex.hasMatch(text) && cond1) {
-        SignUpContent3.ssnValid = true;
-        SignUpContent3.changeState();
+        widget.ssnValid = true;
+        widget.changeState();
       } else {
-        SignUpContent3.ssnValid = false;
-        SignUpContent3.changeState();
+        widget.ssnValid = false;
+        widget.changeState();
       }
     });
   }
@@ -215,11 +214,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
   void callbackSsnBack(String? text) {
     setState(() {
       if (text == '1' || text == '2' || text == '3' || text == '4') {
-        SignUpContent3.ssnValid = true;
-        SignUpContent3.changeState();
+        widget.ssnValid = true;
+        widget.changeState();
       } else {
-        SignUpContent3.ssnValid = false;
-        SignUpContent3.changeState();
+        widget.ssnValid = false;
+        widget.changeState();
       }
     });
   }
@@ -229,11 +228,11 @@ class _SignUpContent3State extends State<SignUpContent3> {
     bool cond1 = (text!.trim().length > 9) && (text.trim().length < 12);
     setState(() {
       if (regex.hasMatch(text) && cond1) {
-        SignUpContent3.phoneNumValid = true;
-        SignUpContent3.changeState();
+        widget.phoneNumValid = true;
+        widget.changeState();
       } else {
-        SignUpContent3.phoneNumValid = false;
-        SignUpContent3.changeState();
+        widget.phoneNumValid = false;
+        widget.changeState();
       }
     });
   }

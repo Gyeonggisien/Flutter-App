@@ -17,14 +17,6 @@ class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 
-  static final List<Widget> screens = [
-    SignUpContent1(),
-    SignUpContent2(),
-    SignUpContent3(),
-    SignUpContent4(),
-    SignUpContent5(),
-  ];
-
   // when sign-up screen is first initialized, all static validation variables must set to be false.
   static void reset() {
     SignUpContent1.isButtonEnabled = false;
@@ -55,6 +47,14 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   int currentIndex = 0;
+
+  final List<Widget> screens = [
+    SignUpContent1(),
+    SignUpContent2(),
+    SignUpContent3(),
+    SignUpContent4(),
+    SignUpContent5(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ],
                           ),
                         ),
-                        SignUpScreen.screens[currentIndex],
+                        screens[currentIndex],
                       ]),
                 ),
                 Spacer(),
@@ -126,48 +126,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           )
         : Scaffold(
             resizeToAvoidBottomInset: false,
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(kDefaultPadding * 1.5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(bottom: kDefaultPadding * 2.0),
-                          child: Row(
-                            children: [
-                              Spacer(),
-                              SkipButton(onPressed: () {
-                                setState(() {
-                                  if (currentIndex > 0) {
-                                    currentIndex--;
-                                  }
-                                });
-                              }),
-                            ],
-                          ),
-                        ),
-                        SignUpScreen.screens[currentIndex],
-                        //Spacer(),
-                        ConfirmButton(onPressed: () {
-                          setState(() {
-                            if (isEnabled(currentIndex)) {
-                              if (currentIndex >= 0 && currentIndex < 4) {
-                                currentIndex++;
-                              }
-                            }
-                          });
-                        })
-                      ],
-                    ),
-                  )
-                ],
-              ),
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50),
+              child: Column(),
             ),
+            body: SingleChildScrollView(),
           );
   }
 
@@ -183,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return SignUpContent3.isButtonEnabled;
         break;
       case 3:
-        confirm4();
+        //confirm4();
         return SignUpContent4.isButtonEnabled;
         break;
       case 4:
