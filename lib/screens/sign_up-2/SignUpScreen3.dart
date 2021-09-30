@@ -199,7 +199,12 @@ class _SignUpScreenState3 extends State<SignUpScreen3> {
                               showModalBottomSheet(
                                   context: context,
                                   builder: (BuildContext context) =>
-                                      BottomSheet());
+                                      BottomSheet(agree: () {
+                                        setState(() {
+                                          Navigator.pop(context);
+                                          isAgree = true;
+                                        });
+                                      }));
                             } else if (isAgree && Countdown.isOver) {
                               setState(() {
                                 Countdown.isOver = false;
@@ -266,12 +271,14 @@ class _SignUpScreenState3 extends State<SignUpScreen3> {
           // original code
           ConfirmButton(
             onPressed: () {
-              setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpScreen4()),
-                );
-              });
+              if (isButtonEnabled) {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen4()),
+                  );
+                });
+              }
             },
             style: isButtonEnabled ? SignUpScreen1.able : SignUpScreen1.disable,
           ),
@@ -290,17 +297,19 @@ class _SignUpScreenState3 extends State<SignUpScreen3> {
 }
 
 class BottomSheet extends StatefulWidget {
-  const BottomSheet({Key? key}) : super(key: key);
+  final void Function()? agree;
 
-  static bool agreeAll = false;
-  static bool agreeEssential = false;
-  static List<bool> agreeOptional = [false, false, false, false, false];
+  BottomSheet({required this.agree});
 
   @override
   _BottomSheetState createState() => _BottomSheetState();
 }
 
 class _BottomSheetState extends State<BottomSheet> {
+  bool agreeAll = false;
+  bool agreeEssential = false;
+  List<bool> agreeOptional = [false, false, false, false, false];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -344,45 +353,33 @@ class _BottomSheetState extends State<BottomSheet> {
                         height: getHeight(10.0),
                       ),
                       MainClause(
-                        color: BottomSheet.agreeEssential
-                            ? kMainColor
-                            : kGray2Color,
+                        color: agreeEssential ? kMainColor : kGray2Color,
                         callback: callbackEssential,
                         text: '본인 인증 이용 동의(필수)',
                       ),
                       SubClause(
                         text: '휴대폰 본인확인 이용 약관',
-                        color: BottomSheet.agreeOptional[0]
-                            ? kMainColor
-                            : kGray2Color,
+                        color: agreeOptional[0] ? kMainColor : kGray2Color,
                         callback: callbackOptional1,
                       ),
                       SubClause(
                         text: '통신사 본인확인 이용약관',
-                        color: BottomSheet.agreeOptional[1]
-                            ? kMainColor
-                            : kGray2Color,
+                        color: agreeOptional[1] ? kMainColor : kGray2Color,
                         callback: callbackOptional2,
                       ),
                       SubClause(
                         text: '고유식별정보 처리동의',
-                        color: BottomSheet.agreeOptional[2]
-                            ? kMainColor
-                            : kGray2Color,
+                        color: agreeOptional[2] ? kMainColor : kGray2Color,
                         callback: callbackOptional3,
                       ),
                       SubClause(
                         text: '개인정보 수집/이용/취급위탁 동의',
-                        color: BottomSheet.agreeOptional[3]
-                            ? kMainColor
-                            : kGray2Color,
+                        color: agreeOptional[3] ? kMainColor : kGray2Color,
                         callback: callbackOptional4,
                       ),
                       SubClause(
                         text: '개인정보 제 3자 제공 동의',
-                        color: BottomSheet.agreeOptional[4]
-                            ? kMainColor
-                            : kGray2Color,
+                        color: agreeOptional[4] ? kMainColor : kGray2Color,
                         callback: callbackOptional5,
                       ),
                       SizedBox(
@@ -394,14 +391,11 @@ class _BottomSheetState extends State<BottomSheet> {
               ),
               ConfirmButton(
                 onPressed: () {
-                  if (BottomSheet.agreeAll) {
-                    Navigator.pop(context);
-                    SignUpContent3.isAgree = true;
+                  if (agreeAll) {
+                    widget.agree;
                   }
                 },
-                style: BottomSheet.agreeAll
-                    ? SignUpScreen1.able
-                    : SignUpScreen1.disable,
+                style: agreeAll ? SignUpScreen1.able : SignUpScreen1.disable,
               ),
             ],
           ),
@@ -413,16 +407,16 @@ class _BottomSheetState extends State<BottomSheet> {
   // functions for BottomSheet
   void callbackEssential() {
     setState(() {
-      BottomSheet.agreeEssential = !BottomSheet.agreeEssential;
-      if (BottomSheet.agreeEssential) {
-        BottomSheet.agreeAll = true;
-        for (int i = 0; i < BottomSheet.agreeOptional.length; i++) {
-          BottomSheet.agreeOptional[i] = true;
+      agreeEssential = !agreeEssential;
+      if (agreeEssential) {
+        agreeAll = true;
+        for (int i = 0; i < agreeOptional.length; i++) {
+          agreeOptional[i] = true;
         }
-      } else if (!BottomSheet.agreeEssential) {
-        BottomSheet.agreeAll = false;
-        for (int i = 0; i < BottomSheet.agreeOptional.length; i++) {
-          BottomSheet.agreeOptional[i] = false;
+      } else if (!agreeEssential) {
+        agreeAll = false;
+        for (int i = 0; i < agreeOptional.length; i++) {
+          agreeOptional[i] = false;
         }
       }
     });
@@ -430,46 +424,46 @@ class _BottomSheetState extends State<BottomSheet> {
 
   void callbackOptional1() {
     setState(() {
-      BottomSheet.agreeOptional[0] = !BottomSheet.agreeOptional[0];
+      agreeOptional[0] = !agreeOptional[0];
       callbackRepetitious();
     });
   }
 
   void callbackOptional2() {
     setState(() {
-      BottomSheet.agreeOptional[1] = !BottomSheet.agreeOptional[1];
+      agreeOptional[1] = !agreeOptional[1];
       callbackRepetitious();
     });
   }
 
   void callbackOptional3() {
     setState(() {
-      BottomSheet.agreeOptional[2] = !BottomSheet.agreeOptional[2];
+      agreeOptional[2] = !agreeOptional[2];
       callbackRepetitious();
     });
   }
 
   void callbackOptional4() {
     setState(() {
-      BottomSheet.agreeOptional[3] = !BottomSheet.agreeOptional[3];
+      agreeOptional[3] = !agreeOptional[3];
       callbackRepetitious();
     });
   }
 
   void callbackOptional5() {
     setState(() {
-      BottomSheet.agreeOptional[4] = !BottomSheet.agreeOptional[4];
+      agreeOptional[4] = !agreeOptional[4];
       callbackRepetitious();
     });
   }
 
   void callbackRepetitious() {
-    if (BottomSheet.agreeOptional.every((element) => element == true)) {
-      BottomSheet.agreeEssential = true;
-      BottomSheet.agreeAll = true;
-    } else if (BottomSheet.agreeOptional.every((element) => element == false)) {
-      BottomSheet.agreeEssential = false;
-      BottomSheet.agreeAll = false;
+    if (agreeOptional.every((element) => element == true)) {
+      agreeEssential = true;
+      agreeAll = true;
+    } else if (agreeOptional.every((element) => element == false)) {
+      agreeEssential = false;
+      agreeAll = false;
     }
   }
 }

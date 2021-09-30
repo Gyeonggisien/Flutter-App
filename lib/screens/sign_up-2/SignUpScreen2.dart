@@ -9,7 +9,6 @@ import 'components/CancelButton.dart';
 import 'components/ConfirmButton.dart';
 import 'components/CustomTextField.dart';
 import 'components/PrevButton.dart';
-import 'components/SignUpContent2.dart';
 import 'components/ValidationWidget.dart';
 
 class SignUpScreen2 extends StatefulWidget {
@@ -18,7 +17,6 @@ class SignUpScreen2 extends StatefulWidget {
 }
 
 class _SignUpScreenState2 extends State<SignUpScreen2> {
-  bool isButtonEnabled = false;
   bool cond1 = false;
   bool cond2 = false;
 
@@ -124,14 +122,17 @@ class _SignUpScreenState2 extends State<SignUpScreen2> {
           // original code
           ConfirmButton(
             onPressed: () {
-              setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpScreen3()),
-                );
-              });
+              if (cond1 && cond2) {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen3()),
+                  );
+                });
+              }
             },
-            style: isButtonEnabled ? SignUpScreen1.able : SignUpScreen1.disable,
+            style:
+                (cond1 && cond2) ? SignUpScreen1.able : SignUpScreen1.disable,
           ),
         ],
       ),

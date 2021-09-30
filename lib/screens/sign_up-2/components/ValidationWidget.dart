@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
 
-class ValidationWidget extends StatelessWidget {
+class ValidationWidget extends StatefulWidget {
   final String text;
   final dynamic color;
 
@@ -11,6 +11,11 @@ class ValidationWidget extends StatelessWidget {
     required this.color,
   });
 
+  @override
+  _ValidationWidgetState createState() => _ValidationWidgetState();
+}
+
+class _ValidationWidgetState extends State<ValidationWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,15 +26,15 @@ class ValidationWidget extends StatelessWidget {
         Icon(
           Icons.check_circle_outline,
           size: getWidth(18.0),
-          color: color,
+          color: widget.color,
         ),
         SizedBox(
           width: getWidth(5.0),
         ),
         Text(
-          text,
+          widget.text,
           style: Theme.of(context).textTheme.headline3!.copyWith(
-                color: color,
+                color: widget.color,
               ),
         ),
       ],

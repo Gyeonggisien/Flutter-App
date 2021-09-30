@@ -119,12 +119,14 @@ class _SignUpScreenState1 extends State<SignUpScreen1> {
           // original code
           ConfirmButton(
             onPressed: () {
-              setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpScreen2()),
-                );
-              });
+              if (isButtonEnabled) {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen2()),
+                  );
+                });
+              }
             },
             style: isButtonEnabled ? SignUpScreen1.able : SignUpScreen1.disable,
           ),
