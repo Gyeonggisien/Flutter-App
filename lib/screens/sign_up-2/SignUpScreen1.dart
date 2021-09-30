@@ -1,14 +1,15 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
 import 'package:antilla/size_config.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import 'SignUpScreen2.dart';
 import 'components/CancelButton.dart';
 import 'components/ConfirmButton.dart';
+import 'components/CustomTextField.dart';
 import 'components/PrevButton.dart';
 import 'components/SignUpContent1.dart';
-import 'components/SkipButton.dart';
 
 class SignUpScreen1 extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class SignUpScreen1 extends StatefulWidget {
 }
 
 class _SignUpScreenState1 extends State<SignUpScreen1> {
-  SignUpContent1 content = SignUpContent1();
+  bool isButtonEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,50 @@ class _SignUpScreenState1 extends State<SignUpScreen1> {
                   ],
                 ),
               ),
-              SignUpContent1(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      text: '가입을 위해\n',
+                      style: Theme.of(context).textTheme.headline1!.copyWith(
+                            color: kFontColor,
+                          ),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: '이메일',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: '을 입력해주세요'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: getHeight(32.0),
+                  ),
+                  CustomTextField(
+                      autofocus: true,
+                      hintText: '이메일',
+                      width: MediaQuery.of(context).size.width,
+                      callback: (String? value) {
+                        setState(() {
+                          if (EmailValidator.validate(value!) == true) {
+                            isButtonEnabled = true;
+                          } else {
+                            isButtonEnabled = false;
+                          }
+                        });
+                      },
+                      validator: (String? value) {
+                        if (EmailValidator.validate(value!) == true) {
+                          isButtonEnabled = true;
+                          return "사용할 수 있는 이메일입니다.";
+                        } else {
+                          isButtonEnabled = false;
+                          return null;
+                        }
+                      }),
+                ],
+              ),
             ]),
           ),
           Spacer(),
@@ -82,9 +126,7 @@ class _SignUpScreenState1 extends State<SignUpScreen1> {
                 );
               });
             },
-            style: content.isButtonEnabled
-                ? SignUpScreen1.able
-                : SignUpScreen1.disable,
+            style: isButtonEnabled ? SignUpScreen1.able : SignUpScreen1.disable,
           ),
         ],
       ),

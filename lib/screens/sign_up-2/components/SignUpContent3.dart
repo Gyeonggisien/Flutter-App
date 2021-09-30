@@ -1,12 +1,12 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/sign_up/SignUpScreen.dart';
-import 'package:antilla/screens/sign_up/components/Clause.dart';
-import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
-import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
+import 'package:antilla/screens/sign_up-2/SignUpScreen1.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
+import 'Clause.dart';
+import 'ConfirmButton.dart';
 import 'CustomAuthCodeTextField.dart';
+import 'CustomTextField.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
@@ -349,8 +349,8 @@ class _BottomSheetState extends State<BottomSheet> {
                   }
                 },
                 style: BottomSheet.agreeAll
-                    ? SignUpScreen.able
-                    : SignUpScreen.disable,
+                    ? SignUpScreen1.able
+                    : SignUpScreen1.disable,
               ),
             ],
           ),

@@ -1,7 +1,9 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
+
+import 'CustomTextField.dart';
+import 'ValidationWidget.dart';
 
 class SignUpContent2 extends StatefulWidget {
   bool isButtonEnabled = false;
@@ -93,45 +95,6 @@ class _SignUpContent2State extends State<SignUpContent2> {
         ValidationWidget(
           text: '8자리 이상',
           color: (widget.cond2) ? kMainColor : kGrayColor,
-        ),
-      ],
-    );
-  }
-}
-
-class ValidationWidget extends StatefulWidget {
-  ValidationWidget({
-    required this.text,
-    required this.color,
-  });
-  final String text;
-  dynamic color;
-
-  @override
-  _ValidationWidgetState createState() => _ValidationWidgetState();
-}
-
-class _ValidationWidgetState extends State<ValidationWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: getWidth(6.0),
-        ),
-        Icon(
-          Icons.check_circle_outline,
-          size: getWidth(18.0),
-          color: widget.color,
-        ),
-        SizedBox(
-          width: getWidth(5.0),
-        ),
-        Text(
-          widget.text,
-          style: Theme.of(context).textTheme.headline3!.copyWith(
-                color: widget.color,
-              ),
         ),
       ],
     );
