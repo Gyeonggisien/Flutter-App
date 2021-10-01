@@ -131,10 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               preferredSize: Size.fromHeight(50),
               child: Column(),
             ),
-            body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: FavoriteScreen(),
-            ),
+            body: FavoriteContainer(),
           );
   }
 

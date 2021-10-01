@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'FavoriteTheme.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+class FavoriteContainer extends StatelessWidget {
+  const FavoriteContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
       child: Column(
         children: [
           FavoriteTheme(
