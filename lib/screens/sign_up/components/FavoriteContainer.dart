@@ -10,7 +10,8 @@ class FavoriteContainer extends StatelessWidget {
     children: [
       FavoriteTheme(
         title: '모던',
-        image: 'images/item_modern.png',
+        defaultImage: 'images/item_modern.png',
+        selectedImage: 'images/item_modern_selected.png',
         position: kDefaultPadding * 1.75,
       ),
       SizedBox(
@@ -18,14 +19,16 @@ class FavoriteContainer extends StatelessWidget {
       ),
       FavoriteTheme(
           title: '심플',
-          image: 'images/item_simple.png',
+          defaultImage: 'images/item_simple.png',
+          selectedImage: 'images/item_simple_selected.png',
           position: kDefaultPadding * 1.75),
       SizedBox(
         width: getWidth(kDefaultPadding * 0.5),
       ),
       FavoriteTheme(
         title: '아늑함',
-        image: 'images/item_cozy.png',
+        defaultImage: 'images/item_cozy.png',
+        selectedImage: 'images/item_cozy_selected.png',
         position: kDefaultPadding * 1.4,
       ),
     ],

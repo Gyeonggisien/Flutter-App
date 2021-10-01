@@ -150,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.zero,
               margin: EdgeInsets.zero,
               width: double.infinity,
-              height: getHeight(kDefaultPadding * 3),
+              height: getHeight(kDefaultPadding * 3.75),
               child: ConfirmButton(
                 onPressed: () {},
               ),
