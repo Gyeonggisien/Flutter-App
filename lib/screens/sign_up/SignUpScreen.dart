@@ -8,6 +8,7 @@ import 'package:antilla/screens/sign_up/components/SignUpContent3.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent4.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent5.dart';
 import 'package:antilla/size_config.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'components/CancelButton.dart';
@@ -128,10 +129,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
         : Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(50),
-              child: Column(),
+              preferredSize: Size.fromHeight(200),
+              child: Padding(
+                padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Spacer(),
+                        SkipButton(onPressed: () {}),
+                      ],
+                    ),
+                    SignUpContent5(),
+                  ],
+                ),
+              ),
             ),
             body: FavoriteContainer(),
+            bottomSheet: Container(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              width: double.infinity,
+              height: getHeight(kDefaultPadding * 3),
+              child: ConfirmButton(
+                onPressed: () {},
+              ),
+            ),
           );
   }
 
