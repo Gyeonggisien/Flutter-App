@@ -1,6 +1,7 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
+import 'package:antilla/screens/sign_up/components/FavoriteContainer.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent1.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent3.dart';
@@ -130,7 +131,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               preferredSize: Size.fromHeight(50),
               child: Column(),
             ),
-            body: SingleChildScrollView(),
+            body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: FavoriteScreen(),
+            ),
           );
   }
 
