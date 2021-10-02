@@ -1,14 +1,12 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/components/AntillaAppBar.dart';
 import 'package:antilla/screens/market/components/ComingSoonContainer.dart';
 import 'package:antilla/screens/market/components/HotDealContainer.dart';
-import 'package:antilla/screens/market/components/MarketAppBar.dart';
-import 'package:antilla/screens/market/components/MarketFilterButton.dart';
 import 'package:antilla/screens/market/components/MarketFilterContainer.dart';
 import 'package:antilla/screens/market/components/MarketTabBar.dart';
 import 'package:antilla/screens/market/components/NewItemContainer.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 class MarketScreen extends StatelessWidget {
   const MarketScreen({Key? key}) : super(key: key);
@@ -22,9 +20,10 @@ class MarketScreen extends StatelessWidget {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
-          child: MarketAppBar(),
+          child: AntillaAppBar(title: "antilla",),
         ),
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               MarketTabBar(),

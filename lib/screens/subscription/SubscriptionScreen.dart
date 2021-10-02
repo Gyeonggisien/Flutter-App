@@ -1,6 +1,6 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/components/AntillaAppBar.dart';
 import 'package:antilla/screens/subscription/components/BestContainer.dart';
-import 'package:antilla/screens/subscription/components/SubscriptionAppBar.dart';
 import 'package:antilla/screens/subscription/components/ThemeItem.dart';
 import 'package:antilla/size_config.dart';
 import 'package:bordered_text/bordered_text.dart';
@@ -17,9 +17,10 @@ class SubscriptionScreen extends StatelessWidget {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
-          child: SubscriptionAppBar(),
+          child: AntillaAppBar(title: "테마 구독",),
         ),
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               Container(

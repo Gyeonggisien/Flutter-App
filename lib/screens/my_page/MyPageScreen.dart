@@ -1,6 +1,6 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/components/AntillaAppBar.dart';
 import 'package:antilla/screens/my_page/SubscriptionStateScreen.dart';
-import 'package:antilla/screens/my_page/components/MyPageAppBar.dart';
 import 'package:antilla/screens/my_page/components/SubscriptionTotal.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +18,10 @@ class MyPageScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: MyPageAppBar(),
+        child: AntillaAppBar(title: "antilla",),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             Padding(

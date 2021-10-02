@@ -1,7 +1,7 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/components/AntillaAppBar.dart';
 import 'package:antilla/screens/my_page/subscription-state-components/EndPlan.dart';
 import 'package:antilla/screens/my_page/subscription-state-components/EndPlanContainer.dart';
-import 'package:antilla/screens/my_page/subscription-state-components/MyPageSubscriptionAppBar.dart';
 import 'package:antilla/screens/my_page/subscription-state-components/ProfileCard.dart';
 import 'package:antilla/size_config.dart';
 import 'package:expandable/expandable.dart';
@@ -19,7 +19,7 @@ class SubscriptionStateScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: MyPageSubscriptionAppBar(),
+        child: AntillaAppBar(title: "테마 구독",),
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),

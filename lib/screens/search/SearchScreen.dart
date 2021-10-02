@@ -17,6 +17,7 @@ class SearchScreen extends StatelessWidget {
     SizeConfig.init(context);
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

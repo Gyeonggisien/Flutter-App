@@ -1,5 +1,5 @@
 import 'package:antilla/constants.dart';
-import 'package:antilla/screens/home/components/AntillaAppBar.dart';
+import 'package:antilla/screens/components/AntillaAppBar.dart';
 import 'package:antilla/screens/home/components/OnlyContainer.dart';
 import 'package:antilla/screens/home/components/ProfileCard.dart';
 import 'package:antilla/screens/home/components/Recommend.dart';
@@ -13,9 +13,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: AntillaAppBar(),
+        child: AntillaAppBar(title: "antilla",),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: SafeArea(child: SignUpScreen()),
+      home: SafeArea(child: BottomNavigation()),
     );
   }
 }
