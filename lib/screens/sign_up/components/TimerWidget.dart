@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
 class TimerWidget extends StatefulWidget {
-  TimerWidget({Key? key}) : super(key: key);
-
   bool isRetried = false;
-  AnimationController? controller;
+  TimerWidget({Key? key}) : super(key: key);
 
   @override
   _TimerState createState() => _TimerState();
@@ -14,31 +12,34 @@ class TimerWidget extends StatefulWidget {
 
 class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
   int levelClock = 180;
+  AnimationController? controller;
 
   @override
   void initState() {
-    setState(() {
-      super.initState();
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: levelClock),
+    );
 
-      widget.controller = AnimationController(
-        vsync: this,
-        duration: Duration(seconds: levelClock),
-      );
+    controller!.forward();
+  }
 
-      widget.controller!.forward();
-    });
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void restart() {
     setState(() {
       widget.isRetried = true;
 
-      widget.controller = AnimationController(
+      controller = AnimationController(
         vsync: this,
         duration: Duration(seconds: levelClock),
       );
 
-      widget.controller!.forward();
+      controller!.forward();
     });
   }
 
@@ -49,16 +50,8 @@ class _TimerState extends State<TimerWidget> with TickerProviderStateMixin {
       animation: StepTween(
         begin: levelClock,
         end: 0,
-      ).animate(widget.controller!),
+      ).animate(controller!),
     );
-  }
-
-  @override
-  void dispose() {
-    setState(() {
-      super.dispose();
-      widget.isRetried = true;
-    });
   }
 }
 

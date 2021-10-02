@@ -3,11 +3,11 @@ import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/CustomTextField.dart';
+import 'package:antilla/screens/sign_up/components/TimerWidget.dart';
 import 'package:antilla/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomAuthCodeTextField.dart';
-import 'TimerClass.dart';
 import 'TimerWidget.dart';
 
 class SignUpContent3 extends StatefulWidget {
@@ -121,12 +121,18 @@ class _SignUpContent3State extends State<SignUpContent3> {
                     showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) => BottomSheet());
-                  } else if (SignUpContent3.isAgree && Countdown.isOver) {
+                  } else if (SignUpContent3.isAgree && timer.isRetried) {
                     timerChange();
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Countdown.isOver ? kMainColor : kGray2Color,
+                  primary: (timer.isRetried ||
+                          (SignUpContent3.nameValid &&
+                              SignUpContent3.ssnValid &&
+                              SignUpContent3.currencyValid &&
+                              SignUpContent3.phoneNumValid))
+                      ? kMainColor
+                      : kGray2Color,
                   padding:
                       EdgeInsets.symmetric(vertical: kDefaultPadding * 0.9),
                   shape: RoundedRectangleBorder(
@@ -182,7 +188,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
 
   void timerChange() {
     setState(() {
-      Countdown.isOver = false;
+      timer.isRetried = true;
     });
   }
 
@@ -225,7 +231,7 @@ class _SignUpContent3State extends State<SignUpContent3> {
   }
 
   void callbackPhoneNum(String? text) {
-    RegExp regex = RegExp('[0-9]');
+    RegExp regex = RegExp(r"((010)[ -]?\d{3,5}[ -]?\d{4})");
     bool cond1 = (text!.trim().length > 9) && (text.trim().length < 12);
     setState(() {
       if (regex.hasMatch(text) && cond1) {

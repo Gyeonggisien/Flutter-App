@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/BottomNavigation.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';
 import 'package:antilla/screens/sign_up/components/FavoriteContainer.dart';
@@ -48,7 +49,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  int currentIndex = 0;
+  int currentIndex = 2;
 
   final List<Widget> screens = [
     SignUpContent1(),
@@ -137,7 +138,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Row(
                       children: [
                         Spacer(),
-                        SkipButton(onPressed: () {}),
+                        SkipButton(onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BottomNavigation()),
+                          );
+                        }),
                       ],
                     ),
                     SignUpContent5(),
@@ -152,7 +159,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               width: double.infinity,
               height: getHeight(kDefaultPadding * 3.75),
               child: ConfirmButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BottomNavigation()),
+                  );
+                },
               ),
             ),
           );

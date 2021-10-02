@@ -22,11 +22,11 @@ class SignUpContent2 extends StatefulWidget {
   }
 
   static bool returnState1() {
-    return ((cond1 == null) || (cond1 == false)) ? false : true;
+    return ((cond1 == false)) ? false : true;
   }
 
   static bool returnState2() {
-    return ((cond2 == null) || (cond2 == false)) ? false : true;
+    return ((cond2 == false)) ? false : true;
   }
 
   @override
@@ -35,8 +35,9 @@ class SignUpContent2 extends StatefulWidget {
 
 class _SignUpContent2State extends State<SignUpContent2> {
   void callback(String? text) {
-    RegExp regex = RegExp('[a-zA-Z0-9]');
-    bool cond1 = regex.hasMatch(text!);
+    RegExp regex1 = RegExp('[a-zA-Z]');
+    RegExp regex2 = RegExp('[0-9]');
+    bool cond1 = regex1.hasMatch(text!) && regex2.hasMatch(text);
     bool cond2 = text.trim().length >= 8;
     setState(() {
       if (cond1 && cond2) {
