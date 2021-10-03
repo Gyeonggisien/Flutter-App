@@ -30,8 +30,8 @@ class _FavoriteThemeState extends State<FavoriteTheme> {
         });
       },
       child: Container(
-        width: getWidth(kDefaultPadding * 5),
-        height: getHeight(kDefaultPadding * 7.25),
+        width: getWidth(90.0),
+        height: getWidth(140.0),
         child: Stack(
           children: [
             ClipRRect(

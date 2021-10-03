@@ -1,7 +1,6 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/home/components/SubscriptionTotal.dart';
 import 'package:antilla/size_config.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 
@@ -75,7 +74,7 @@ class ProfileCardContent extends StatelessWidget {
                             width: 1.0, color: kMainColor),
                       ),
                     ),
-                    child: AutoSizeText(
+                    child: Text(
                       '🏠 나의 취향 분석하러 가기',
                       maxLines: 1,
                       style: Theme.of(context)

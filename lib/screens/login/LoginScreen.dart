@@ -16,13 +16,12 @@ class _LoginScreenState extends State<LoginScreen> {
     SizeConfig.init(context);
     return Scaffold(
       body: Container(
+        width: SizeConfig.screenWidth,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [kMainColor.withOpacity(0.0), kPointColor],
-            stops: [0.2, 0.8],
-          ),
+          image: DecorationImage(
+            image: AssetImage('images/background.png'),
+            fit: BoxFit.cover
+          )
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
@@ -39,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Text.rich(
                 TextSpan(
                   text: '간편하게 로그인하고\n',
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
+                  style: Theme.of(context).textTheme.headline2!.copyWith(
                         color: Colors.white,
                       ),
                   children: <TextSpan>[
@@ -140,7 +139,7 @@ class LoginButton extends StatelessWidget {
           Text(text,
               style: Theme.of(context)
                   .textTheme
-                  .headline2!
+                  .headline3!
                   .copyWith(color: fontColor)),
         ],
       ),

@@ -16,22 +16,24 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SearchContainer(),
-            RecentContainer(),
-            ThemeContainer(),
-            Container(
-              width: SizeConfig.screenWidth,
-              height: 7.0,
-              color: Color(0xFFE0DDD8),
-            ),
-            HotThemeContainer(),
-            NewIssueContainer(),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SearchContainer(),
+              RecentContainer(),
+              ThemeContainer(),
+              Container(
+                width: SizeConfig.screenWidth,
+                height: 7.0,
+                color: Color(0xFFE0DDD8),
+              ),
+              HotThemeContainer(),
+              NewIssueContainer(),
+            ],
+          ),
         ),
       ),
     );

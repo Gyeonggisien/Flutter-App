@@ -1,5 +1,6 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
+import 'package:antilla/screens/login2/LoginScreen2.dart';
 import 'package:antilla/size_config.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';

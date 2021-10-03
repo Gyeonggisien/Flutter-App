@@ -1,4 +1,5 @@
 import 'package:antilla/constants.dart';
+import 'package:antilla/screens/sign_up-2/components/SignUpContent4.dart';
 import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/Clause.dart';
 import 'package:antilla/screens/sign_up/components/ConfirmButton.dart';

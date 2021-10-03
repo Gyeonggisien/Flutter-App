@@ -49,7 +49,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  int currentIndex = 2;
+  int currentIndex = 0;
 
   final List<Widget> screens = [
     SignUpContent1(),
@@ -113,11 +113,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ConfirmButton(
                   onPressed: () {
                     setState(() {
-                      if (isEnabled(currentIndex)) {
+                      //if (isEnabled(currentIndex)) {
                         if (currentIndex >= 0 && currentIndex < 4) {
                           currentIndex++;
                         }
-                      }
+                      //}
                     });
                   },
                   style: isEnabled(currentIndex)

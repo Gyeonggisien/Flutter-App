@@ -1,8 +1,12 @@
 import 'package:antilla/constants.dart';
 import 'package:antilla/screens/BottomNavigation.dart';
 import 'package:antilla/screens/login/LoginScreen.dart';
+import 'package:antilla/screens/login2/LoginScreen2.dart';
 import 'package:antilla/screens/my_page/MyPageScreen.dart';
 import 'package:antilla/screens/sign_up-2/SignUpScreen1.dart';
+import 'package:antilla/screens/sign_up-2/SignUpScreen2.dart';
+import 'package:antilla/screens/sign_up-2/SignUpScreen3.dart';
+import 'package:antilla/screens/sign_up-2/SignUpScreen4.dart';
 import 'package:antilla/screens/sign_up/SignUpScreen.dart';
 import 'package:antilla/screens/sign_up/components/SignUpContent2.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +43,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 7, color: kFontColor),
         ),
       ),
-      home: SafeArea(child: BottomNavigation()),
+      home: SafeArea(child: LoginScreen()),
     );
   }
 }

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class MyPageScreen extends StatelessWidget {
   final List<String> title = ['내 정보', '구독 내역', '내가 저장한 테마'];
-  final List<Widget> screens = [SubscriptionStateScreen(), SubscriptionStateScreen(), SubscriptionStateScreen()];
+  final List<Widget> screens = [Scaffold(), SubscriptionStateScreen(), Scaffold()];
   final List<String> title2 = ['인증 및 보안', '알림', '결제'];
   final List<String> title3 = ['공지사항', '문의하기 및 Q&A'];
 
@@ -112,7 +112,6 @@ class MyPageScreen extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemExtent: getWidth(45.0),
               physics: NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (BuildContext context, int index) {
@@ -129,6 +128,7 @@ class MyPageScreen extends StatelessWidget {
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     trailing: Icon(Icons.keyboard_arrow_right_sharp),
+                    tileColor: (index == 1) ? Colors.red.withOpacity(0.2) : Colors.white,
                   ),
                 );
               },
